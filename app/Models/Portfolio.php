@@ -15,6 +15,7 @@ class Portfolio extends Model
         'nama',
         'gambar',
         'lokasi',
+        'kategori',
         'tanggalProyek',
         'client',
         'deskripsi'

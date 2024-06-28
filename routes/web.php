@@ -19,6 +19,13 @@ Route::middleware('auth')->group(function () {
 
     // ROUTE PORTFOLIO
     Route::get('/manage-portfolio',[PortfolioController::class,'index'])->name('portfolio.index');
+    Route::get('/add-portfolio',[PortfolioController::class,'create'])->name('portfolio.create');
+    Route::post('/add-portfolio',[PortfolioController::class,'store'])->name('portfolio.store');
+    Route::get('/edit-portfolio/{Portfolio_id}',[PortfolioController::class,'edit'])->name('portfolio.edit');
+    Route::post('/update-portfolio/{Portfolio_id}',[PortfolioController::class,'update'])->name('portfolio.update');
+    Route::get('/delete-portfolio/{portfolio_id}',[PortfolioController::class,'destroy'])->name('portfolio.delete');
+
+
 
 });
 
