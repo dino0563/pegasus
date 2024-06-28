@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Blog;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +21,8 @@ Route::middleware('auth')->group(function () {
 
     // ROUTE PORTFOLIO
     Route::get('/manage-portfolio',[PortfolioController::class,'index'])->name('portfolio.index');
+    // ROUTE BLOG
+    Route::get('/manage-blog', [BlogController::class, 'index'])->middleware(['auth', 'verified'])->name('manage-blog');
 
 });
 
@@ -29,9 +33,9 @@ Route::get('/admin', function () {
     return view('admin/index');
 })->middleware(['auth', 'verified'])->name('admin');
 
-Route::get('/manage-blog', function () {
-    return view('admin/blog');
-})->middleware(['auth', 'verified'])->name('manage-blog');
+// Route::get('/manage-blog', function () {
+//     return view('admin/blog');
+// })->middleware(['auth', 'verified'])->name('manage-blog');
 
 Route::get('/manage-user', function () {
     return view('admin/user');

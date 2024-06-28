@@ -257,7 +257,7 @@
                                             @csrf
 
                                             <x-dropdown-link :href="route('logout')"
-                                                    onclick="event.preventDefault();
+                                                onclick="event.preventDefault();
                                                                 this.closest('form').submit();">
                                                 {{ __('Log Out') }}
                                             </x-dropdown-link>
@@ -302,41 +302,42 @@
 
     </div>
     <!-- / Layout wrapper -->
- <!-- Core JS -->
-  <!-- build:js assets/admin/vendor/js/core.js -->
+    <!-- Core JS -->
+    <!-- build:js assets/admin/vendor/js/core.js -->
 
-  <script src="assets/admin/vendor/libs/jquery/jquery.js"></script>
-  <script src="assets/admin/vendor/libs/popper/popper.js"></script>
-  <script src="assets/admin/vendor/js/bootstrap.js"></script>
-  <script src="assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-  <script src="assets/admin/vendor/libs/hammer/hammer.js"></script>
-  <script src="assets/admin/vendor/libs/i18n/i18n.js"></script>
-  <script src="assets/admin/vendor/libs/typeahead-js/typeahead.js"></script>
-  <script src="assets/admin/vendor/js/menu.js"></script>
+    <script src="assets/admin/vendor/libs/jquery/jquery.js"></script>
+    <script src="assets/admin/vendor/libs/popper/popper.js"></script>
+    <script src="assets/admin/vendor/js/bootstrap.js"></script>
+    <script src="assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="assets/admin/vendor/libs/hammer/hammer.js"></script>
+    <script src="assets/admin/vendor/libs/i18n/i18n.js"></script>
+    <script src="assets/admin/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="assets/admin/vendor/js/menu.js"></script>
 
-  <!-- endbuild -->
+    <!-- endbuild -->
 
-  <!-- Vendors JS -->
-  <script src="assets/admin/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
-<!-- Flat Picker -->
-<script src="assets/admin/vendor/libs/moment/moment.js"></script>
-<script src="assets/admin/vendor/libs/flatpickr/flatpickr.js"></script>
-<!-- Form Validation -->
-<script src="assets/admin/vendor/libs/%40form-validation/popular.js"></script>
-<script src="assets/admin/vendor/libs/%40form-validation/bootstrap5.js"></script>
-<script src="assets/admin/vendor/libs/%40form-validation/auto-focus.js"></script>
+    <!-- Vendors JS -->
+    <script src="assets/admin/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    <!-- Flat Picker -->
+    <script src="assets/admin/vendor/libs/moment/moment.js"></script>
+    <script src="assets/admin/vendor/libs/flatpickr/flatpickr.js"></script>
+    <!-- Form Validation -->
+    <script src="assets/admin/vendor/libs/%40form-validation/popular.js"></script>
+    <script src="assets/admin/vendor/libs/%40form-validation/bootstrap5.js"></script>
+    <script src="assets/admin/vendor/libs/%40form-validation/auto-focus.js"></script>
 
-  <!-- Main JS -->
-  <script src="assets/js/main.js"></script>
+    <!-- Main JS -->
+    <script src="assets/admin/js/main.js"></script>
 
 
-  <!-- Page JS -->
-  <script src="assets/js/tables-datatables-basic.js"></script>
+    <!-- Page JS -->
+    <script src="assets/admin/js/tables-datatables-basic.js"></script>
 
-  @yield('script')
-    </body>
+    @yield('script')
+</body>
 
-    <!-- Mirrored from demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-user-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 23 Jun 2024 10:23:43 GMT -->
-  </html>
+<!-- Mirrored from demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-user-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 23 Jun 2024 10:23:43 GMT -->
 
-  <!-- beautify ignore:end -->
+</html>
+
+<!-- beautify ignore:end -->
