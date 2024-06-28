@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Portfolio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use App\Http\Requests\PortfolioRequest;
+use Illuminate\Support\Facades\Auth;
 
 class PortfolioController extends Controller
 {
@@ -85,11 +87,11 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function edit($portfolio_id)
+    public function edit(Request $request, $portfolio_id)
     {
-        return view('portfolio.edit', compact('portfolio'));
+        $portfolio = Portfolio::findOrFail($portfolio_id);
+        return view('admin.portfolio.edit', compact('portfolio'));
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -97,22 +99,38 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Portfolio $portfolio)
-    {
-        $data = $request->only(['nama', 'lokasi', 'kategori', 'tanggalProyek', 'client', 'deskripsi']); // Pastikan hanya mengambil data yang aman untuk disimpan
+    public function update(PortfolioRequest $request, $portfolio_id)
+{
+    $data = $request->validated();
 
-        if ($request->file('gambar')) {
-            $extension = $request->file('gambar')->getClientOriginalExtension();
-            $gambarName = $request->nama . '-gambar-' . now()->timestamp . '.' . $extension;
-            $request->file('gambar')->storeAs('public/gambar', $gambarName);
-            $data['gambar'] = $gambarName; // Menyimpan nama file background
+    $portfolio = Portfolio::findOrFail($portfolio_id);
+    $this->authorize('update', $portfolio);
+
+    $portfolio->nama = $data['nama'];
+    $portfolio->lokasi = $data['lokasi'];
+    $portfolio->kategori = $data['kategori'];
+    $portfolio->tanggalProyek = $data['tanggalProyek'];
+    $portfolio->client = $data['client'];
+    $portfolio->deskripsi = $data['deskripsi'];
+
+    if ($request->hasFile('gambar')) {
+        $destination = 'public/portfolio/gambar/' . $portfolio->gambar;
+        if (File::exists($destination)) {
+            File::delete($destination);
         }
 
-        $portfolio->update($data);
-
-        return redirect()->route('portfolio.index')
-            ->with('success', 'Portfolio item updated successfully.');
+        $file = $request->file('gambar');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $file->move('public/portfolio/gambar/', $filename);
+        $portfolio->gambar = $filename;
     }
+
+    $portfolio->save();
+
+    return redirect(route('portfolio.index'))->with('success', 'Portfolio item updated successfully.');
+}
+
+
 
     /**
      * Remove the specified resource from storage.

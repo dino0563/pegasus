@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact" dir="ltr"
-    data-theme="theme-default" data-assets-path="assets/admin/" data-template="vertical-menu-template">
+    data-theme="theme-default" data-assets-path="{{ asset('assets/admin/') }}" data-template="vertical-menu-template">
 
 <head>
     <meta charset="utf-8" />
@@ -11,11 +11,11 @@
         content="Most Powerful & Comprehensive Bootstrap 5 Admin Dashboard built for developers!" />
     <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
     <!-- Canonical SEO -->
-    <link rel="canonical" href="https://themeselection.com/item/sneat-dashboard-pro-bootstrap/">
+    <link rel="canonical" href="{{ route('admin') }}">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon"
-        href="https://demos.themeselection.com/sneat-bootstrap-html-admin-template/assets/img/favicon/favicon.ico" />
+        href="{{ asset('assets/admin/img/favicon/favicon.ico') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -25,34 +25,34 @@
         rel="stylesheet">
 
     <!-- Icons -->
-    <link rel="stylesheet" href="assets/admin/vendor/fonts/boxicons.css" />
-    <link rel="stylesheet" href="assets/admin/vendor/fonts/fontawesome.css" />
-    <link rel="stylesheet" href="assets/admin/vendor/fonts/flag-icons.css" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/boxicons.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/fontawesome.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/flag-icons.css') }}" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="assets/admin/vendor/css/rtl/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="assets/admin/vendor/css/rtl/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="assets/admin/css/demo.css" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/css/demo.css') }}" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="assets/admin/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="assets/admin/vendor/libs/datatables-bs5/datatables.bootstrap5.css">
-    <link rel="stylesheet" href="assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css">
-    <link rel="stylesheet" href="assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css">
-    <link rel="stylesheet" href="assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css">
-    <link rel="stylesheet" href="assets/admin/vendor/libs/flatpickr/flatpickr.css" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/typeahead-js/typeahead.css') }}" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/flatpickr/flatpickr.css') }}" />
     <!-- Row Group CSS -->
-    <link rel="stylesheet" href="assets/admin/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css">
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css') }}">
     <!-- Form Validation -->
-    <link rel="stylesheet" href="assets/admin/vendor/libs/%40form-validation/form-validation.css" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/%40form-validation/form-validation.css') }}" />
 
     <!-- Page CSS -->
 
     <!-- Helpers -->
-    <script src="assets/admin/vendor/js/helpers.js"></script>
+    <script src="{{ asset('assets/admin/vendor/js/helpers.js') }}"></script>
     <!-- Config: Mandatory theme config file containing global vars & default theme options, Set your preferred theme option in this file. -->
-    <script src="assets/admin/js/config.js"></script>
+    <script src="{{ asset('assets/admin/js/config.js') }}"></script>
 </head>
 
 <body>
@@ -69,7 +69,7 @@
 
 
                 <div class="app-brand demo ">
-                    <a href="index.html" class="app-brand-link">
+                    <a href="/" class="app-brand-link">
                         <span class="app-brand-logo demo">
 
                             <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +128,7 @@
                 <ul class="menu-inner py-1">
                     <!-- Dashboards -->
                     <li class="menu-item">
-                        <a href="{{ url('/admin') }}" class="menu-link">
+                        <a href="{{ route('dashboard') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div class="text-truncate" data-i18n="Dashboards">
                                 Dashboards
@@ -136,7 +136,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{ url('/manage-blog') }}" class="menu-link">
+                        <a href="{{ route('blog.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-news"></i> <!-- Ikon untuk Blog -->
                             <div class="text-truncate" data-i18n="Manage Blog">
                                 Manage Blog
@@ -144,7 +144,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{ url('/manage-portfolio') }}" class="menu-link">
+                        <a href="{{ route('portfolio.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-briefcase-alt"></i> <!-- Ikon untuk Portofolio -->
                             <div class="text-truncate" data-i18n="Manage Portfolio">
                                 Manage Portfolio
@@ -152,7 +152,7 @@
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="{{ url('/manage-user') }}" class="menu-link">
+                        <a href="{{ route('manage-user') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-user"></i> <!-- Ikon untuk User -->
                             <div class="text-truncate" data-i18n="Manage User">
                                 Manage User
@@ -208,17 +208,17 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="assets/admin/img/avatars/1.png" alt
+                                        <img src="{{ asset('assets/admin/img/avatars/1.png') }}" alt
                                             class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <a class="dropdown-item" href="pages-account-settings-account.html">
+                                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="assets/admin/img/avatars/1.png" alt
+                                                        <img src="{{ asset('assets/admin/img/avatars/1.png') }}" alt
                                                             class="w-px-40 h-auto rounded-circle" />
                                                     </div>
                                                 </div>
@@ -233,7 +233,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="pages-account-settings-account.html">
+                                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                             <i class="bx bx-cog me-2"></i>
                                             <span class="align-middle">Settings</span>
                                         </a>
@@ -291,6 +291,8 @@
     </div>
     <!-- / Layout wrapper -->
     <!-- Core JS -->
+    <script src="{{ asset('assets/admin/vendor/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/popper/popper.js') }}"></script>
     <script src="assets/admin/vendor/libs/jquery/jquery.js"></script>
     <script src="assets/admin/vendor/libs/popper/popper.js"></script>
     <script src="assets/admin/vendor/js/bootstrap.js"></script>
