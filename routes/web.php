@@ -20,8 +20,17 @@ Route::middleware('auth')->group(function () {
 
     // ROUTE PORTFOLIO
     Route::get('/manage-portfolio',[PortfolioController::class,'index'])->name('portfolio.index');
+    Route::get('/add-portfolio',[PortfolioController::class,'create'])->name('portfolio.create');
+    Route::post('/add-portfolio',[PortfolioController::class,'store'])->name('portfolio.store');
+    Route::get('/edit-portfolio/{Portfolio_id}',[PortfolioController::class,'edit'])->name('portfolio.edit');
+    Route::post('/update-portfolio/{Portfolio_id}',[PortfolioController::class,'update'])->name('portfolio.update');
+    Route::get('/delete-portfolio/{portfolio_id}',[PortfolioController::class,'destroy'])->name('portfolio.delete');
     
+    // ROUTE BLOG
     Route::get('/manage-blog',[BlogController::class,'index'])->name('blog.index');
+    Route::get('/add-blog',[BlogController::class,'create'])->name('blog.create');
+    Route::post('/add-blog',[BlogController::class,'store'])->name('blog.store');
+    Route::get('/delete-blog/{blog_id}',[BlogController::class,'destroy'])->name('blog.delete');
 
 });
 
@@ -31,10 +40,6 @@ require __DIR__.'/auth.php';
 Route::get('/admin', function () {
     return view('admin/index');
 })->middleware(['auth', 'verified'])->name('admin');
-
-// Route::get('/manage-blog', function () {
-//     return view('admin/blog');
-// })->middleware(['auth', 'verified'])->name('manage-blog');
 
 Route::get('/manage-user', function () {
     return view('admin/user');
@@ -58,7 +63,5 @@ Route::get('/contact-us', function () {
     return view('user/contact-us');
 });
 
-Route::get('/add-blog',[BlogController::class,'create'])->name('blog.create');
 
-Route::post('/add-blog',[BlogController::class,'store'])->name('blog.store');
 

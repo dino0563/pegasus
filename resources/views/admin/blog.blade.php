@@ -45,10 +45,13 @@
                                     <td><img src="{{ asset('storage/blog/gambar/' . $blog->gambar) }}" style="width:100px;"></td>
                                     <td>{{ $blog->tanggal }}</td>
                                     <td>{{ $blog->deskripsi }}</td>
-                                    <td>
-                                        <!-- Action buttons go here -->
-                                        <button class="btn btn-sm btn-info">Edit</button>
-                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                    <td class="" style="">
+                                        <div class="d-inline-block text-nowrap">
+                                            <button class="btn btn-sm btn-icon edit-portfolio"><i
+                                                    class="bx bx-edit"></i></button>
+                                            <button class="btn btn-sm btn-icon delete-record" onclick="window.location='{{ route('blog.delete', $blog->id) }}'"><i
+                                                    class="bx bx-trash"></i></button>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
