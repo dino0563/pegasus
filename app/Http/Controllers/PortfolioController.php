@@ -20,6 +20,16 @@ class PortfolioController extends Controller
         $portfolios = Portfolio::all();
         return view('admin.portfolio.home', compact('portfolios'));
     }
+    public function show()
+    {
+        $portfolios = Portfolio::all();
+        return view('user.home', compact('portfolios'));
+    }
+    public function display()
+    {
+        $portfolios = Portfolio::all();
+        return view('user.portfolio', compact('portfolios'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -76,10 +86,6 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function show(Portfolio $portfolio)
-    {
-        return view('portfolio.show', compact('portfolio'));
-    }
 
     /**
      * Show the form for editing the specified resource.

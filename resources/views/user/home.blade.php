@@ -530,115 +530,31 @@
                 <!-- Additional required wrapper -->
                 <div class="swiper-wrapper">
                     <!-- Single item -->
+                    @foreach($portfolios as $portfolio)
                     <div class="swiper-slide">
                         <div class="case-style-two">
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="case-thumb">
-                                        <img src="assets/user/img/gallery/7.jpg" alt="Image Not Found">
+                                        <img src="{{asset('storage/portfolio/gambar/' . $portfolio->gambar)}}" alt="Image Not Found">
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
                                     <div class="info text-light" style="background-image: url(assets/user/img/shape/banner-3.webp);">
-                                        <h2>Portofolio 1</h2>
+                                        <h2>{{ $portfolio->nama }}</h2>
                                         <p>
-                                            Targeting consultation discover apartments. ndulgence off under folly death wrote cause her way spite. Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties but why she shewing. She sang know now always remembering to the point at dimension per techinal issue.
+                                            {{ $portfolio->deskripsi }}
                                         </p>
-                                        <a class="btn btn-md btn-dark animation" href="project-carousel.html">Lihat Lebih Banyak</a>
+                                        {{-- <a class="btn btn-md btn-dark animation" href="{{ route('portfolio.show', $portfolio->id) }}">Lihat Lebih Banyak</a> --}}
+                                        <a class="btn btn-md btn-dark animation" href="#">Lihat Lebih Banyak</a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                     <!-- End Single item -->
-                    <!-- Single item -->
-                    <div class="swiper-slide">
-                        <div class="case-style-two">
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="case-thumb">
-                                        <img src="assets/user/img/gallery/8.jpg" alt="Image Not Found">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="info text-light" style="background-image: url(assets/user/img/shape/banner-3.webp);">
-                                        <h2>Portofolio 2</h2>
-                                        <p>
-                                            Targeting consultation discover apartments. ndulgence off under folly death wrote cause her way spite. Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties but why she shewing. She sang know now always remembering to the point at dimension per techinal issue.
-                                        </p>
-                                        <a class="btn btn-md btn-dark animation" href="project-carousel.html">Lihat Lebih Banyak</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single item -->
-                    <!-- Single item -->
-                    <div class="swiper-slide">
-                        <div class="case-style-two">
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="case-thumb">
-                                        <img src="assets/user/img/gallery/7.jpg" alt="Image Not Found">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="info text-light" style="background-image: url(assets/user/img/shape/banner-3.webp);">
-                                        <h2>Portofolio 3</h2>
-                                        <p>
-                                            Targeting consultation discover apartments. ndulgence off under folly death wrote cause her way spite. Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties but why she shewing. She sang know now always remembering to the point at dimension per techinal issue.
-                                        </p>
-                                        <a class="btn btn-md btn-dark animation" href="project-carousel.html">Lihat Lebih Banyak</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single item -->
-                    <!-- Single item -->
-                    <div class="swiper-slide">
-                        <div class="case-style-two">
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="case-thumb">
-                                        <img src="assets/user/img/gallery/8.jpg" alt="Image Not Found">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="info text-light" style="background-image: url(assets/user/img/shape/banner-3.webp);">
-                                        <h2>Portofolio 4</h2>
-                                        <p>
-                                            Targeting consultation discover apartments. ndulgence off under folly death wrote cause her way spite. Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties but why she shewing. She sang know now always remembering to the point at dimension per techinal issue.
-                                        </p>
-                                        <a class="btn btn-md btn-dark animation" href="project-carousel.html">Lihat Lebih Banyak</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single item -->
-                    <!-- Single item -->
-                    <div class="swiper-slide">
-                        <div class="case-style-two">
-                            <div class="row">
-                                <div class="col-xl-6">
-                                    <div class="case-thumb">
-                                        <img src="assets/user/img/gallery/7.jpg" alt="Image Not Found">
-                                    </div>
-                                </div>
-                                <div class="col-xl-6">
-                                    <div class="info text-light" style="background-image: url(assets/user/img/shape/banner-3.webp);">
-                                        <h2>Portofolio 5</h2>
-                                        <p>
-                                            Targeting consultation discover apartments. ndulgence off under folly death wrote cause her way spite. Plan upon yet way get cold spot its week. Almost do am or limits hearts. Resolve parties but why she shewing. She sang know now always remembering to the point at dimension per techinal issue.
-                                        </p>
-                                        <a class="btn btn-md btn-dark animation" href="project-carousel.html">Lihat Lebih Banyak</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- End Single item -->
+
                 </div>
 
                 <!-- Navigation -->
