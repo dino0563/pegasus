@@ -135,7 +135,7 @@
                         </li>
 
                         <li class="">
-                            <a href="/about" class="dropdown-toggle" data-toggle="dropdown" >About Us</a>
+                            <a href="/about-us" class="dropdown-toggle" data-toggle="dropdown" >About Us</a>
                         </li>
 
                         <li class="dropdown">
@@ -1137,7 +1137,7 @@
                                     <a href="about-us.html">Compnay Profile</a>
                                 </li>
                                 <li>
-                                    <a href="about-us.html">About</a>
+                                    <a href="/about-us">About Us</a>
                                 </li>
                                 <li>
                                     <a href="faq.html">Help Center</a>
@@ -1224,25 +1224,25 @@
 
     <!-- jQuery Frameworks
     ============================================= -->
-    <script src="assets/user/js/jquery-3.6.0.min.js"></script>
-    <script src="assets/user/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/user/js/jquery.appear.js"></script>
-    <script src="assets/user/js/jquery.easing.min.js"></script>
-    <script src="assets/user/js/jquery.magnific-popup.min.js"></script>
-    <script src="assets/user/js/modernizr.custom.13711.js"></script>
-    <script src="assets/user/js/swiper-bundle.min.js"></script>
-    <script src="assets/user/js/wow.min.js"></script>
-    <script src="assets/user/js/progress-bar.min.js"></script>
-    <script src="assets/user/js/circle-progress.js"></script>
-    <script src="assets/user/js/isotope.pkgd.min.js"></script>
-    <script src="assets/user/js/imagesloaded.pkgd.min.js"></script>
-    <script src="assets/user/js/jquery.nice-select.min.js"></script>
-    <script src="assets/user/js/count-to.js"></script>
-    <script src="assets/user/js/jquery.scrolla.min.js"></script>
-    <script src="assets/user/js/YTPlayer.min.js"></script>
-    <script src="assets/user/js/TweenMax.min.js"></script>
-    <script src="assets/user/js/validnavs.js"></script>
-    <script src="assets/user/js/main.js"></script>
+    <script src="{{ asset('assets/user/js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('assets/user/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/user/js/jquery.appear.js') }}"></script>
+    <script src="{{ asset('assets/user/js/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('assets/user/js/jquery.magnific-popup.min.js') }}"></script>
+    <script src="{{ asset('assets/user/js/modernizr.custom.13711.js') }}"></script>
+    <script src="{{ asset('assets/user/js/swiper-bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/user/js/wow.min.js') }}"></script>
+    <script src="{{ asset('assets/user/js/progress-bar.min.js') }}"></script>
+    <script src="{{ asset('assets/user/js/circle-progress.js') }}"></script>
+    <script src="{{ asset('assets/user/js/isotope.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/user/js/imagesloaded.pkgd.min.js') }}"></script>
+    <script src="{{ asset('assets/user/js/jquery.nice-select.min.js') }}"></script>
+    <script src="{{ asset('assets/user/js/count-to.js') }}"></script>
+    <script src="{{ asset('assets/user/js/jquery.scrolla.min.js') }}"></script>
+    <script src="{{ asset('assets/user/js/YTPlayer.min.js') }}"></script>
+    <script src="{{ asset('assets/user/js/TweenMax.min.js') }}"></script>
+    <script src="{{ asset('assets/user/js/validnavs.js') }}"></script>
+    <script src="{{ asset('assets/user/js/main.js') }}"></script>
 
 </body>
 
