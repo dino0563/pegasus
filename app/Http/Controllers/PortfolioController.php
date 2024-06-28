@@ -15,7 +15,7 @@ class PortfolioController extends Controller
     public function index()
     {
         $portfolios = Portfolio::all();
-        return view('portfolio.index', compact('portfolios'));
+        return view('admin.portfolio.home', compact('portfolios'));
     }
 
     /**
@@ -68,7 +68,7 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function edit(Portfolio $portfolio)
+    public function edit($portfolio_id)
     {
         return view('portfolio.edit', compact('portfolio'));
     }
@@ -103,12 +103,21 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Portfolio $portfolio)
-    {
-        $portfolio->delete();
+    public function destroy($portfolio_id){
 
-        return redirect()->route('portfolio.index')
-            ->with('success', 'Portfolio item deleted successfully.');
-    }
+        $portfolios=Student::findOrFail($portfolio_id);
+
+        if($portfolios){
+            $destination ='uploads/students/'.$portfolios->stu_image;
+            if(File::exists($destination)){
+                 File::delete($destination);
+            }
+            $portfolios->delete();
+            return redirect(route('student.index'))->with('status','Student Deleted Successfully');
+        }
+        else{
+            return redirect(route('student.index'))->with('status','Student ID Not Found');
+        }
+      }
 }
 
