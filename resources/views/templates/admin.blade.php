@@ -327,11 +327,11 @@
     <script src="assets/admin/vendor/libs/%40form-validation/auto-focus.js"></script>
 
     <!-- Main JS -->
-    <script src="assets/admin/js/main.js"></script>
+    {{-- <script src="assets/admin/js/main.js"></script> --}}
 
 
     <!-- Page JS -->
-    <script src="assets/admin/js/tables-datatables-basic.js"></script>
+    {{-- <script src="assets/admin/js/tables-datatables-basic.js"></script> --}}
 
     @yield('script')
 </body>
