@@ -1,27 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact " dir="ltr"
-    data-theme="theme-default" data-assets-path="../../assets/" data-template="vertical-menu-template">
-
-
-<!-- Mirrored from demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-logistics-dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 23 Jun 2024 10:26:10 GMT -->
+<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed layout-compact" dir="ltr"
+    data-theme="theme-default" data-assets-path="assets/admin/" data-template="vertical-menu-template">
 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-
     <title>Pegasus - @yield('title')</title>
-
     <meta name="description"
-        content="Most Powerful &amp; Comprehensive Bootstrap 5 Admin Dashboard built for developers!" />
+        content="Most Powerful & Comprehensive Bootstrap 5 Admin Dashboard built for developers!" />
     <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
     <!-- Canonical SEO -->
     <link rel="canonical" href="https://themeselection.com/item/sneat-dashboard-pro-bootstrap/">
-
-
-    <!-- ? PROD Only: Google Tag Manager (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
-    @yield('custom-js')
-    <!-- End Google Tag Manager -->
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon"
@@ -31,7 +21,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&amp;display=swap"
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
 
     <!-- Icons -->
@@ -47,27 +37,26 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
     <link rel="stylesheet" href="assets/admin/vendor/libs/typeahead-js/typeahead.css" />
-    <link rel="stylesheet" href="assets/admin/vendor/libs/apex-charts/apex-charts.css" />
-    <link rel="stylesheet" href="assets/admin/vendor/libs/datatables-bs5/datatables.bootstrap5.css" />
-    <link rel="stylesheet" href="assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css" />
+    <link rel="stylesheet" href="assets/admin/vendor/libs/datatables-bs5/datatables.bootstrap5.css">
+    <link rel="stylesheet" href="assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css">
+    <link rel="stylesheet" href="assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css">
+    <link rel="stylesheet" href="assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css">
+    <link rel="stylesheet" href="assets/admin/vendor/libs/flatpickr/flatpickr.css" />
+    <!-- Row Group CSS -->
+    <link rel="stylesheet" href="assets/admin/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css">
+    <!-- Form Validation -->
+    <link rel="stylesheet" href="assets/admin/vendor/libs/%40form-validation/form-validation.css" />
 
     <!-- Page CSS -->
 
-    <link rel="stylesheet" href="assets/admin/vendor/css/pages/app-logistics-dashboard.css" />
-
     <!-- Helpers -->
     <script src="assets/admin/vendor/js/helpers.js"></script>
+    <!-- Config: Mandatory theme config file containing global vars & default theme options, Set your preferred theme option in this file. -->
     <script src="assets/admin/js/config.js"></script>
-
 </head>
 
 <body>
 
-
-    <!-- ?PROD Only: Google Tag Manager (noscript) (Default ThemeSelection: GTM-5DDHKGP, PixInvent: GTM-5J3LMKC) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5DDHKGP" height="0" width="0"
-            style="display: none; visibility: hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
 
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar  ">
@@ -256,8 +245,7 @@
                                         <form method="POST" action="{{ route('logout') }}">
                                             @csrf
 
-                                            <x-dropdown-link :href="route('logout')"
-                                                    onclick="event.preventDefault();
+                                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                                 this.closest('form').submit();">
                                                 {{ __('Log Out') }}
                                             </x-dropdown-link>
@@ -302,41 +290,42 @@
 
     </div>
     <!-- / Layout wrapper -->
- <!-- Core JS -->
-  <!-- build:js assets/admin/vendor/js/core.js -->
+    <!-- Core JS -->
+    <script src="assets/admin/vendor/libs/jquery/jquery.js"></script>
+    <script src="assets/admin/vendor/libs/popper/popper.js"></script>
+    <script src="assets/admin/vendor/js/bootstrap.js"></script>
+    <script src="assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="assets/admin/vendor/libs/hammer/hammer.js"></script>
+    <script src="assets/admin/vendor/libs/i18n/i18n.js"></script>
+    <script src="assets/admin/vendor/libs/typeahead-js/typeahead.js"></script>
+    <script src="assets/admin/vendor/js/menu.js"></script>
 
-  <script src="assets/admin/vendor/libs/jquery/jquery.js"></script>
-  <script src="assets/admin/vendor/libs/popper/popper.js"></script>
-  <script src="assets/admin/vendor/js/bootstrap.js"></script>
-  <script src="assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-  <script src="assets/admin/vendor/libs/hammer/hammer.js"></script>
-  <script src="assets/admin/vendor/libs/i18n/i18n.js"></script>
-  <script src="assets/admin/vendor/libs/typeahead-js/typeahead.js"></script>
-  <script src="assets/admin/vendor/js/menu.js"></script>
+    <!-- Vendors JS -->
+    <script src="assets/admin/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
+    <script src="assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js"></script>
+    <script src="assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js"></script>
+    <script src="assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js"></script>
+    <!-- Flat Picker -->
+    <script src="assets/admin/vendor/libs/moment/moment.js"></script>
+    <script src="assets/admin/vendor/libs/flatpickr/flatpickr.js"></script>
+    <!-- Form Validation -->
+    <script src="assets/admin/vendor/libs/%40form-validation/popular.js"></script>
+    <script src="assets/admin/vendor/libs/%40form-validation/bootstrap5.js"></script>
+    <script src="assets/admin/vendor/libs/%40form-validation/auto-focus.js"></script>
 
-  <!-- endbuild -->
+    <!-- Main JS -->
+    <script src="assets/admin/js/main.js"></script>
 
-  <!-- Vendors JS -->
-  <script src="assets/admin/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
-<!-- Flat Picker -->
-<script src="assets/admin/vendor/libs/moment/moment.js"></script>
-<script src="assets/admin/vendor/libs/flatpickr/flatpickr.js"></script>
-<!-- Form Validation -->
-<script src="assets/admin/vendor/libs/%40form-validation/popular.js"></script>
-<script src="assets/admin/vendor/libs/%40form-validation/bootstrap5.js"></script>
-<script src="assets/admin/vendor/libs/%40form-validation/auto-focus.js"></script>
+    <!-- Page JS -->
+    <script src="assets/admin/js/tables-datatables-basic.js"></script>
 
-  <!-- Main JS -->
-  <script src="assets/js/main.js"></script>
+    @yield('script')
 
+    <script>
+        $(document).ready(function() {
+          $('#example').DataTable();
+        });
+      </script>
+</body>
 
-  <!-- Page JS -->
-  <script src="assets/js/tables-datatables-basic.js"></script>
-
-  @yield('script')
-    </body>
-
-    <!-- Mirrored from demos.themeselection.com/sneat-bootstrap-html-admin-template/html/vertical-menu-template/app-user-list.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 23 Jun 2024 10:23:43 GMT -->
-  </html>
-
-  <!-- beautify ignore:end -->
+</html>
