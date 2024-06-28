@@ -8,7 +8,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin/index');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -37,13 +37,16 @@ Route::get('/contact-us', function () {
 
 Route::get('/admin', function () {
     return view('admin/index');
-});
+})->middleware(['auth', 'verified'])->name('admin');
+
 Route::get('/manage-blog', function () {
     return view('admin/blog');
-});
+})->middleware(['auth', 'verified'])->name('manage-blog');
+
 Route::get('/manage-portfolio', function () {
     return view('admin/portfolio');
-});
+})->middleware(['auth', 'verified'])->name('portfolio');
+
 Route::get('/manage-user', function () {
     return view('admin/user');
-});
+})->middleware(['auth', 'verified'])->name('manage-user');
