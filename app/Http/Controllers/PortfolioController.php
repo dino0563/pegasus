@@ -106,35 +106,35 @@ class PortfolioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(PortfolioRequest $request, $portfolio_id)
-{
-    $data = $request->validated();
+    {
+        $data = $request->validated();
 
-    $portfolio = Portfolio::findOrFail($portfolio_id);
-    $this->authorize('update', $portfolio);
+        $portfolio = Portfolio::findOrFail($portfolio_id);
+        $this->authorize('update', $portfolio);
 
-    $portfolio->nama = $data['nama'];
-    $portfolio->lokasi = $data['lokasi'];
-    $portfolio->kategori = $data['kategori'];
-    $portfolio->tanggalProyek = $data['tanggalProyek'];
-    $portfolio->client = $data['client'];
-    $portfolio->deskripsi = $data['deskripsi'];
+        $portfolio->nama = $data['nama'];
+        $portfolio->lokasi = $data['lokasi'];
+        $portfolio->kategori = $data['kategori'];
+        $portfolio->tanggalProyek = $data['tanggalProyek'];
+        $portfolio->client = $data['client'];
+        $portfolio->deskripsi = $data['deskripsi'];
 
-    if ($request->hasFile('gambar')) {
-        $destination = 'public/portfolio/gambar/' . $portfolio->gambar;
-        if (File::exists($destination)) {
-            File::delete($destination);
+        if ($request->hasFile('gambar')) {
+            $destination = 'public/portfolio/gambar/' . $portfolio->gambar;
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+
+            $file = $request->file('gambar');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('public/portfolio/gambar/', $filename);
+            $portfolio->gambar = $filename;
         }
 
-        $file = $request->file('gambar');
-        $filename = time() . '.' . $file->getClientOriginalExtension();
-        $file->move('public/portfolio/gambar/', $filename);
-        $portfolio->gambar = $filename;
+        $portfolio->save();
+
+        return redirect(route('portfolio.index'))->with('success', 'Portfolio item updated successfully.');
     }
-
-    $portfolio->save();
-
-    return redirect(route('portfolio.index'))->with('success', 'Portfolio item updated successfully.');
-}
 
 
 
@@ -147,9 +147,9 @@ class PortfolioController extends Controller
     public function destroy($portfolio_id)
     {
         $portfolio = Portfolio::findOrFail((int)$portfolio_id); // Ensure $portfolio_id is cast to an integer
-        if($portfolio->gambar) {
+        if ($portfolio->gambar) {
             $destination = 'storage/portfolio/gambar/' . $portfolio->gambar;
-            if(File::exists($destination)){
+            if (File::exists($destination)) {
                 File::delete($destination);
             }
         }
@@ -157,4 +157,3 @@ class PortfolioController extends Controller
         return redirect(route('portfolio.index'))->with('status', 'Portfolio Deleted Successfully');
     }
 }
-

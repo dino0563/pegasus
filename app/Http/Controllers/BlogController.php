@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\BlogRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\BlogFormRequest;
 use App\Models\Blog;
@@ -66,5 +67,40 @@ class BlogController extends Controller
         }
         $blog->delete();
         return redirect(route('blog.index'))->with('status', 'Blog Deleted Successfully');
+    }
+
+    public function edit(Request $request, $blog_id)
+    {
+        $blog = Blog::findOrFail($blog_id);
+        return view('admin.edit-blog', compact('blog'));
+    }
+
+    public function update(BlogRequest $request, $blog_id)
+    {
+        $data = $request->validated();
+
+        $blog = Blog::findOrFail($blog_id);
+        $this->authorize('update', $blog);
+
+        $blog->judul = $data['judul'];
+        $blog->penulis = $data['penulis'];
+        $blog->tanggal = $data['tanggal'];
+        $blog->deskripsi = $data['deskripsi'];
+
+        if ($request->hasFile('gambar')) {
+            $destination = 'public/blog/gambar/' . $blog->gambar;
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+
+            $file = $request->file('gambar');
+            $filename = time() . '.' . $file->getClientOriginalExtension();
+            $file->move('public/blog/gambar/', $filename);
+            $blog->gambar = $filename;
+        }
+
+        $blog->save();
+
+        return redirect(route('blog.index'))->with('success', 'Blog item updated successfully.');
     }
 }
