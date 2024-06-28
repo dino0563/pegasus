@@ -6,9 +6,28 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
+require __DIR__.'/auth.php';
 Route::get('/', function () {
     return view('user/home');
 });
+
+// ROUTE USER
+Route::get('/about-us', function () {
+    return view('user/about-us');
+});
+
+Route::get('/portfolio', function () {
+    return view('user/portfolio');
+});
+
+Route::get('/blog', function () {
+    return view('user/blog');
+});
+
+Route::get('/contact-us', function () {
+    return view('user/contact-us');
+});
+
 
 Route::get('/dashboard', function () {
     return view('admin/index');
@@ -24,9 +43,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/add-portfolio',[PortfolioController::class,'create'])->name('portfolio.create');
     Route::post('/add-portfolio',[PortfolioController::class,'store'])->name('portfolio.store');
     Route::get('/edit-portfolio/{Portfolio_id}',[PortfolioController::class,'edit'])->name('portfolio.edit');
-    Route::post('/update-portfolio/{Portfolio_id}',[PortfolioController::class,'update'])->name('portfolio.update');
+    Route::put('/update-portfolio/{Portfolio_id}',[PortfolioController::class,'update'])->name('portfolio.update');
     Route::get('/delete-portfolio/{portfolio_id}',[PortfolioController::class,'destroy'])->name('portfolio.delete');
-    
+
     // ROUTE BLOG
     Route::get('/manage-blog',[BlogController::class,'index'])->name('blog.index');
     Route::get('/add-blog',[BlogController::class,'create'])->name('blog.create');

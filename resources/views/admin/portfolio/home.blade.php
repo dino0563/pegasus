@@ -37,10 +37,10 @@
                             <td>{{ $portfolio->deskripsi }}</td>
                             <td class="" style="">
                                 <div class="d-inline-block text-nowrap">
-                                    <button class="btn btn-sm btn-icon edit-portfolio"><i
-                                            class="bx bx-edit"></i></button>
-                                    <button class="btn btn-sm btn-icon delete-record" onclick="window.location='{{ route('portfolio.delete', $portfolio->id) }}'"><i
-                                            class="bx bx-trash"></i></button>
+                                    <a href="{{ route('portfolio.edit', $portfolio->id) }}" class="btn btn-sm btn-icon edit-portfolio"><i
+                                            class="bx bx-edit"></i></a>
+                                    <a href="{{ route('portfolio.delete', $portfolio->id) }}" class="btn btn-sm btn-icon delete-record"><i
+                                            class="bx bx-trash"></i></a>
                                 </div>
                             </td>
 
