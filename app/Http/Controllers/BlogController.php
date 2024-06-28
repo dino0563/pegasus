@@ -41,7 +41,7 @@ class BlogController extends Controller
         if ($request->file('gambar')) {
             $extension = $request->file('gambar')->getClientOriginalExtension();
             $gambarName = 'blog-' . now()->timestamp . '.' . $extension;
-            $request->file('gambar')->storeAs('public/blog/gambar', $gambarName);
+            $request->file('gambar')->storeAs('storage/blog/gambar', $gambarName);
             $blog->gambar = $gambarName;
         }
 

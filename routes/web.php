@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -32,6 +33,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/add-blog',[BlogController::class,'store'])->name('blog.store');
     Route::get('/delete-blog/{blog_id}',[BlogController::class,'destroy'])->name('blog.delete');
 
+    // ROUTE USER
+    Route::get('/manage-user',[UserController::class,'index'])->name('user.index');
+    Route::get('/add-user',[UserController::class,'create'])->name('user.create');
+    Route::post('/add-user',[UserController::class,'store'])->name('user.store');
+    Route::get('/delete-user/{user_id}',[UserController::class,'destroy'])->name('user.delete');
+
 });
 
 require __DIR__.'/auth.php';
@@ -40,10 +47,6 @@ require __DIR__.'/auth.php';
 Route::get('/admin', function () {
     return view('admin/index');
 })->middleware(['auth', 'verified'])->name('admin');
-
-Route::get('/manage-user', function () {
-    return view('admin/user');
-})->middleware(['auth', 'verified'])->name('manage-user');
 
 
 // ROUTE USER
