@@ -7,22 +7,15 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 require __DIR__.'/auth.php';
-Route::get('/', function () {
-    return view('user/home');
-});
+Route::get('/', [PortfolioController::class, 'show']);
+Route::get('/portfolio', [PortfolioController::class, 'display']);
+Route::get('/blog', [BlogController::class, 'show']);
 
 // ROUTE USER
 Route::get('/about-us', function () {
     return view('user/about-us');
 });
 
-Route::get('/portfolio', function () {
-    return view('user/portfolio');
-});
-
-Route::get('/blog', function () {
-    return view('user/blog');
-});
 
 Route::get('/contact-us', function () {
     return view('user/contact-us');
@@ -70,24 +63,5 @@ require __DIR__.'/auth.php';
 Route::get('/admin', function () {
     return view('admin/index');
 })->middleware(['auth', 'verified'])->name('admin');
-
-
-// ROUTE USER
-Route::get('/about-us', function () {
-    return view('user/about-us');
-});
-
-Route::get('/portfolio', function () {
-    return view('user/portfolio');
-});
-
-Route::get('/blog', function () {
-    return view('user/blog');
-});
-
-Route::get('/contact-us', function () {
-    return view('user/contact-us');
-});
-
 
 

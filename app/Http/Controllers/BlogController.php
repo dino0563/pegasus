@@ -17,6 +17,11 @@ class BlogController extends Controller
         // dd($blogs);
         return view('admin.blog.index', compact('blogs'));
     }
+    public function show()
+    {
+        $blogs = Blog::all();
+        return view('user.blog', compact('blogs'));
+    }
 
     public function create()
     {

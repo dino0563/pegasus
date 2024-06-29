@@ -71,155 +71,33 @@
         <div class="container">
             <div class="row">
                 <!-- Single Item -->
+                @foreach($blogs as $blog)
                 <div class="col-lg-4 col-md-6 mb-50">
                     <div class="blog-style-one">
                         <div class="thumb">
-                            <a href="blog-3-colum.html"><img src="assets/user/img/blog/1.jpg" alt="Image Not Found"></a>
+                            <a href="blog-3-colum.html"><img src="{{asset('storage/blog/gambar/' . $blog->gambar)}}" alt="Image Not Found"></a>
                         </div>
                         <div class="info">
                             <div class="meta">
                                 <ul>
                                     <li>
-                                        <a href="#">Md Sohag</a>
+                                        <a href="#">{{ $blog->penulis }}</a>
                                     </li>
                                     <li>
-                                        25 April, 2023
+                                        {{ $blog->tanggal }}
                                     </li>
                                 </ul>
                             </div>
-                            <h3 class="post-title"><a href="blog-single-with-sidebar.html">Miscovery incommode earnestly is commanded</a></h3>
+                            <h3 class="post-title"><a href="blog-single-with-sidebar.html">{{ $blog->judul }}</a></h3>
                             <a href="blog-single-with-sidebar.html" class="button-regular">
                                 Continue Reading <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
                     </div>
                 </div>
+                @endforeach
                 <!-- End Single Item -->
-                <!-- Single Item -->
-                <div class="col-lg-4 col-md-6 mb-50">
-                    <div class="blog-style-one">
-                        <div class="thumb">
-                            <a href="blog-single-with-sidebar.html"><img src="assets/user/img/blog/2.jpg" alt="Image Not Found"></a>
-                        </div>
-                        <div class="info">
-                            <div class="meta">
-                                <ul>
-                                    <li>
-                                        <a href="#">Md Sohag</a>
-                                    </li>
-                                    <li>
-                                        25 April, 2023
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="post-title"><a href="blog-single-with-sidebar.html">Miscovery incommode earnestly is commanded</a></h3>
-                            <a href="blog-single-with-sidebar.html" class="button-regular">
-                                Continue Reading <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Single Item -->
-                <!-- Single Item -->
-                <div class="col-lg-4 col-md-6 mb-50">
-                    <div class="blog-style-one">
-                        <div class="thumb">
-                            <a href="blog-single-with-sidebar.html"><img src="assets/user/img/blog/3.jpg" alt="Image Not Found"></a>
-                        </div>
-                        <div class="info">
-                            <div class="meta">
-                                <ul>
-                                    <li>
-                                        <a href="#">Md Sohag</a>
-                                    </li>
-                                    <li>
-                                        25 April, 2023
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="post-title"><a href="blog-single-with-sidebar.html">Miscovery incommode earnestly is commanded</a></h3>
-                            <a href="blog-single-with-sidebar.html" class="button-regular">
-                                Continue Reading <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Single Item -->
-                <!-- Single Item -->
-                <div class="col-lg-4 col-md-6 mb-50">
-                    <div class="blog-style-one">
-                        <div class="thumb">
-                            <a href="blog-single-with-sidebar.html"><img src="assets/user/img/blog/4.jpg" alt="Image Not Found"></a>
-                        </div>
-                        <div class="info">
-                            <div class="meta">
-                                <ul>
-                                    <li>
-                                        <a href="#">Md Sohag</a>
-                                    </li>
-                                    <li>
-                                        25 April, 2023
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="post-title"><a href="blog-single-with-sidebar.html">Miscovery incommode earnestly is commanded</a></h3>
-                            <a href="blog-single-with-sidebar.html" class="button-regular">
-                                Continue Reading <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Single Item -->
-                <!-- Single Item -->
-                <div class="col-lg-4 col-md-6 mb-50">
-                    <div class="blog-style-one">
-                        <div class="thumb">
-                            <a href="blog-single-with-sidebar.html"><img src="assets/user/img/blog/5.jpg" alt="Image Not Found"></a>
-                        </div>
-                        <div class="info">
-                            <div class="meta">
-                                <ul>
-                                    <li>
-                                        <a href="#">Md Sohag</a>
-                                    </li>
-                                    <li>
-                                        25 April, 2023
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="post-title"><a href="blog-single-with-sidebar.html">Miscovery incommode earnestly is commanded</a></h3>
-                            <a href="blog-single-with-sidebar.html" class="button-regular">
-                                Continue Reading <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Single Item -->
-                <!-- Single Item -->
-                <div class="col-lg-4 col-md-6 mb-50">
-                    <div class="blog-style-one">
-                        <div class="thumb">
-                            <a href="blog-single-with-sidebar.html"><img src="assets/user/img/blog/6.jpg" alt="Image Not Found"></a>
-                        </div>
-                        <div class="info">
-                            <div class="meta">
-                                <ul>
-                                    <li>
-                                        <a href="#">Md Sohag</a>
-                                    </li>
-                                    <li>
-                                        25 April, 2023
-                                    </li>
-                                </ul>
-                            </div>
-                            <h3 class="post-title"><a href="blog-single-with-sidebar.html">Miscovery incommode earnestly is commanded</a></h3>
-                            <a href="blog-single-with-sidebar.html" class="button-regular">
-                                Continue Reading <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <!-- End Single Item -->
+
             </div>
             <!-- Pagination -->
             <div class="row">

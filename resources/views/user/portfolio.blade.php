@@ -79,171 +79,21 @@
                         <!-- Additional required wrapper -->
                         <div class="swiper-wrapper">
                             <!-- Single Item -->
+                            @foreach($portfolios as $portfolio)
                             <div class="swiper-slide">
                                 <div class="project-style-one">
-                                    <img src="assets/user/img/portfolio/porto-unm.jpg" alt="Thumb">
+                                    <img src="{{asset('storage/portfolio/gambar/' . $portfolio->gambar)}}" alt="Thumb">
                                     <div class="overlay">
-                                        <span>Konstruksi</span>
-                                        <h4><a href="project-details.html"> Universitas Negeri Malang</a></h4>
+                                        <span>{{ $portfolio->kategori }}</span>
+                                        {{-- <h4><a href="{{ route('portfolio.show', $portfolio->id) }}">{{ $portfolio->nama }}</a></h4> --}}
+                                        <h4><a href="#">{{ $portfolio->nama }}</a></h4>
                                     </div>
                                     <div class="shape">
                                         <img src="assets/user/img/shape/10.png" alt="Image Not Found">
                                     </div>
                                 </div>
                             </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="swiper-slide">
-                                <div class="project-style-one">
-                                    <img src="assets/user/img/portfolio/porto-kementriankeuangan.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <span>Konstruksi</span>
-                                        <h4><a href="project-details.html">Kementrian Keuangan</a></h4>
-                                    </div>
-                                    <div class="shape">
-                                        <img src="assets/user/img/shape/10.png" alt="Image Not Found">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="swiper-slide">
-                                <div class="project-style-one">
-                                    <img src="assets/user/img/portfolio/porto-kementrianpertahanan.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <span>Konstruksi</span>
-                                        <h4><a href="project-details.html">Kementrian Pertahanan Indonesia</a></h4>
-                                    </div>
-                                    <div class="shape">
-                                        <img src="assets/user/img/shape/10.png" alt="Image Not Found">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="swiper-slide">
-                                <div class="project-style-one">
-                                    <img src="assets/user/img/portfolio/porto-alto-building-jakarta.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <span>Konstruksi</span>
-                                        <h4><a href="project-details.html">Alto Building Jakarta</a></h4>
-                                    </div>
-                                    <div class="shape">
-                                        <img src="assets/user/img/shape/10.png" alt="Image Not Found">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="swiper-slide">
-                                <div class="project-style-one">
-                                    <img src="assets/user/img/portfolio/porto-UnikaSoegijapranotoSemarang.jpg"
-                                        alt="Thumb">
-                                    <div class="overlay">
-                                        <span>Konstruksi</span>
-                                        <h4><a href="project-details.html">Unika Soegijapranoto Semarang</a></h4>
-                                    </div>
-                                    <div class="shape">
-                                        <img src="assets/user/img/shape/10.png" alt="Image Not Found">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="swiper-slide">
-                                <div class="project-style-one">
-                                    <img src="assets/user/img/portfolio/porto-DPRD-Semarang.webp" alt="Thumb">
-                                    <div class="overlay">
-                                        <span>Konstruksi</span>
-                                        <h4><a href="project-details.html">DPRD Semarang</a></h4>
-                                    </div>
-                                    <div class="shape">
-                                        <img src="assets/user/img/shape/10.png" alt="Image Not Found">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="swiper-slide">
-                                <div class="project-style-one">
-                                    <img src="assets/user/img/portfolio/porto-RSA-ugm.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <span>Konstruksi</span>
-                                        <h4><a href="project-details.html">RSA UGM Yogyakarta</a></h4>
-                                    </div>
-                                    <div class="shape">
-                                        <img src="assets/user/img/shape/10.png" alt="Image Not Found">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="swiper-slide">
-                                <div class="project-style-one">
-                                    <img src="assets/user/img/portfolio/porto-Kabupaten-UGM.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <span>Pendidikan</span>
-                                        <h4><a href="project-details.html">Universitas Gadjah Mada</a></h4>
-                                    </div>
-                                    <div class="shape">
-                                        <img src="assets/user/img/shape/10.png" alt="Image Not Found">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="swiper-slide">
-                                <div class="project-style-one">
-                                    <img src="assets/user/img/portfolio/porto-kabupaten-magetan.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <span>Konstruksi</span>
-                                        <h4><a href="project-details.html">Kabupaten Magetan</a></h4>
-                                    </div>
-                                    <div class="shape">
-                                        <img src="assets/user/img/shape/10.png" alt="Image Not Found">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <!-- Single Item -->
-                            <div class="swiper-slide">
-                                <div class="project-style-one">
-                                    <img src="assets/user/img/portfolio/porto-Dishubkomindfo-Sleman.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <span>Konstruksi</span>
-                                        <h4><a href="project-details.html">Dishubkomindfo Sleman</a></h4>
-                                    </div>
-                                    <div class="shape">
-                                        <img src="assets/user/img/shape/10.png" alt="Image Not Found">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <div class="swiper-slide">
-                                <div class="project-style-one">
-                                    <img src="assets/user/img/portfolio/porto-kabupaten-situbondo.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <span>Konstruksi</span>
-                                        <h4><a href="project-details.html">Kabupaten Situbondo</a></h4>
-                                    </div>
-                                    <div class="shape">
-                                        <img src="assets/user/img/shape/10.png" alt="Image Not Found">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Item -->
-                            <div class="swiper-slide">
-                                <div class="project-style-one">
-                                    <img src="assets/user/img/portfolio/porto-MPR-RI.jpg" alt="Thumb">
-                                    <div class="overlay">
-                                        <span>Konstruksi</span>
-                                        <h4><a href="project-details.html">MPR-RI</a></h4>
-                                    </div>
-                                    <div class="shape">
-                                        <img src="assets/user/img/shape/10.png" alt="Image Not Found">
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                             <!-- End Single Item -->
                         </div>
 

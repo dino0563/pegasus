@@ -15,6 +15,16 @@ class PortfolioController extends Controller
         $portfolios = Portfolio::all();
         return view('admin.portfolio.home', compact('portfolios'));
     }
+    public function show()
+    {
+        $portfolios = Portfolio::all();
+        return view('user.home', compact('portfolios'));
+    }
+    public function display()
+    {
+        $portfolios = Portfolio::all();
+        return view('user.portfolio', compact('portfolios'));
+    }
 
     public function create()
     {
@@ -54,10 +64,10 @@ class PortfolioController extends Controller
         return redirect()->route('portfolio.index')->with('success', 'Portfolio created successfully!');
     }
 
-    public function show(Portfolio $portfolio)
-    {
-        return view('portfolio.show', compact('portfolio'));
-    }
+    // public function show(Portfolio $portfolio)
+    // {
+    //     return view('portfolio.show', compact('portfolio'));
+    // }
 
     public function edit(Request $request, $portfolio_id)
     {
