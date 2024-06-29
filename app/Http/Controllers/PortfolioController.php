@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Portfolio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use App\Http\Requests\PortfolioRequest;
-use Illuminate\Support\Facades\Auth;
 
 class PortfolioController extends Controller
 {
@@ -17,14 +15,14 @@ class PortfolioController extends Controller
     }
     public function show()
     {
-        $portfolios = Portfolio::all();
+        $portfolios = Portfolio::paginate(5);
         return view('user.home', compact('portfolios'));
     }
-    public function show_details($slug)
-    {
-        $portfolios = Portfolio::where('slug', $slug)->first();
-        return view('user.portfolio-detail', compact('portfolios'));
-    }
+    // public function show_details($slug)
+    // {
+    //     $portfolios = Portfolio::where('slug', $slug)->first();
+    //     return view('user.portfolio-detail', compact('portfolios'));
+    // }
 
     public function detailPortfolio($slug)
     {
@@ -123,7 +121,7 @@ class PortfolioController extends Controller
 
     public function destroy($portfolio_id)
     {
-        $portfolio = Portfolio::findOrFail((int)$portfolio_id); // Ensure $portfolio_id is cast to an integer
+        $portfolio = Portfolio::findOrFail((int) $portfolio_id); // Ensure $portfolio_id is cast to an integer
         if ($portfolio->gambar) {
             $destination = 'storage/portfolio/gambar/' . $portfolio->gambar;
             if (File::exists($destination)) {

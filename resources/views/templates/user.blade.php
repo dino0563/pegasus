@@ -113,19 +113,19 @@
                     <div class="col-lg-8">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li><a href="{{ url('/') }}"><i class="fas fa-home"></i>Home</a></li>
+                                <li><a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a></li>
                                 @if (Request::is('blog'))
-                                <li><a href="{{ url('blog') }}"></i>Blog</a></li>
+                                    <li><a href="{{ url('blog') }}">Blog</a></li>
                                 @elseif (Request::is('portfolio'))
-                                </li><a href="{{ url('portfolio') }}"></i>Portfolio</a></li>
+                                    <li><a href="{{ url('portfolio') }}">Portfolio</a></li>
                                 @elseif (Request::is('blog/*'))
-                                <li><a href="{{ url('blog') }}"></i>Blog</a></li>
-                                <li>@yield('title')</li>
+                                    <li><a href="{{ url('blog') }}">Blog</a></li>
+                                    <li>@yield('title')</li>
                                 @elseif (Request::is('portfolio/*'))
-                                </li><a href="{{ url('portfolio') }}"></i>Portfolio</a></li>
-                                <li>@yield('title')</li>
+                                    <li><a href="{{ url('portfolio') }}">Portfolio</a></li>
+                                    <li>@yield('title')</li>
                                 @else
-                                <li>@yield('title')</li>
+                                    <li>@yield('title')</li>
                                 @endif
                             </ol>
                         </nav>

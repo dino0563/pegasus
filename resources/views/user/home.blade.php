@@ -536,7 +536,7 @@
                             <div class="row">
                                 <div class="col-xl-6">
                                     <div class="case-thumb">
-                                        <img src="{{asset('storage/portfolio/gambar/' . $portfolio->gambar)}}" alt="Image Not Found">
+                                        <img src="{{asset('storage/portfolio/gambar/' . $portfolio->gambar)}}" alt="Image Not Found" style="height: 650px; width: auto; object-fit: cover; aspect-ratio: 3 / 2;">
                                     </div>
                                 </div>
                                 <div class="col-xl-6">
@@ -546,7 +546,7 @@
                                             {{ $portfolio->deskripsi }}
                                         </p>
                                         {{-- <a class="btn btn-md btn-dark animation" href="{{ route('portfolio.show', $portfolio->id) }}">Lihat Lebih Banyak</a> --}}
-                                        <a class="btn btn-md btn-dark animation" href="#">Lihat Lebih Banyak</a>
+                                        <a class="btn btn-md btn-dark animation" href="{{ route('portfolio.detail', $portfolio->slug) }}">Lihat Lebih Banyak</a>
                                     </div>
                                 </div>
                             </div>

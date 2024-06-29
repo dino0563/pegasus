@@ -53,6 +53,12 @@
                 </table>
             </div>
         </div>
+
+        {{-- <!-- Pagination Links -->
+        <div class="pagination-links mt-4">
+            {{ $portfolios->links() }}
+        </div> --}}
+
     </div>
 </div>
 @endsection

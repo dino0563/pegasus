@@ -1,6 +1,6 @@
 @extends('templates.user')
 
-@section('title', $portfolios -> judul)
+@section('title', $portfolios -> nama)
 
 @section('content')
        <!-- Star Services Details Area
@@ -14,7 +14,7 @@
                         <div class="service-single-thumb">
                             <img src="{{asset('storage/portfolio/gambar/' . $portfolios->gambar)}}"
                             alt="Thumb"
-                            style="width: 800px; object-fit: cover;">
+                            style="width: 100%; object-fit: cover;">
                         </div>
                         <h2>{{$portfolios->nama}}</h2>
                         <p>

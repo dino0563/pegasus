@@ -27,7 +27,7 @@
 @endsection
 
 @section('attr-nav')
-<!-- Start Atribute Navigation -->
+<!-- Start Attribute Navigation -->
 <div class="attr-nav flex">
     <ul>
         <li class="side-menu">
@@ -39,7 +39,7 @@
         </li>
     </ul>
 </div>
-<!-- End Atribute Navigation -->
+<!-- End Attribute Navigation -->
 @endsection
 
 @section('side-menu')
@@ -53,18 +53,30 @@
     </div>
 
     <div class="widget">
-        <a href="#" class="btn btn-light btn-block">Show All</a>
+        <a href="#" class="btn btn-light btn-block" onclick="filterPortfolios('All')">Show All</a>
     </div>
     <div class="widget">
-        <a href="#" class="btn btn-light btn-block">Konstruksi</a>
+        <a href="#" class="btn btn-light btn-block" onclick="filterPortfolios('Konstruksi')">Konstruksi</a>
     </div>
     <div class="widget">
-        <a href="#" class="btn btn-light btn-block"> Pendidikan</a>
+        <a href="#" class="btn btn-light btn-block" onclick="filterPortfolios('Pendidikan')">Pendidikan</a>
     </div>
-</div>
-
 </div>
 <!-- End Side Menu -->
+
+<script>
+    function filterPortfolios(category) {
+        const portfolios = document.querySelectorAll('.swiper-slide');
+        portfolios.forEach(portfolio => {
+            const portfolioCategory = portfolio.querySelector('.overlay span').textContent.trim();
+            if (category === 'All' || portfolioCategory === category) {
+                portfolio.style.display = 'block';
+            } else {
+                portfolio.style.display = 'none';
+            }
+        });
+    }
+</script>
 @endsection
 
 @section('content')
@@ -82,17 +94,13 @@
                             @foreach($portfolios as $portfolio)
                             <div class="swiper-slide">
                                 <div class="project-style-one">
-                                    <div
-                                        style="position: relative; width: 100%; padding-bottom: 66.67%; overflow: hidden;">
-                                        <img src="{{asset('storage/portfolio/gambar/' . $portfolio->gambar)}}"
-                                            alt="Thumb"
+                                    <div style="position: relative; width: 100%; padding-bottom: 66.67%; overflow: hidden;">
+                                        <img src="{{asset('storage/portfolio/gambar/' . $portfolio->gambar)}}" alt="Thumb"
                                             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                                     </div>
                                     <div class="overlay">
                                         <span>{{ $portfolio->kategori }}</span>
-                                        <h4><a href="{{ route('portfolio.detail', $portfolio->slug) }}">{{
-                                                $portfolio->nama }}</a></h4>
-                                        {{-- <h4><a href="{{ route('portfolio.details', $portfolio->slug) }}">{{ $portfolio->nama }}</a></h4> --}}
+                                        <h4><a href="{{ route('portfolio.detail', $portfolio->slug) }}">{{ $portfolio->nama }}</a></h4>
                                     </div>
                                     <div class="shape">
                                         <img src="assets/user/img/shape/10.png" alt="Image Not Found">
@@ -102,7 +110,6 @@
                             @endforeach
                             <!-- End Single Item -->
                         </div>
-
                     </div>
                 </div>
             </div>

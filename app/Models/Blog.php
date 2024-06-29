@@ -31,6 +31,7 @@ class Blog extends Model
         'gambar',
         'penulis',
         'tanggal',
+        'kategori',
         'deskripsi'
     ];
 }

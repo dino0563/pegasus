@@ -82,8 +82,9 @@
 
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="deskripsi">Deskripsi</label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Enter description" required>{{ old('deskripsi', $portfolio->deskripsi) }}</textarea>
+                        <div class="col-sm-10 position-relative">
+                            <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Enter description" required style="height: 100px; resize: none;" oninput="checkDescriptionLength(this)">{{ old('deskripsi', $portfolio->deskripsi) }}</textarea>
+                            <span id="char-counter" class="char-counter">0/100</span>
                             @if ($errors->has('deskripsi'))
                                 <div class="text-danger">{{ $errors->first('deskripsi') }}</div>
                             @endif
