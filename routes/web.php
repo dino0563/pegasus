@@ -8,9 +8,9 @@ use Illuminate\Support\Facades\Route;
 
 require __DIR__ . '/auth.php';
 Route::get('/', [PortfolioController::class, 'show']);
-Route::get('/portfolio', [PortfolioController::class, 'display']);
+Route::get('/portfolio', [PortfolioController::class, 'display'])->name('portfolio');
 Route::get('/portfolio-details/{slug}', [PortfolioController::class, 'show_details'])->name('portfolio.details');
-Route::get('/blog', [BlogController::class, 'show']);
+Route::get('/blog', [BlogController::class, 'show'])->name('blog');
 
 
 // ROUTE USER
@@ -23,7 +23,7 @@ Route::get('/contact-us', function () {
 });
 
 Route::get('/blog-details/{blog_id}', [BlogController::class, 'detailBlog'])->name('blog.detail');
-Route::get('/portfolio-detail/{portfolio_id}', [PortfolioController::class, 'detailPortfolio']);
+Route::get('/portfolio-detail/{portfolio_id}', [PortfolioController::class, 'detailPortfolio'])->name('portfolio.detail');
 
 Route::get('/dashboard', function () {
     return view('admin/dashboard/index');

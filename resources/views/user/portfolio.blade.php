@@ -82,13 +82,17 @@
                             @foreach($portfolios as $portfolio)
                             <div class="swiper-slide">
                                 <div class="project-style-one">
-                                    <div style="position: relative; width: 100%; padding-bottom: 66.67%; overflow: hidden;">
-                                        <img src="{{asset('storage/portfolio/gambar/' . $portfolio->gambar)}}" alt="Thumb" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                                    <div
+                                        style="position: relative; width: 100%; padding-bottom: 66.67%; overflow: hidden;">
+                                        <img src="{{asset('storage/portfolio/gambar/' . $portfolio->gambar)}}"
+                                            alt="Thumb"
+                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                                     </div>
                                     <div class="overlay">
                                         <span>{{ $portfolio->kategori }}</span>
-                                        {{-- <h4><a href="{{ route('portfolio.show', $portfolio->id) }}">{{ $portfolio->nama }}</a></h4> --}}
-                                        <h4><a href="{{ route('portfolio.details', $portfolio->slug) }}">{{ $portfolio->nama }}</a></h4>
+                                        <h4><a href="{{ route('portfolio.detail', $portfolio->slug) }}">{{
+                                                $portfolio->nama }}</a></h4>
+                                        {{-- <h4><a href="{{ route('portfolio.details', $portfolio->slug) }}">{{ $portfolio->nama }}</a></h4> --}}
                                     </div>
                                     <div class="shape">
                                         <img src="assets/user/img/shape/10.png" alt="Image Not Found">

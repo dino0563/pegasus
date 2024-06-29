@@ -23,8 +23,15 @@ class PortfolioController extends Controller
     public function show_details($slug)
     {
         $portfolios = Portfolio::where('slug', $slug)->first();
-        return view('admin.portfolio.detail', compact('portfolios'));
+        return view('user.portfolio-detail', compact('portfolios'));
     }
+
+    public function detailPortfolio($slug)
+    {
+        $portfolios = Portfolio::where('slug', $slug)->first();
+        return view('user.portfolio-detail', compact('portfolios'));
+    }
+
     public function display()
     {
         $portfolios = Portfolio::all();
