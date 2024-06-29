@@ -1,6 +1,6 @@
-@extends('templates.admin')
+@extends('templates.user')
 
-@section('title', 'Blog - {{$blogs -> judul}}')
+@section('title', $blogs->judul)
 
 @section('content')
     <!-- Star Services Details Area

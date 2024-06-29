@@ -20,6 +20,13 @@ class PortfolioController extends Controller
         $portfolios = Portfolio::all();
         return view('user.home', compact('portfolios'));
     }
+
+    public function detailPortfolio($portfolio_id)
+    {
+        $portfolios = portfolio::findOrFail($portfolio_id);
+        return view('user.portfolio-detail', compact('portfolios'));
+    }
+
     public function display()
     {
         $portfolios = Portfolio::all();
