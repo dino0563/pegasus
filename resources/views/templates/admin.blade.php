@@ -265,20 +265,14 @@
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
-                                    <div class="avatar avatar-online">
-                                        <img src="{{ asset('assets/admin/img/avatars/1.png') }}" alt
-                                            class="w-px-40 h-auto rounded-circle" />
-                                    </div>
+                                    <i class='bx bx-user'></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li>
+                                    {{-- <li>
                                         <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
-                                                    <div class="avatar avatar-online">
-                                                        <img src="{{ asset('assets/admin/img/avatars/1.png') }}" alt
-                                                            class="w-px-40 h-auto rounded-circle" />
-                                                    </div>
+                                                    <i class='bx bx-user'></i>
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <span class="fw-medium d-block">John Doe</span>
@@ -298,11 +292,11 @@
                                     </li>
                                     <li>
                                         <div class="dropdown-divider"></div>
-                                    </li>
+                                    </li> --}}
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
-                                            <i class='bx bx-power-off'></i>
+                                            <i class='bx bx-power-off me-2'></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>
                                         <form id="logout-form" action="{{ route('logout') }}" method="POST"

@@ -48,11 +48,24 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="tanggalProyek">Tanggal</label>
+                        <label class="col-sm-2 col-form-label" for="tanggal">Tanggal</label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" id="tanggalProyek" name="tanggalProyek" value="{{ old('tanggalProyek', $blog->tanggalProyek) }}" required>
-                            @if ($errors->has('tanggalProyek'))
-                                <div class="text-danger">{{ $errors->first('tanggalProyek') }}</div>
+                            <input type="date" class="form-control" id="tanggal" name="tanggal" value="{{ old('tanggal', $blog->tanggal) }}" required>
+                            @if ($errors->has('tanggal'))
+                                <div class="text-danger">{{ $errors->first('tanggal') }}</div>
+                            @endif
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="kategori">Kategori</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="kategori" name="kategori" required>
+                                <option value="Konstruksi" {{ old('kategori', $blog->kategori) == 'Konstruksi' ? 'selected' : '' }}>Konstruksi</option>
+                                <option value="Pendidikan" {{ old('kategori', $blog->kategori) == 'Pendidikan' ? 'selected' : '' }}>Pendidikan</option>
+                            </select>
+                            @if ($errors->has('kategori'))
+                                <div class="text-danger">{{ $errors->first('kategori') }}</div>
                             @endif
                         </div>
                     </div>

@@ -22,9 +22,9 @@ class BlogController extends Controller
         $blogs = Blog::paginate(10);
         return view('user.blog', compact('blogs'));
     }
-    public function detailBlog($blog_id)
+    public function detailBlog($slug)
     {
-        $blogs = Blog::findOrFail($blog_id);
+        $blogs = Blog::where('slug', $slug)->first();
         return view('user.blog-detail', compact('blogs'));
     }
 
@@ -40,6 +40,7 @@ class BlogController extends Controller
             'penulis' => 'required|max:250',
             'tanggal' => 'required|date',
             'deskripsi' => 'required|string|max:65535',
+            'kategori' => 'required|max:250',
             'gambar' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240', // maksimum 10MB
         ]);
 
@@ -48,6 +49,7 @@ class BlogController extends Controller
         $blog->penulis = $validatedData['penulis'];
         $blog->tanggal = $validatedData['tanggal'];
         $blog->deskripsi = $validatedData['deskripsi'];
+        $blog->kategori = $validatedData['kategori'];
 
         // Handle image upload
         if ($request->file('gambar')) {
@@ -86,8 +88,9 @@ class BlogController extends Controller
         $blog = Blog::find($blog_id);
         $blog->judul = $request['judul'];
         $blog->penulis = $request['penulis'];
-        $blog->tanggal = $request['tanggalProyek'];
+        $blog->tanggal = $request['tanggal'];
         $blog->deskripsi = $request['deskripsi'];
+        $blog->kategori = $request['kategori'];
 
         if ($request->hasFile('gambar')) {
             $destination = 'storage/blog/gambar/' . $blog->gambar;

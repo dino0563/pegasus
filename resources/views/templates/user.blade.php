@@ -47,7 +47,8 @@
     ============================================= -->
     <header>
         <!-- Start Navigation -->
-        <nav class="navbar navbar-common mobile-sidenav navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
+        <nav
+            class="navbar navbar-common mobile-sidenav navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
             <div class="container d-flex justify-content-between align-items-center">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
@@ -86,22 +87,23 @@
 
                 <div class="attr-right">
 
-                @yield('attr-nav')
+                    @yield('attr-nav')
 
-                @yield('side-menu')
-                <!-- Main Nav -->
-            </div>
-            <!-- Overlay screen for menu -->
-            <div class="overlay-screen"></div>
-            <!-- End Overlay screen for menu -->
+                    @yield('side-menu')
+                    <!-- Main Nav -->
+                </div>
+                <!-- Overlay screen for menu -->
+                <div class="overlay-screen"></div>
+                <!-- End Overlay screen for menu -->
         </nav>
         <!-- End Navigation -->
     </header>
     <!-- End Header -->
 
-         <!-- Start Breadcrumb
+    <!-- Start Breadcrumb
     ============================================= -->
-    <div class="breadcrumb-area bg-gray bg-cover" style="background-image: url({{asset ('assets/user/img/shape/banner-3.png')}});">
+    <div class="breadcrumb-area bg-gray bg-cover"
+        style="background-image: url({{asset ('assets/user/img/shape/banner-3.png')}});">
         <div class="container">
             <div class="breadcrumb-item">
                 <div class="breadcrum-shape">
@@ -111,8 +113,20 @@
                     <div class="col-lg-8">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li><a href="{{ url('/') }}"><i class="fas fa-home"></i>Home</a></li>
-                                <li class="active">@yield('title')</li>
+                                <li><a href="{{ url('/') }}"><i class="fas fa-home"></i> Home</a></li>
+                                @if (Request::is('blog'))
+                                    <li><a href="{{ url('blog') }}">Blog</a></li>
+                                @elseif (Request::is('portfolio'))
+                                    <li><a href="{{ url('portfolio') }}">Portfolio</a></li>
+                                @elseif (Request::is('blog/*'))
+                                    <li><a href="{{ url('blog') }}">Blog</a></li>
+                                    <li>@yield('title')</li>
+                                @elseif (Request::is('portfolio/*'))
+                                    <li><a href="{{ url('portfolio') }}">Portfolio</a></li>
+                                    <li>@yield('title')</li>
+                                @else
+                                    <li>@yield('title')</li>
+                                @endif
                             </ol>
                         </nav>
                         <h1>@yield('title')</h1>
@@ -140,7 +154,8 @@
                         <div class="f-item about pr-50 pr-xs-0 pr-md-0">
                             <img class="logo" src="{{ asset('assets/user/img/logo-light.png') }}" alt="Logo">
                             <p>
-                                Are off under folly death writter transforming cold regular. Almost do am or limits of hearts.
+                                Are off under folly death writter transforming cold regular. Almost do am or limits of
+                                hearts.
                             </p>
                             <div class="footer-social mt-30">
                                 <ul>

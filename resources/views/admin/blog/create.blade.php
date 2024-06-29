@@ -40,6 +40,15 @@
                         </div>
                     </div>
                     <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="kategori">Kategori</label>
+                        <div class="col-sm-10">
+                            <select class="form-control" id="kategori" name="kategori" required>
+                                <option value="Konstruksi">Konstruksi</option>
+                                <option value="Pendidikan">Pendidikan</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="deskripsi">Deskripsi</label>
                         <div class="col-sm-10">
                             <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Enter description" required oninput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px';"></textarea>

@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('gambar', 250)->nullable();
             $table->string('penulis', 250);
             $table->date('tanggal');
-            $table->string('deskripsi', 250);
+            $table->string('kategori', 250);
+            $table->mediumText('deskripsi');
+            $table->string('slug', 250)->unique();
             $table->timestamps();
         });
     }

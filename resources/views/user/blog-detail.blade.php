@@ -1,6 +1,6 @@
-@extends('templates.admin')
+@extends('templates.user')
 
-@section('title', 'Blog - {{$blogs -> judul}}')
+@section('title', $blogs->judul)
 
 @section('content')
     <!-- Star Services Details Area
@@ -15,7 +15,7 @@
                   <img
                     src="{{asset('storage/blog/gambar/' . $blogs->gambar)}}"
                     alt="Thumb"
-                    style="width: 800px; object-fit: cover;"
+                    style="width: 100%; height: auto; object-fit: cover; border-radius: 10px; aspect-ratio: 3 / 2;"
                   />
                 </div>
                 <h2>{{$blogs->judul}}</h2>
