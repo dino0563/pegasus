@@ -9,7 +9,9 @@ use Illuminate\Support\Facades\Route;
 require __DIR__.'/auth.php';
 Route::get('/', [PortfolioController::class, 'show']);
 Route::get('/portfolio', [PortfolioController::class, 'display']);
+Route::get('/portfolio-details/{slug}', [PortfolioController::class, 'show_details'])->name('portfolio.details');
 Route::get('/blog', [BlogController::class, 'show']);
+Route::get('/blog-details/{slug}', [BlogController::class, 'show_details'])->name('blog.details');
 
 // ROUTE USER
 Route::get('/about-us', function () {

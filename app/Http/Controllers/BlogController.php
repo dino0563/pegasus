@@ -22,6 +22,11 @@ class BlogController extends Controller
         $blogs = Blog::all();
         return view('user.blog', compact('blogs'));
     }
+    public function show_details($slug)
+    {
+        $blogs = Blog::where('slug', $slug)->first();
+        return view('admin.blog.detail', compact('blogs'));
+    }
 
     public function create()
     {

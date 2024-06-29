@@ -86,7 +86,7 @@
                                     <div class="overlay">
                                         <span>{{ $portfolio->kategori }}</span>
                                         {{-- <h4><a href="{{ route('portfolio.show', $portfolio->id) }}">{{ $portfolio->nama }}</a></h4> --}}
-                                        <h4><a href="#">{{ $portfolio->nama }}</a></h4>
+                                        <h4><a href="{{ route('portfolio.details', $portfolio->slug) }}">{{ $portfolio->nama }}</a></h4>
                                     </div>
                                     <div class="shape">
                                         <img src="assets/user/img/shape/10.png" alt="Image Not Found">

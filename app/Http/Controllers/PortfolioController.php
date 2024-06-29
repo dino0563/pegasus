@@ -20,6 +20,11 @@ class PortfolioController extends Controller
         $portfolios = Portfolio::all();
         return view('user.home', compact('portfolios'));
     }
+    public function show_details($slug)
+    {
+        $portfolios = Portfolio::where('slug', $slug)->first();
+        return view('admin.portfolio.detail', compact('portfolios'));
+    }
     public function display()
     {
         $portfolios = Portfolio::all();

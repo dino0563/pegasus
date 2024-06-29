@@ -75,7 +75,7 @@
                 <div class="col-lg-4 col-md-6 mb-50">
                     <div class="blog-style-one">
                         <div class="thumb">
-                            <a href="blog-3-colum.html"><img src="{{asset('storage/blog/gambar/' . $blog->gambar)}}" alt="Image Not Found"></a>
+                            <a href="{{ route('blog.details', $blog->slug) }}"><img src="{{asset('storage/blog/gambar/' . $blog->gambar)}}" alt="Image Not Found"></a>
                         </div>
                         <div class="info">
                             <div class="meta">
