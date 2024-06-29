@@ -14,7 +14,7 @@
     <title>Pegasus</title>
 
     <!-- ========== Favicon Icon ========== -->
-    <link rel="shortcut icon" href="assets/user/img/logo.png" type="image/x-icon">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/PEGASUS-W.ico') }}" />
 
     <!-- ========== Start Stylesheet ========== -->
     <link href="assets/user/css/bootstrap.min.css" rel="stylesheet">

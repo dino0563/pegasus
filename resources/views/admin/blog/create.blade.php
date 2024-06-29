@@ -24,6 +24,7 @@
                         <label class="col-sm-2 col-form-label" for="gambar">Gambar</label>
                         <div class="col-sm-10">
                             <input type="file" class="form-control" id="gambar" name="gambar" required accept=".jpg, .jpeg, .png">
+                            <small class="text-muted">Maximum file size: 10MB</small>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -41,7 +42,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="deskripsi">Deskripsi</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Enter description" required></textarea>
+                            <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Enter description" required oninput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px';"></textarea>
                         </div>
                     </div>
                     <div class="row justify-content-end">

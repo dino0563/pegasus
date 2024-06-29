@@ -25,7 +25,10 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="card">
                 <div class="card-datatable table-responsive">
-                    <a href="/add-user" class="btn btn-primary mt-3 ms-2">+ Tambah Data</a>
+                    <div class="d-flex justify-content-between align-items-center p-3">
+                        <h2 class="mb-0">Manage User</h2>
+                        <a href="/add-user" class="btn btn-primary">+ Tambah Data</a>
+                    </div>
                     <table id="example" class="table table-bordered">
                         <thead>
                             <tr>

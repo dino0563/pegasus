@@ -51,15 +51,27 @@
     </div>
 
     <div class="widget">
-        <a href="#" class="btn btn-light btn-block">Pendidikan</a>
+        <a href="#" class="btn btn-light btn-block" onclick="filterBlogs('Pendidikan')">Pendidikan</a>
     </div>
     <div class="widget">
-        <a href="#" class="btn btn-light btn-block">Konstruksi</a>
+        <a href="#" class="btn btn-light btn-block" onclick="filterBlogs('Konstruksi')">Konstruksi</a>
     </div>
-
-
 </div>
 <!-- End Side Menu -->
+
+<script>
+    function filterBlogs(category) {
+        const blogs = document.querySelectorAll('.blog-style-one');
+        blogs.forEach(blog => {
+            const blogCategory = blog.querySelector('.meta ul li:nth-child(3)').textContent.trim();
+            if (blogCategory === category || category === 'All') {
+                blog.parentElement.style.display = 'block';
+            } else {
+                blog.parentElement.style.display = 'none';
+            }
+        });
+    }
+</script>
 @endsection
 
 
@@ -75,21 +87,24 @@
                 <div class="col-lg-4 col-md-6 mb-50">
                     <div class="blog-style-one">
                         <div class="thumb">
-                            <a href="{{ route('blog.details', $blog->slug) }}"><img src="{{asset('storage/blog/gambar/' . $blog->gambar)}}" alt="Image Not Found"></a>
+                            <a href="{{ route('blog.detail', $blog->slug) }}"><img src="{{asset('storage/blog/gambar/' . $blog->gambar)}}" alt="Image Not Found"></a>
                         </div>
                         <div class="info">
                             <div class="meta">
                                 <ul>
                                     <li>
-                                        <a href="#">{{ $blog->penulis }}</a>
+                                        {{ $blog->penulis }}
                                     </li>
                                     <li>
                                         {{ $blog->tanggal }}
                                     </li>
+                                    {{-- <li>
+                                        {{ $blog->kategori }}
+                                    </li> --}}
                                 </ul>
                             </div>
-                            <h3 class="post-title"><a href="blog-single-with-sidebar.html">{{ $blog->judul }}</a></h3>
-                            <a href="blog-single-with-sidebar.html" class="button-regular">
+                            <h3 class="post-title"><a href="{{ route('blog.detail', $blog->slug) }}">{{ $blog->judul }}</a></h3>
+                            <a href="{{ route('blog.detail', $blog->slug) }}" class="button-regular">
                                 Continue Reading <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>

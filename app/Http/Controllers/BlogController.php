@@ -13,19 +13,19 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::paginate(25);
         // dd($blogs);
         return view('admin.blog.index', compact('blogs'));
     }
     public function show()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::paginate(10);
         return view('user.blog', compact('blogs'));
     }
-    public function show_details($slug)
+    public function detailBlog($slug)
     {
         $blogs = Blog::where('slug', $slug)->first();
-        return view('admin.blog.detail', compact('blogs'));
+        return view('user.blog-detail', compact('blogs'));
     }
 
     public function create()
@@ -39,8 +39,8 @@ class BlogController extends Controller
             'judul' => 'required|max:250',
             'penulis' => 'required|max:250',
             'tanggal' => 'required|date',
-            'deskripsi' => 'required|max:250',
-            'gambar' => 'nullable|file|image|mimes:jpg,jpeg,png|max:2048', // maksimum 2MB
+            'deskripsi' => 'required|string|max:65535',
+            'gambar' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240', // maksimum 10MB
         ]);
 
         $blog = new Blog();

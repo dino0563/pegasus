@@ -14,8 +14,75 @@
     <link rel="canonical" href="{{ route('admin') }}">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon"
-        href="{{ asset('assets/admin/img/favicon/favicon.ico') }}" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/PEGASUS-W.ico') }}" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <style>
+        .position-relative {
+            position: relative;
+        }
+
+        .char-counter {
+            position: absolute;
+            bottom: 5px;
+            right: 22px;
+            font-size: 12px;
+        }
+
+        .char-counter.warning {
+            color: orange;
+        }
+
+        .char-counter.danger {
+            color: red;
+        }
+
+        /* .table {
+            table-layout: fixed;
+            width: 100%;
+        }
+
+        th,
+        td {
+            word-wrap: break-word;
+            white-space: normal;
+            overflow-wrap: break-word;
+        } */
+    </style>
+    <script>
+        function checkDescriptionLength(element) {
+                const maxLength = 100;
+                const charCounter = document.getElementById('char-counter');
+                let currentLength = element.value.length;
+
+                if (currentLength > maxLength) {
+                    element.value = element.value.substring(0, maxLength);
+                    currentLength = maxLength;
+                }
+
+                charCounter.textContent = `${currentLength}/${maxLength}`;
+
+                if (currentLength === maxLength) {
+                    charCounter.classList.add('danger');
+                    charCounter.classList.remove('warning');
+                } else if (currentLength >= maxLength - 50) {
+                    charCounter.classList.add('warning');
+                    charCounter.classList.remove('danger');
+                } else {
+                    charCounter.classList.remove('warning', 'danger');
+                }
+
+                return true;
+            }
+
+            function validateForm(event) {
+                const descriptionElement = document.getElementById('deskripsi');
+                if (!checkDescriptionLength(descriptionElement)) {
+                    event.preventDefault(); // Prevent form submission
+                }
+            }
+    </script>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
@@ -30,20 +97,25 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/flag-icons.css') }}" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/css/rtl/core.css') }}" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/css/rtl/theme-default.css') }}" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/css/rtl/core.css') }}"
+        class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/css/rtl/theme-default.css') }}"
+        class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('assets/admin/css/demo.css') }}" />
 
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/typeahead-js/typeahead.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/flatpickr/flatpickr.css') }}" />
     <!-- Row Group CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/admin/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css') }}">
     <!-- Form Validation -->
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/%40form-validation/form-validation.css') }}" />
 
@@ -53,6 +125,7 @@
     <script src="{{ asset('assets/admin/vendor/js/helpers.js') }}"></script>
     <!-- Config: Mandatory theme config file containing global vars & default theme options, Set your preferred theme option in this file. -->
     <script src="{{ asset('assets/admin/js/config.js') }}"></script>
+
 </head>
 
 <body>
@@ -72,51 +145,36 @@
                     <a href="/" class="app-brand-link">
                         <span class="app-brand-logo demo">
 
-                            <svg width="25" viewBox="0 0 25 42" version="1.1" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 402.53 247.18">
                                 <defs>
-                                    <path
-                                        d="M13.7918663,0.358365126 L3.39788168,7.44174259 C0.566865006,9.69408886 -0.379795268,12.4788597 0.557900856,15.7960551 C0.68998853,16.2305145 1.09562888,17.7872135 3.12357076,19.2293357 C3.8146334,19.7207684 5.32369333,20.3834223 7.65075054,21.2172976 L7.59773219,21.2525164 L2.63468769,24.5493413 C0.445452254,26.3002124 0.0884951797,28.5083815 1.56381646,31.1738486 C2.83770406,32.8170431 5.20850219,33.2640127 7.09180128,32.5391577 C8.347334,32.0559211 11.4559176,30.0011079 16.4175519,26.3747182 C18.0338572,24.4997857 18.6973423,22.4544883 18.4080071,20.2388261 C17.963753,17.5346866 16.1776345,15.5799961 13.0496516,14.3747546 L10.9194936,13.4715819 L18.6192054,7.984237 L13.7918663,0.358365126 Z"
-                                        id="path-1"></path>
-                                    <path
-                                        d="M5.47320593,6.00457225 C4.05321814,8.216144 4.36334763,10.0722806 6.40359441,11.5729822 C8.61520715,12.571656 10.0999176,13.2171421 10.8577257,13.5094407 L15.5088241,14.433041 L18.6192054,7.984237 C15.5364148,3.11535317 13.9273018,0.573395879 13.7918663,0.358365126 C13.5790555,0.511491653 10.8061687,2.3935607 5.47320593,6.00457225 Z"
-                                        id="path-3"></path>
-                                    <path
-                                        d="M7.50063644,21.2294429 L12.3234468,23.3159332 C14.1688022,24.7579751 14.397098,26.4880487 13.008334,28.506154 C11.6195701,30.5242593 10.3099883,31.790241 9.07958868,32.3040991 C5.78142938,33.4346997 4.13234973,34 4.13234973,34 C4.13234973,34 2.75489982,33.0538207 2.37032616e-14,31.1614621 C-0.55822714,27.8186216 -0.55822714,26.0572515 -4.05231404e-15,25.8773518 C0.83734071,25.6075023 2.77988457,22.8248993 3.3049379,22.52991 C3.65497346,22.3332504 5.05353963,21.8997614 7.50063644,21.2294429 Z"
-                                        id="path-4"></path>
-                                    <path
-                                        d="M20.6,7.13333333 L25.6,13.8 C26.2627417,14.6836556 26.0836556,15.9372583 25.2,16.6 C24.8538077,16.8596443 24.4327404,17 24,17 L14,17 C12.8954305,17 12,16.1045695 12,15 C12,14.5672596 12.1403557,14.1461923 12.4,13.8 L17.4,7.13333333 C18.0627417,6.24967773 19.3163444,6.07059163 20.2,6.73333333 C20.3516113,6.84704183 20.4862915,6.981722 20.6,7.13333333 Z"
-                                        id="path-5"></path>
+                                    <style>
+                                        .cls-1,
+                                        .cls-2 {
+                                            stroke-width: 0px;
+                                        }
+
+                                        .cls-2 {
+                                            fill: #fff;
+                                        }
+                                    </style>
                                 </defs>
-                                <g id="g-app-brand" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                    <g id="Brand-Logo" transform="translate(-27.000000, -15.000000)">
-                                        <g id="Icon" transform="translate(27.000000, 15.000000)">
-                                            <g id="Mask" transform="translate(0.000000, 8.000000)">
-                                                <mask id="mask-2" fill="white">
-                                                    <use xlink:href="#path-1"></use>
-                                                </mask>
-                                                <use fill="#696cff" xlink:href="#path-1"></use>
-                                                <g id="Path-3" mask="url(#mask-2)">
-                                                    <use fill="#696cff" xlink:href="#path-3"></use>
-                                                    <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-3"></use>
-                                                </g>
-                                                <g id="Path-4" mask="url(#mask-2)">
-                                                    <use fill="#696cff" xlink:href="#path-4"></use>
-                                                    <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-4"></use>
-                                                </g>
-                                            </g>
-                                            <g id="Triangle"
-                                                transform="translate(19.000000, 11.000000) rotate(-300.000000) translate(-19.000000, -11.000000) ">
-                                                <use fill="#696cff" xlink:href="#path-5"></use>
-                                                <use fill-opacity="0.2" fill="#FFFFFF" xlink:href="#path-5"></use>
-                                            </g>
-                                        </g>
-                                    </g>
+                                <g id="Layer_1-2" data-name="Layer 1">
+                                    <path class="cls-2"
+                                        d="m0,9.7c7.13,22.08,24.36,33.32,44.31,41.81,85.09,36.22,157.65,86.39,194.88,176.04,6.95,16.74,19.46,20.14,37.42,13.04-28.29-45.25-55.87-89.62-83.86-133.72-2.82-4.44-7.71-8.14-12.44-10.67C120.29,64.01,60.13,32.11,0,.13m324.07,53.84c15.64,33.36,29.57,63.07,44.46,94.84-39.86,12.27-33.52-31.05-56.32-39.41-4.07,2.47-9.84,5.97-17.15,10.41,11.48,18.71,21.7,36.52,33.28,53.41,2.77,4.05,10.5,7.68,15.17,6.89,19.94-3.38,39.59-8.5,59.03-12.91-13.64-55.69-66.43-97.41-40.53-167.2-53.72,34.6-100.6,64.79-148.11,95.38,28,45.24,55.02,87.41,80.31,130.59,9.09,15.52,19.11,22.1,38.69,15.04-28.32-46.06-56.39-91.71-84.79-137.9,25.46-16.47,49.35-31.93,75.97-49.15ZM26.5,74.07c-.16,23.93,9.6,36.05,27.31,43.75,55.33,24.06,104.97,54.42,130.87,113.54,3.46,7.9,18.57,10.67,28.28,15.82,1.88-2.38,3.76-4.77,5.64-7.15-20.61-31.69-35.44-70.47-63.26-93.32-36.95-30.34-84.03-48.26-128.83-72.64Zm21.95,75.16c1.89,20.15,9.6,32.34,26.75,42.06,15.67,8.88,29.57,22.5,41.17,36.59,13.9,16.89,12.48,18.06,34.87,12.43-15.72-50.04-56.72-71.74-102.79-91.08Z" />
+                                    <path class="cls-1"
+                                        d="m0,.13c60.13,31.98,120.29,63.89,180.3,96.07,4.73,2.54,9.63,6.24,12.44,10.67,27.99,44.1,55.57,88.46,83.86,133.72-17.96,7.1-30.47,3.7-37.42-13.04C201.95,137.9,129.4,87.73,44.31,51.51,24.36,43.02,7.13,31.78,0,9.7V.13Z" />
+                                    <path class="cls-1"
+                                        d="m324.07,53.96c-26.61,17.22-50.51,32.68-75.97,49.15,28.4,46.18,56.47,91.84,84.79,137.9-19.58,7.06-29.6.48-38.69-15.04-25.29-43.18-52.32-85.35-80.31-130.59,47.51-30.6,94.38-60.78,148.11-95.38-25.9,69.79,26.89,111.51,40.53,167.2-19.43,4.41-39.08,9.52-59.03,12.91-4.67.79-12.39-2.84-15.17-6.89-11.58-16.88-21.8-34.7-33.28-53.41,7.31-4.44,13.08-7.94,17.15-10.41,22.8,8.36,16.46,51.67,56.32,39.41-14.9-31.78-28.82-61.49-44.46-94.84Z" />
+                                    <path class="cls-1"
+                                        d="m26.5,74.07c44.8,24.38,91.89,42.29,128.83,72.64,27.82,22.85,42.65,61.63,63.26,93.32-1.88,2.38-3.76,4.77-5.64,7.15-9.71-5.15-24.82-7.92-28.28-15.82-25.9-59.12-75.54-89.48-130.87-113.54-17.71-7.7-27.47-19.83-27.31-43.75Z" />
+                                    <path class="cls-1"
+                                        d="m48.45,149.23c46.07,19.34,87.07,41.04,102.79,91.08-22.39,5.63-20.97,4.46-34.87-12.43-11.6-14.09-25.5-27.71-41.17-36.59-17.15-9.72-24.86-21.91-26.75-42.06Z" />
                                 </g>
                             </svg>
 
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bold ms-2">Sneat</span>
+                        <span class="app-brand-text demo menu-text fw-bold ms-2">pegasus</span>
                     </a>
 
                     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -242,13 +300,14 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <form method="POST" action="{{ route('logout') }}">
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                                            <i class='bx bx-power-off'></i>
+                                            <span class="align-middle">Log Out</span>
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
                                             @csrf
-
-                                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
-                                                                this.closest('form').submit();">
-                                                {{ __('Log Out') }}
-                                            </x-dropdown-link>
                                         </form>
                                     </li>
                                 </ul>
@@ -328,7 +387,7 @@
         $(document).ready(function() {
           $('#example').DataTable();
         });
-      </script>
+    </script>
 </body>
 
 </html>

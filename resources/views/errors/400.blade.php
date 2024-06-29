@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
+<!-- Mirrored from validthemes.net/site-template/dilabs/404.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Jun 2024 05:57:25 GMT -->
 <head>
     <!-- ========== Meta Tags ========== -->
     <meta charset="utf-8">
@@ -9,7 +11,7 @@
     <meta name="description" content="Dilabs - Creative Digital Agency Template">
 
     <!-- ========== Page Title ========== -->
-    <title>Pegasus - @yield('title')</title>
+    <title>Pegasus - 400</title>
 
     <!-- ========== Favicon Icon ========== -->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/PEGASUS-W.ico') }}" />
@@ -31,10 +33,9 @@
     <!-- ========== End Stylesheet ========== -->
 
     <!--[if lte IE 9]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
     <![endif]-->
 
-    @yield('custom-css')
 </head>
 
 <body>
@@ -86,9 +87,21 @@
 
                 <div class="attr-right">
 
-                @yield('attr-nav')
-
-                @yield('side-menu')
+                    <div class="attr-nav flex">
+                        <ul>
+                            <li class="contact">
+                                <div class="call">
+                                    <div class="icon">
+                                        <i class="fas fa-comments-alt-dollar"></i>
+                                    </div>
+                                    <div class="info">
+                                        <p>Have any Questions?</p>
+                                        <h5><a href="mailto:info@crysta.com">info@atozen.com</a></h5>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 <!-- Main Nav -->
             </div>
             <!-- Overlay screen for menu -->
@@ -99,34 +112,29 @@
     </header>
     <!-- End Header -->
 
-         <!-- Start Breadcrumb
+
+    <!-- Start 404
     ============================================= -->
-    <div class="breadcrumb-area bg-gray bg-cover" style="background-image: url({{asset ('assets/user/img/shape/banner-3.png')}});">
+    <div class="error-page-area default-padding text-center bg-cover" style="background-image: url({{ asset('assets/user/img/shape/banner-3.jpg') }});">
+        <!-- Shape -->
+        <div class="shape-left" style="background: url({{ asset('assets/user/img/shape/44-left.png') }});"></div>
+        <div class="shape-right" style="background: url({{ asset('assets/user/img/shape/44-right.png') }});"></div>
+        <!-- End Shape -->
         <div class="container">
-            <div class="breadcrumb-item">
-                <div class="breadcrum-shape">
-                    <img src="{{asset ('assets/user/img/shape/16.png')}}" alt="Image Not Found">
-                </div>
+            <div class="error-box">
                 <div class="row">
-                    <div class="col-lg-8">
-                        <nav aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li><a href="{{ url('/') }}"><i class="fas fa-home"></i>Home</a></li>
-                                <li class="active">@yield('title')</li>
-                            </ol>
-                        </nav>
-                        <h1>@yield('title')</h1>
+                    <div class="col-lg-8 offset-lg-2">
+                        <h1>400</h1>
+                        <h2>Bad Request!</h2>
+                        <a class="btn mt-20 btn-md btn-theme" href="/">Back to home</a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- End Breadcrumb -->
+    <!-- End 404 -->
 
-    <!-- Content Section -->
-    @yield('content')
-
-    <!-- Start Footer
+     <!-- Start Footer
     ============================================= -->
     <footer class="bg-dark text-light" style="background-image: url('{{ asset('assets/user/img/shape/5.png') }}');">
         <div class="container">
@@ -252,4 +260,5 @@
 
 </body>
 
+<!-- Mirrored from validthemes.net/site-template/dilabs/404.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 04 Jun 2024 05:57:26 GMT -->
 </html>
