@@ -13,7 +13,8 @@
             </div>
             <div class="card-body">
                 <form action="{{ route('portfolio.update', $portfolio->id) }}" method="POST" enctype="multipart/form-data">
-                    @csrf_field
+                    @csrf
+                    @method('POST')
                 <input type="hidden" name="id" value="{{ $portfolio->id }}">
 
                     <div class="row mb-3">

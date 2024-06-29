@@ -25,28 +25,33 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <div class="card">
                 <div class="card-datatable table-responsive">
-                    <a href="/add-user" class="btn btn-primary mt-3 ms-2">+ Tambah Data</a>
+                    <a href="/add-blog" class="btn btn-primary mt-3 ms-2">+ Tambah Data</a>
                     <table id="example" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Name</th>
-                                <th>Email</th>
+                                <th>Judul</th>
+                                <th>Gambar</th>
+                                <th>Tanggal</th>
+                                <th>Deskripsi</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($users as $user)
+                            @foreach ($blogs as $blog)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
+                                    <td>{{ $blog->judul }}</td>
+                                    <td><img src="{{ asset('storage/blog/gambar/' . $blog->gambar) }}" style="width:100px;">
+                                    </td>
+                                    <td>{{ $blog->tanggal }}</td>
+                                    <td>{{ $blog->deskripsi }}</td>
                                     <td class="" style="">
                                         <div class="d-inline-block text-nowrap">
-                                            <button class="btn btn-sm btn-icon edit-portfolio"><i
-                                                    class="bx bx-edit"></i></button>
-                                            <button class="btn btn-sm btn-icon delete-record" onclick="window.location='{{ route('user.delete', $user->id) }}'"><i
-                                                    class="bx bx-trash"></i></button>
+                                            <a href="{{ route('blog.edit', $blog->id) }}"
+                                                class="btn btn-sm btn-icon edit-portfolio"><i class="bx bx-edit"></i></a>
+                                            <a href="{{ route('blog.delete', $blog->id) }}"
+                                                class="btn btn-sm btn-icon delete-record"><i class="bx bx-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>

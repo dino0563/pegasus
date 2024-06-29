@@ -13,7 +13,8 @@
             </div>
             <div class="card-body">
                 <form action="{{ route('user.update', $user->id) }}" method="POST" enctype="multipart/form-data">
-                    @csrf_field
+                    @csrf
+                    @method('POST')
                 <input type="hidden" name="id" value="{{ $user->id }}">
 
                     <div class="row mb-3">
@@ -39,10 +40,17 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="password">Password</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="password" name="password" placeholder="Enter password name" value="{{ old('password', $user->password) }}" required>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Enter password" required>
                             @if ($errors->has('password'))
                                 <div class="text-danger">{{ $errors->first('password') }}</div>
                             @endif
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-sm-2 col-form-label" for="password_confirmation">Confirm Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="Confirm password" required>
                         </div>
                     </div>
 
