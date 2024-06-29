@@ -13,14 +13,19 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::paginate(25);
         // dd($blogs);
         return view('admin.blog.index', compact('blogs'));
     }
     public function show()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::paginate(10);
         return view('user.blog', compact('blogs'));
+    }
+    public function detailBlog($blog_id)
+    {
+        $blogs = Blog::findOrFail($blog_id);
+        return view('user.blog-detail', compact('blogs'));
     }
 
     public function create()
