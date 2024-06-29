@@ -82,7 +82,9 @@
                             @foreach($portfolios as $portfolio)
                             <div class="swiper-slide">
                                 <div class="project-style-one">
-                                    <img src="{{asset('storage/portfolio/gambar/' . $portfolio->gambar)}}" alt="Thumb">
+                                    <div style="position: relative; width: 100%; padding-bottom: 66.67%; overflow: hidden;">
+                                        <img src="{{asset('storage/portfolio/gambar/' . $portfolio->gambar)}}" alt="Thumb" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                                    </div>
                                     <div class="overlay">
                                         <span>{{ $portfolio->kategori }}</span>
                                         {{-- <h4><a href="{{ route('portfolio.show', $portfolio->id) }}">{{ $portfolio->nama }}</a></h4> --}}
