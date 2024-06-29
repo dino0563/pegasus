@@ -14,7 +14,8 @@ class BlogController extends Controller
     public function index()
     {
         $blogs = Blog::all();
-        return view('admin.blog', compact('blogs'));
+        // dd($blogs);
+        return view('admin.blog.index', compact('blogs'));
     }
     public function show()
     {
@@ -24,7 +25,7 @@ class BlogController extends Controller
 
     public function create()
     {
-        return view('admin.create-blog');
+        return view('admin.blog.create');
     }
 
     public function store(Request $request)
@@ -47,7 +48,7 @@ class BlogController extends Controller
         if ($request->file('gambar')) {
             $extension = $request->file('gambar')->getClientOriginalExtension();
             $gambarName = 'blog-' . now()->timestamp . '.' . $extension;
-            $request->file('gambar')->storeAs('storage/blog/gambar', $gambarName);
+            $request->file('gambar')->storeAs('public/blog/gambar', $gambarName);
             $blog->gambar = $gambarName;
         }
 
@@ -59,9 +60,9 @@ class BlogController extends Controller
     public function destroy($blog_id)
     {
         $blog = Blog::findOrFail((int)$blog_id); // Ensure $portfolio_id is cast to an integer
-        if($blog->gambar) {
-            $destination = 'storage/blog/gambar/' . $blog->gambar;
-            if(File::exists($destination)){
+        if ($blog->gambar) {
+            $destination = 'public/blog/gambar/' . $blog->gambar;
+            if (File::exists($destination)) {
                 File::delete($destination);
             }
         }
@@ -72,34 +73,31 @@ class BlogController extends Controller
     public function edit(Request $request, $blog_id)
     {
         $blog = Blog::findOrFail($blog_id);
-        return view('admin.edit-blog', compact('blog'));
+        return view('admin.blog.edit', compact('blog'));
     }
 
-    public function update(BlogRequest $request, $blog_id)
+    public function update(Request $request, $blog_id)
     {
-        $data = $request->validated();
-
-        $blog = Blog::findOrFail($blog_id);
-        $this->authorize('update', $blog);
-
-        $blog->judul = $data['judul'];
-        $blog->penulis = $data['penulis'];
-        $blog->tanggal = $data['tanggal'];
-        $blog->deskripsi = $data['deskripsi'];
+        $blog = Blog::find($blog_id);
+        $blog->judul = $request['judul'];
+        $blog->penulis = $request['penulis'];
+        $blog->tanggal = $request['tanggalProyek'];
+        $blog->deskripsi = $request['deskripsi'];
 
         if ($request->hasFile('gambar')) {
-            $destination = 'public/blog/gambar/' . $blog->gambar;
+            $destination = 'storage/blog/gambar/' . $blog->gambar;
             if (File::exists($destination)) {
                 File::delete($destination);
             }
 
             $file = $request->file('gambar');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('public/blog/gambar/', $filename);
+            $extension = $file->getClientOriginalExtension();
+            $filename = 'blog-' . now()->timestamp . '.' . $extension;
+            $file->storeAs('public/blog/gambar/', $filename);
             $blog->gambar = $filename;
         }
 
-        $blog->save();
+        $blog->update();
 
         return redirect(route('blog.index'))->with('success', 'Blog item updated successfully.');
     }

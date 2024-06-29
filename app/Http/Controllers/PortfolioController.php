@@ -10,11 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class PortfolioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $portfolios = Portfolio::all();
@@ -31,22 +26,11 @@ class PortfolioController extends Controller
         return view('user.portfolio', compact('portfolios'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('admin.portfolio.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -59,40 +43,32 @@ class PortfolioController extends Controller
             'client' => 'nullable|max:250',
             'deskripsi' => 'required|max:250',
         ]);
-
-        $data = $request->only(['id', 'nama', 'lokasi', 'kategori', 'tanggalProyek', 'client', 'deskripsi']); // Pastikan hanya mengambil data yang aman untuk disimpan
+    
+        $portfolio = new Portfolio();
+        $portfolio->nama = $validatedData['nama'];
+        $portfolio->lokasi = $validatedData['lokasi'];
+        $portfolio->kategori = $validatedData['kategori'];
+        $portfolio->tanggalProyek = $validatedData['tanggalProyek'];
+        $portfolio->client = $validatedData['client'];
+        $portfolio->deskripsi = $validatedData['deskripsi'];
 
         if ($request->file('gambar')) {
             $extension = $request->file('gambar')->getClientOriginalExtension();
-            $gambarName = $request->nama . '-gambar-' . now()->timestamp . '.' . $extension;
+            $gambarName = '-portfolio-' . now()->timestamp . '.' . $extension;
             $request->file('gambar')->storeAs('public/portfolio/gambar', $gambarName);
-            $data['gambar'] = $gambarName; // Menyimpan nama file background
+            $portfolio->gambar = $gambarName; // Menyimpan nama file background
         }
 
-        $Portfolio = Portfolio::create($data);
+        $portfolio->save();
 
-
-        // if ($Portfolio) {
-        //     Session::flash('status', 'success');
-        //     Session::flash('message', 'Portfolio item created successfully!');
-        // }
-
-        return redirect()->route('portfolio.index');
+        return redirect()->route('portfolio.index')->with('success', 'Portfolio created successfully!');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Portfolio  $portfolio
-     * @return \Illuminate\Http\Response
-     */
+    // public function show(Portfolio $portfolio)
+    // {
+    //     return view('portfolio.show', compact('portfolio'));
+    // }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Portfolio  $portfolio
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Request $request, $portfolio_id)
     {
         $portfolio = Portfolio::findOrFail($portfolio_id);
@@ -105,45 +81,34 @@ class PortfolioController extends Controller
      * @param  \App\Models\Portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function update(PortfolioRequest $request, $portfolio_id)
+    public function update(Request $request, $portfolio_id)
     {
-        $data = $request->validated();
-
-        $portfolio = Portfolio::findOrFail($portfolio_id);
-        $this->authorize('update', $portfolio);
-
-        $portfolio->nama = $data['nama'];
-        $portfolio->lokasi = $data['lokasi'];
-        $portfolio->kategori = $data['kategori'];
-        $portfolio->tanggalProyek = $data['tanggalProyek'];
-        $portfolio->client = $data['client'];
-        $portfolio->deskripsi = $data['deskripsi'];
+        $portfolio = Portfolio::find($portfolio_id);
+        $portfolio->nama = $request['nama'];
+        $portfolio->lokasi = $request['lokasi'];
+        $portfolio->kategori = $request['kategori'];
+        $portfolio->tanggalProyek = $request['tanggalProyek'];
+        $portfolio->client = $request['client'];
+        $portfolio->deskripsi = $request['deskripsi'];
 
         if ($request->hasFile('gambar')) {
-            $destination = 'public/portfolio/gambar/' . $portfolio->gambar;
+            $destination = 'storage/portfolio/gambar/' . $portfolio->gambar;
             if (File::exists($destination)) {
                 File::delete($destination);
             }
 
             $file = $request->file('gambar');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $file->move('public/portfolio/gambar/', $filename);
+            $extension = $file->getClientOriginalExtension();
+            $filename = '-portfolio-' . now()->timestamp . '.' . $extension;
+            $file->storeAs('public/portfolio/gambar/', $filename);
             $portfolio->gambar = $filename;
         }
 
-        $portfolio->save();
+        $portfolio->update();
 
         return redirect(route('portfolio.index'))->with('success', 'Portfolio item updated successfully.');
     }
 
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Portfolio  $portfolio
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($portfolio_id)
     {
         $portfolio = Portfolio::findOrFail((int)$portfolio_id); // Ensure $portfolio_id is cast to an integer

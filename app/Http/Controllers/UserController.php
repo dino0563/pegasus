@@ -13,12 +13,12 @@ class UserController extends Controller
     public function index()
     {
         $users = Users::all();
-        return view('admin.user', compact('users'));
+        return view('admin.user.index', compact('users'));
     }
 
     public function create()
     {
-        return view('admin.create-user');
+        return view('admin.user.create');
     }
 
     public function store(Request $request)
@@ -49,21 +49,25 @@ class UserController extends Controller
     public function edit(Request $request, $user_id)
     {
         $user = Users::findOrFail($user_id);
-        return view('admin.edit-user', compact('user'));
+        return view('admin.user.edit', compact('user'));
     }
 
-    public function update(UserRequest $request, $user_id)
+    public function update(Request $request, $user_id)
     {
-        $data = $request->validated();
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email,',
+            'password' => 'nullable|string|min:8|confirmed', 
+        ]);
 
         $user = Users::findOrFail($user_id);
-        $this->authorize('update', $user);
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+        if ($request['password']) {
+            $user->password = bcrypt($request['password']);
+        }
 
-        $user->name = $data['name'];
-        $user->email = $data['email'];
-        $user->password = $data['password'];
-
-        $user->save();
+        $user->update();
 
         return redirect(route('user.index'))->with('success', 'User item updated successfully.');
     }
