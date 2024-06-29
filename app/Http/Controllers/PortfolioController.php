@@ -36,14 +36,14 @@ class PortfolioController extends Controller
         $validatedData = $request->validate([
             'id' => 'nullable|integer',
             'nama' => 'required|max:250',
-            'gambar' => 'required|file|image|mimes:jpg,jpeg,png',
+            'gambar' => 'required|file|image|mimes:jpg,jpeg,png|max:10240',
             'lokasi' => 'required|max:250',
             'kategori' => 'required|max:250',
             'tanggalProyek' => 'required|date',
             'client' => 'nullable|max:250',
             'deskripsi' => 'required|max:250',
         ]);
-    
+
         $portfolio = new Portfolio();
         $portfolio->nama = $validatedData['nama'];
         $portfolio->lokasi = $validatedData['lokasi'];

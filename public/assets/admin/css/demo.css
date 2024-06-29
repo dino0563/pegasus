@@ -9,7 +9,11 @@
 }
 
 .app-brand-logo.demo svg {
-  width: 22px;
+  width: 23px;
+  height: 38px;
+}
+.app-brand-logo-login svg {
+  width: 180px;
   height: 38px;
 }
 

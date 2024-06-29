@@ -60,10 +60,8 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="deskripsi">Deskripsi</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="deskripsi" name="deskripsi" placeholder="Enter deskripsi name" value="{{ old('deskripsi', $blog->deskripsi) }}" required>
-                            @if ($errors->has('deskripsi'))
-                                <div class="text-danger">{{ $errors->first('deskripsi') }}</div>
-                            @endif
+                            <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Enter description" required oninput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px';">{{ old('deskripsi', $blog->deskripsi) }}</textarea>
+                            <span id="char-counter" class="char-counter">0/100</span>
                         </div>
                     </div>
 

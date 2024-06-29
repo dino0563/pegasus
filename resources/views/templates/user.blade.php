@@ -12,7 +12,7 @@
     <title>Pegasus - @yield('title')</title>
 
     <!-- ========== Favicon Icon ========== -->
-    <link rel="shortcut icon" href="{{ asset('assets/user/img/favicon.png') }}" type="image/x-icon">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/PEGASUS-W.ico') }}" />
 
     <!-- ========== Start Stylesheet ========== -->
     <link href="{{ asset('assets/user/css/bootstrap.min.css') }}" rel="stylesheet">

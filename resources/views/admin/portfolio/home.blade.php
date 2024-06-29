@@ -8,7 +8,10 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="card">
             <div class="card-datatable table-responsive">
-                <a href="/add-portfolio" class="btn btn-primary mt-3 ms-2">+ Tambah Data</a>
+                <div class="d-flex justify-content-between align-items-center p-3">
+                    <h2 class="mb-0">Manage Portfolio</h2>
+                    <a href="/add-portfolio" class="btn btn-primary">+ Tambah Data</a>
+                </div>
                 <table id="example" class="table table-bordered">
                     <thead>
                         <tr>
@@ -28,22 +31,22 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $portfolio->nama }}</td>
-                            <td><img src="{{asset('storage/portfolio/gambar/' . $portfolio->gambar)}}" alt="" srcset=""
-                                    style="width: 100px;"></td>
+                            <td><img src="{{ asset('storage/portfolio/gambar/' . $portfolio->gambar) }}" alt="" style="width: 100px;"></td>
                             <td>{{ $portfolio->lokasi }}</td>
                             <td>{{ $portfolio->kategori }}</td>
                             <td>{{ $portfolio->tanggalProyek }}</td>
                             <td>{{ $portfolio->client }}</td>
                             <td>{{ $portfolio->deskripsi }}</td>
-                            <td class="" style="">
+                            <td>
                                 <div class="d-inline-block text-nowrap">
-                                    <a href="{{ route('portfolio.edit', $portfolio->id) }}" class="btn btn-sm btn-icon edit-portfolio"><i
-                                            class="bx bx-edit"></i></a>
-                                    <a href="{{ route('portfolio.delete', $portfolio->id) }}" class="btn btn-sm btn-icon delete-record"><i
-                                            class="bx bx-trash"></i></a>
+                                    <a href="{{ route('portfolio.edit', $portfolio->id) }}" class="btn btn-sm btn-icon edit-portfolio">
+                                        <i class="bx bx-edit"></i>
+                                    </a>
+                                    <a href="{{ route('portfolio.delete', $portfolio->id) }}" class="btn btn-sm btn-icon delete-record">
+                                        <i class="bx bx-trash"></i>
+                                    </a>
                                 </div>
                             </td>
-
                         </tr>
                         @endforeach
                     </tbody>
@@ -51,9 +54,19 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 @section('script')
-
-
+<style>
+    .table {
+        table-layout: fixed;
+        width: 100%;
+    }
+    th, td {
+        word-wrap: break-word;
+        white-space: normal;
+        overflow-wrap: break-word;
+    }
+</style>
 @endsection
