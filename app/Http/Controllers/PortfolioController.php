@@ -71,7 +71,7 @@ class PortfolioController extends Controller
 
         $portfolio->save();
 
-        return redirect()->route('portfolio.index')->with('success', 'Portfolio created successfully!');
+        return redirect()->route('portfolio.index')->with('message', 'Portfolio created successfully!');
     }
 
     // public function show(Portfolio $portfolio)

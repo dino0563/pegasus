@@ -39,7 +39,7 @@ class BlogController extends Controller
             'judul' => 'required|max:250',
             'penulis' => 'required|max:250',
             'tanggal' => 'required|date',
-            'deskripsi' => 'required|string|max:65535',
+            'deskripsi' => 'required',
             'kategori' => 'required|max:250',
             'gambar' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240', // maksimum 10MB
         ]);
@@ -61,7 +61,7 @@ class BlogController extends Controller
 
         $blog->save();
 
-        return redirect()->route('blog.index')->with('status', 'New Blog Added Successfully!');
+        return redirect()->route('blog.index')->with('message', 'New Blog Added Successfully!');
     }
 
     public function destroy($blog_id)

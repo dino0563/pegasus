@@ -7,7 +7,8 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Pegasus - @yield('title')</title>
-    <meta name="description" content="Most Powerful & Comprehensive Bootstrap 5 Admin Dashboard built for developers!" />
+    <meta name="description"
+        content="Most Powerful & Comprehensive Bootstrap 5 Admin Dashboard built for developers!" />
     <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
     <!-- Canonical SEO -->
     <link rel="canonical" href="{{ route('admin') }}">
@@ -15,73 +16,34 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/PEGASUS-W.ico') }}" />
 
-
     @stack('admin_style')
+
+    {{-- SWEET ALERT --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-    <style>
-        .position-relative {
-            position: relative;
-        }
 
-        .char-counter {
-            position: absolute;
-            bottom: 5px;
-            right: 22px;
-            font-size: 12px;
-        }
+    {{-- TOASTR --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"
+        integrity="sha512-6S2HWzVFxruDlZxI3sXOZZ4/eJ8AcxkQH1+JjSe/ONCEqR9L4Ysq5JdT5ipqtzU7WHalNwzwBv+iE51gNHJNqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-        .char-counter.warning {
-            color: orange;
-        }
+    {{-- TINY TEXT EDITOR --}}
+    <script src="https://cdn.tiny.cloud/1/unoxcn5qn48a6axd3qvtr4evl8yxx565sdux4xuiwunby0iv/tinymce/7/tinymce.min.js"
+        referrerpolicy="origin"></script>
 
-        .char-counter.danger {
-            color: red;
-        }
-
-        /* .table {
-            table-layout: fixed;
-            width: 100%;
-        }
-
-        th,
-        td {
-            word-wrap: break-word;
-            white-space: normal;
-            overflow-wrap: break-word;
-        } */
-    </style>
-    <script>
-        
-        function validateForm(event) {
-            const descriptionElement = document.getElementById('deskripsi');
-            if (!checkDescriptionLength(descriptionElement)) {
-                event.preventDefault(); // Prevent form submission
-            }
-        }
-    </script>
-    <script src="https://cdn.tiny.cloud/1/te2rfhgmvl2ihh4mvdp4f8ltjde6wgl76xxmiu5ukeceu3eb/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-    <script>
-      tinymce.init({
-        selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
-        plugins: 'code table lists',
-        toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
-      });
-    </script>
-
-    <!-- Fonts -->
+    {{-- FONTS --}}
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
 
-    <!-- Icons -->
+    {{-- ICONS --}}
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/boxicons.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/fontawesome.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/flag-icons.css') }}" />
 
-    <!-- Core CSS -->
+    {{-- CORE CSS --}}
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/css/rtl/core.css') }}"
         class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/css/rtl/theme-default.css') }}"
@@ -96,20 +58,26 @@
         href="{{ asset('assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
     <link rel="stylesheet"
         href="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/flatpickr/flatpickr.css') }}" />
+
     <!-- Row Group CSS -->
     <link rel="stylesheet"
         href="{{ asset('assets/admin/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css') }}">
+
     <!-- Form Validation -->
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/%40form-validation/form-validation.css') }}" />
-
-    <!-- Page CSS -->
 
     <!-- Helpers -->
     <script src="{{ asset('assets/admin/vendor/js/helpers.js') }}"></script>
     <!-- Config: Mandatory theme config file containing global vars & default theme options, Set your preferred theme option in this file. -->
+    <script>
+        tinymce.init({
+        selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
+        plugins: 'code table lists',
+        toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table
+      });
+    </script>
     <script src="{{ asset('assets/admin/js/config.js') }}"></script>
 
 </head>
@@ -160,7 +128,7 @@
                             </svg>
 
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bold ms-2">pegasus</span>
+                        <span class="app-brand-text demo menu-text fw-bold ms-2">Pegasus</span>
                     </a>
 
                     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -289,8 +257,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                             <i class='bx bx-power-off me-2'></i>
                                             <span class="align-middle">Log Out</span>
@@ -339,47 +306,53 @@
 
     </div>
     <!-- / Layout wrapper -->
-    <!-- Core JS -->
-    <script src="{{ asset('assets/admin/vendor/libs/jquery/jquery.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/libs/popper/popper.js') }}"></script>
-    <script src="assets/admin/vendor/libs/jquery/jquery.js"></script>
-    <script src="assets/admin/vendor/libs/popper/popper.js"></script>
-    <script src="assets/admin/vendor/js/bootstrap.js"></script>
-    <script src="assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="assets/admin/vendor/libs/hammer/hammer.js"></script>
-    <script src="assets/admin/vendor/libs/i18n/i18n.js"></script>
-    <script src="assets/admin/vendor/libs/typeahead-js/typeahead.js"></script>
-    <script src="assets/admin/vendor/js/menu.js"></script>
+<!-- Core JS -->
+<script src="{{ asset('assets/admin/vendor/libs/jquery/jquery.js') }}"></script>
+<script src="{{ asset('assets/admin/vendor/libs/popper/popper.js') }}"></script>
+<script src="{{ asset('assets/admin/vendor/js/bootstrap.js') }}"></script>
+<script src="{{ asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+<script src="{{ asset('assets/admin/vendor/libs/hammer/hammer.js') }}"></script>
+<script src="{{ asset('assets/admin/vendor/libs/i18n/i18n.js') }}"></script>
+<script src="{{ asset('assets/admin/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+<script src="{{ asset('assets/admin/vendor/js/menu.js') }}"></script>
 
-    <!-- Vendors JS -->
-    <script src="assets/admin/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
-    <script src="assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js"></script>
-    <script src="assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js"></script>
-    <script src="assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js"></script>
-    <!-- Flat Picker -->
-    <script src="assets/admin/vendor/libs/moment/moment.js"></script>
-    <script src="assets/admin/vendor/libs/flatpickr/flatpickr.js"></script>
-    <!-- Form Validation -->
-    <script src="assets/admin/vendor/libs/%40form-validation/popular.js"></script>
-    <script src="assets/admin/vendor/libs/%40form-validation/bootstrap5.js"></script>
-    <script src="assets/admin/vendor/libs/%40form-validation/auto-focus.js"></script>
+<!-- Vendors JS -->
+<script src="{{ asset('assets/admin/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+<script src="{{ asset('assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js') }}"></script>
+<script src="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js') }}"></script>
+<script src="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js') }}"></script>
+<!-- Flat Picker -->
+<script src="{{ asset('assets/admin/vendor/libs/moment/moment.js') }}"></script>
+<script src="{{ asset('assets/admin/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+<!-- Form Validation -->
+<script src="{{ asset('assets/admin/vendor/libs/form-validation/popular.js') }}"></script>
+<script src="{{ asset('assets/admin/vendor/libs/form-validation/bootstrap5.js') }}"></script>
+<script src="{{ asset('assets/admin/vendor/libs/form-validation/auto-focus.js') }}"></script>
 
-    <!-- Main JS -->
-    <script src="assets/admin/js/main.js"></script>
-    <script src="assets/admin/js/main.js"></script>
+<!-- Main JS -->
+<script src="{{ asset('assets/admin/js/main.js') }}"></script>
 
-    <!-- Page JS -->
-    <script src="assets/admin/js/tables-datatables-basic.js"></script>
+<!-- Page JS -->
+<script src="{{ asset('assets/admin/js/tables-datatables-basic.js') }}"></script>
+
+    {{-- Toast JS --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"
+        integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     @stack('admin_scripts')
-
-
 
     <script>
         $(document).ready(function() {
             $('#example').DataTable();
         });
     </script>
+
+    @if (Session::has('message'))
+    <script>
+        toastr.success("{!! Session::get('message') !!}");
+    </script>
+    @endif
 </body>
 
 </html>

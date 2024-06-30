@@ -4,6 +4,7 @@
 
 @push('admin_style')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
+
 @endpush
 
 @section('content')

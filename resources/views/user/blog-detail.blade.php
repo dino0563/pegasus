@@ -21,7 +21,7 @@
                 <h2>{{$blogs->judul}}</h2>
                 <h4>{{$blogs->penulis}} | {{$blogs->tanggal}}</h4>
                 <p>
-                  {{$blogs->deskripsi}}
+                  {!! $blogs->deskripsi !!}
                 </p>
               </div>
             </div>
