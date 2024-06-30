@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('lokasi', 250);
             $table->date('tanggalProyek');
             $table->string('client')->nullable();
-            $table->string('deskripsi', 250);
+            $table->text('deskripsi');
             $table->string('slug', 250)->unique();
             $table->timestamps();
         });

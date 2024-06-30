@@ -7,8 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Pegasus - @yield('title')</title>
-    <meta name="description"
-        content="Most Powerful & Comprehensive Bootstrap 5 Admin Dashboard built for developers!" />
+    <meta name="description" content="Most Powerful & Comprehensive Bootstrap 5 Admin Dashboard built for developers!" />
     <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
     <!-- Canonical SEO -->
     <link rel="canonical" href="{{ route('admin') }}">
@@ -53,37 +52,21 @@
         } */
     </style>
     <script>
-        function checkDescriptionLength(element) {
-                const maxLength = 100;
-                const charCounter = document.getElementById('char-counter');
-                let currentLength = element.value.length;
-
-                if (currentLength > maxLength) {
-                    element.value = element.value.substring(0, maxLength);
-                    currentLength = maxLength;
-                }
-
-                charCounter.textContent = `${currentLength}/${maxLength}`;
-
-                if (currentLength === maxLength) {
-                    charCounter.classList.add('danger');
-                    charCounter.classList.remove('warning');
-                } else if (currentLength >= maxLength - 50) {
-                    charCounter.classList.add('warning');
-                    charCounter.classList.remove('danger');
-                } else {
-                    charCounter.classList.remove('warning', 'danger');
-                }
-
-                return true;
+        
+        function validateForm(event) {
+            const descriptionElement = document.getElementById('deskripsi');
+            if (!checkDescriptionLength(descriptionElement)) {
+                event.preventDefault(); // Prevent form submission
             }
-
-            function validateForm(event) {
-                const descriptionElement = document.getElementById('deskripsi');
-                if (!checkDescriptionLength(descriptionElement)) {
-                    event.preventDefault(); // Prevent form submission
-                }
-            }
+        }
+    </script>
+    <script src="https://cdn.tiny.cloud/1/te2rfhgmvl2ihh4mvdp4f8ltjde6wgl76xxmiu5ukeceu3eb/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
+        plugins: 'code table lists',
+        toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+      });
     </script>
 
     <!-- Fonts -->
@@ -113,7 +96,8 @@
         href="{{ asset('assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
     <link rel="stylesheet"
         href="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/flatpickr/flatpickr.css') }}" />
     <!-- Row Group CSS -->
     <link rel="stylesheet"
@@ -296,7 +280,17 @@
                                         <div class="dropdown-divider"></div>
                                     </li> --}}
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        <a class="dropdown-item" href="{{ route('profile.index') }}">
+                                            <i class="bx bx-cog me-2"></i>
+                                            <span class="align-middle">Settings</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                             <i class='bx bx-power-off me-2'></i>
                                             <span class="align-middle">Log Out</span>
@@ -383,7 +377,7 @@
 
     <script>
         $(document).ready(function() {
-          $('#example').DataTable();
+            $('#example').DataTable();
         });
     </script>
 </body>
