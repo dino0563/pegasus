@@ -69,19 +69,19 @@
                     </button>
 
                     <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li><a href="{{ url('/') }}" class="dropdown-toggle active">Home</a></li>
-                        <li><a href="{{ url('/about-us') }}" class="dropdown-toggle active">About Us</a></li>
+                        <li><a href="{{ url('/') }}" class="dropdown-toggle" style="{{ Request::is('/') ? 'color: #2667FF; opacity: 1;' : '' }}">Home</a></li>
+                        <li><a href="{{ url('/about-us') }}" class="dropdown-toggle" style="{{ Request::is('about-us') ? 'color: #2667FF; opacity: 1;' : '' }}">About Us</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url('/services-details') }}">Solusi</a></li>
-                                <li><a href="{{ url('/services-details') }}">Layanan Handal & Responsif</a></li>
-                                <li><a href="{{ url('/services-details') }}">Memberi Manfaat Bagi Masyarakat</a></li>
+                                <li><a href="{{ url('/services-details') }}" style="{{ Request::is('services-details') ? 'color: #2667FF; opacity: 1;' : '' }}">Solusi</a></li>
+                                <li><a href="{{ url('/services-details') }}" style="{{ Request::is('services-details') ? 'color: #2667FF; opacity: 1;' : '' }}">Layanan Handal & Responsif</a></li>
+                                <li><a href="{{ url('/services-details') }}" style="{{ Request::is('services-details') ? 'color: #2667FF; opacity: 1;' : '' }}">Memberi Manfaat Bagi Masyarakat</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ url('/portfolio') }}" class="dropdown-toggle active">Portofolio</a></li>
-                        <li><a href="{{ url('/blog') }}" class="dropdown-toggle active">Blog</a></li>
-                        <li><a href="{{ url('/contact-us') }}">Contact</a></li>
+                        <li><a href="{{ url('/portfolio') }}" class="dropdown-toggle" style="{{ Request::is('portfolio') ? 'color: #2667FF; opacity: 1;' : '' }}">Portofolio</a></li>
+                        <li><a href="{{ url('/blog') }}" class="dropdown-toggle" style="{{ Request::is('blog') ? 'color: #2667FF; opacity: 1;' : '' }}">Blog</a></li>
+                        <li><a href="{{ url('/contact-us') }}" style="{{ Request::is('contact-us') ? 'color: #2667FF; opacity: 1;' : '' }}">Contact</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
 

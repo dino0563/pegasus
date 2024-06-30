@@ -1,6 +1,10 @@
 @extends('templates.admin')
 
-@section('title', 'Dashboard')
+@section('title', 'Add New Blog')
+
+@push('admin_style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
+@endpush
 
 @section('content')
 <div class="content-wrapper">
@@ -12,25 +16,29 @@
                 <small class="text-muted float-end">Create a new Blog item</small>
             </div>
             <div class="card-body">
-                <form action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('blog.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                     @csrf
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="judul">Judul</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="judul" name="judul" placeholder="Enter title" required>
+                            <input type="text" class="form-control" id="judul" name="judul" placeholder="Enter title"
+                                required>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="gambar">Gambar</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" id="gambar" name="gambar" required accept=".jpg, .jpeg, .png">
+                            <input type="file" class="form-control dropify" data-max-file-size="10M"
+                                data-allowed-file-extensions="png jpg jpeg" id="gambar" name="gambar" required
+                                accept=".jpg, .jpeg, .png">
                             <small class="text-muted">Maximum file size: 10MB</small>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="penulis">Penulis</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="penulis" name="penulis" placeholder="Enter author name" required>
+                            <input type="text" class="form-control" id="penulis" name="penulis"
+                                placeholder="Enter author name" required>
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -51,7 +59,9 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="deskripsi">Deskripsi</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Enter description" required oninput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px';"></textarea>
+                            <textarea class="form-control" id="deskripsi" name="deskripsi"
+                                placeholder="Enter description" required
+                                oninput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px';"></textarea>
                         </div>
                     </div>
                     <div class="row justify-content-end">
@@ -65,7 +75,9 @@
     </div>
 </div>
 @endsection
-@section('script')
-
-
-@endsection
+@push('admin_scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+<script>
+    $('.dropify').dropify();
+</script>
+@endpush

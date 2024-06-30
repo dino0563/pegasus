@@ -1,6 +1,10 @@
 @extends('templates.admin')
 
-@section('title', 'Dashboard')
+@section('title', 'Add New Portfolio')
+
+@push('admin_style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
+@endpush
 
 @section('content')
 <div class="content-wrapper">
@@ -13,7 +17,7 @@
             </div>
             <div class="card-body">
                 <form action="{{ route('portfolio.store') }}" method="POST" enctype="multipart/form-data"
-                    onsubmit="validateForm(event)">
+                    onsubmit="validateForm(event)" autocomplete="off">
                     @csrf
                     {{-- <input type="hidden" name="id" value="{{ $portfolio->id ?? '' }}"> --}}
                     <div class="row mb-3">
@@ -26,7 +30,8 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="gambar">Gambar</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" id="gambar" name="gambar" required
+                            <input type="file" class="form-control dropify" data-max-file-size="10M"
+                                data-allowed-file-extensions="png jpg jpeg" id="gambar" name="gambar" required
                                 accept=".jpg, .jpeg, .png">
                             <small class="text-muted">Maximum file size: 10MB</small>
 
@@ -81,6 +86,9 @@
     </div>
 </div>
 @endsection
-@section('script')
-
-@endsection
+@push('admin_scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+<script>
+    $('.dropify').dropify();
+</script>
+@endpush

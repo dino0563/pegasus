@@ -12,7 +12,7 @@
                 <small class="text-muted float-end">Create a new User</small>
             </div>
             <div class="card-body">
-                <form action="{{ route('user.store') }}" method="POST">
+                <form action="{{ route('user.store') }}" method="POST" autocomplete="off">
                     @csrf
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="name">Name</label>
