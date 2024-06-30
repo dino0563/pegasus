@@ -61,7 +61,17 @@ class BlogController extends Controller
 
         $blog->save();
 
-        return redirect()->route('blog.index')->with('message', 'New Blog Added Successfully!');
+        if ($blog->save()) {
+            return redirect()->route('blog.index')->with([
+                'status' => 'success',
+                'message' => 'New Blog Added Successfully!'
+            ]);
+        } else {
+            return redirect()->route('blog.index')->with([
+                'status' => 'error',
+                'message' => 'Failed to add new blog'
+            ]);
+        }
     }
 
     public function destroy($blog_id)
@@ -74,7 +84,10 @@ class BlogController extends Controller
             }
         }
         $blog->delete();
-        return redirect(route('blog.index'))->with('status', 'Blog Deleted Successfully');
+        return redirect(route('blog.index'))->with([
+                'status' => 'success',
+                'message' => 'Blog deleted successfully!'
+            ]);
     }
 
     public function edit(Request $request, $blog_id)
@@ -107,6 +120,16 @@ class BlogController extends Controller
 
         $blog->update();
 
-        return redirect(route('blog.index'))->with('success', 'Blog item updated successfully.');
+        if ($blog->update()) {
+            return redirect()->route('blog.index')->with([
+                'status' => 'success',
+                'message' => 'Blog item updated successfully!'
+            ]);
+        } else {
+            return redirect()->route('blog.index')->with([
+                'status' => 'error',
+                'message' => 'Failed to update blog item'
+            ]);
+        }
     }
 }

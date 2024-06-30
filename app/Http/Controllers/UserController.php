@@ -26,7 +26,8 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:250',
             'email' => 'required|email|max:250|unique:users',
-            'password' => 'required|min:8',
+            'password' => 'required|min:6',
+            'profile_photo' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240',
         ]);
 
         $user = new Users();
@@ -34,16 +35,42 @@ class UserController extends Controller
         $user->email = $validatedData['email'];
         $user->password = bcrypt($validatedData['password']);
 
+        if ($request->file('profile_photo')) {
+            $extension = $request->file('profile_photo')->getClientOriginalExtension();
+            $imageName = '-user-' . now()->timestamp . '.' . $extension;
+            $request->file('profile_photo')->storeAs('public/users/images', $imageName);
+            $user->image = $imageName; // Menyimpan nama file background
+        }
+
         $user->save();
 
-        return redirect()->route('user.index')->with('status', 'New User Added Successfully!');
+        if ($user->save()) {
+            return redirect()->route('user.index')->with([
+                'status' => 'success',
+                'message' => 'New User Added Successfully!'
+            ]);
+        } else {
+            return redirect()->route('user.index')->with([
+                'status' => 'error',
+                'message' => 'Failed to add new user'
+            ]);
+        }
     }
 
     public function destroy($user_id)
     {
-        $user = Users::findOrFail((int)$user_id); 
+        $user = Users::findOrFail((int)$user_id);
+        if ($user->image) {
+            $destination = 'storage/users/images/' . $user->image;
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+        }
         $user->delete();
-        return redirect(route('user.index'))->with('status', 'user Deleted Successfully');
+        return redirect(route('user.index'))->with([
+                'status' => 'success',
+                'message' => 'User deleted successfully!'
+            ]);
     }
 
     public function edit(Request $request, $user_id)
@@ -57,7 +84,8 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,',
-            'password' => 'nullable|string|min:8|confirmed', 
+            'password' => 'nullable|string|min:8|confirmed',
+            'image' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240',
         ]);
 
         $user = Users::findOrFail($user_id);
@@ -67,8 +95,24 @@ class UserController extends Controller
             $user->password = bcrypt($request['password']);
         }
 
+        if ($request->hasFile('image')) {
+            $destination = 'storage/users/images/' . $user->image;
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = '-user-' . now()->timestamp . '.' . $extension;
+            $file->storeAs('public/users/images/', $filename);
+            $user->image = $filename;
+        }
+
         $user->update();
 
-        return redirect(route('user.index'))->with('success', 'User item updated successfully.');
+        return redirect()->route('user.index')->with([
+            'status' => 'success',
+            'message' => 'User item updated successfully!'
+        ]);
     }
 }

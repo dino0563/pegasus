@@ -71,7 +71,17 @@ class PortfolioController extends Controller
 
         $portfolio->save();
 
-        return redirect()->route('portfolio.index')->with('message', 'Portfolio created successfully!');
+        if ($portfolio->save()) {
+            return redirect()->route('portfolio.index')->with([
+                'status' => 'success',
+                'message' => 'Portfolio created successfully!'
+            ]);
+        } else {
+            return redirect()->route('portfolio.index')->with([
+                'status' => 'error',
+                'message' => 'Failed to create new portfolio'
+            ]);
+        }
     }
 
     // public function show(Portfolio $portfolio)
@@ -116,7 +126,17 @@ class PortfolioController extends Controller
 
         $portfolio->update();
 
-        return redirect(route('portfolio.index'))->with('success', 'Portfolio item updated successfully.');
+        if ($portfolio->update()) {
+            return redirect()->route('portfolio.index')->with([
+                'status' => 'success',
+                'message' => 'Portfolio item updated successfully!'
+            ]);
+        } else {
+            return redirect()->route('portfolio.index')->with([
+                'status' => 'error',
+                'message' => 'Failed to update portfolio item'
+            ]);
+        }
     }
 
     public function destroy($portfolio_id)
@@ -129,6 +149,9 @@ class PortfolioController extends Controller
             }
         }
         $portfolio->delete();
-        return redirect(route('portfolio.index'))->with('status', 'Portfolio Deleted Successfully');
+        return redirect(route('portfolio.index'))->with([
+                'status' => 'success',
+                'message' => 'Portfolio deleted successfully!'
+            ]);
     }
 }

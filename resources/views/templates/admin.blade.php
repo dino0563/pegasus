@@ -20,12 +20,10 @@
 
     {{-- SWEET ALERT --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
 
     {{-- TOASTR --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"
-        integrity="sha512-6S2HWzVFxruDlZxI3sXOZZ4/eJ8AcxkQH1+JjSe/ONCEqR9L4Ysq5JdT5ipqtzU7WHalNwzwBv+iE51gNHJNqQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
     {{-- TINY TEXT EDITOR --}}
     <script src="https://cdn.tiny.cloud/1/unoxcn5qn48a6axd3qvtr4evl8yxx565sdux4xuiwunby0iv/tinymce/7/tinymce.min.js"
@@ -71,19 +69,19 @@
     <!-- Helpers -->
     <script src="{{ asset('assets/admin/vendor/js/helpers.js') }}"></script>
     <!-- Config: Mandatory theme config file containing global vars & default theme options, Set your preferred theme option in this file. -->
-    <script>
-        tinymce.init({
-        selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
-        plugins: 'code table lists',
-        toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table
-      });
-    </script>
     <script src="{{ asset('assets/admin/js/config.js') }}"></script>
 
 </head>
 
 <body>
 
+    <script>
+        tinymce.init({
+            selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
+            plugins: 'code table lists',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+        });
+    </script>
 
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar  ">
@@ -306,53 +304,139 @@
 
     </div>
     <!-- / Layout wrapper -->
-<!-- Core JS -->
-<script src="{{ asset('assets/admin/vendor/libs/jquery/jquery.js') }}"></script>
-<script src="{{ asset('assets/admin/vendor/libs/popper/popper.js') }}"></script>
-<script src="{{ asset('assets/admin/vendor/js/bootstrap.js') }}"></script>
-<script src="{{ asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-<script src="{{ asset('assets/admin/vendor/libs/hammer/hammer.js') }}"></script>
-<script src="{{ asset('assets/admin/vendor/libs/i18n/i18n.js') }}"></script>
-<script src="{{ asset('assets/admin/vendor/libs/typeahead-js/typeahead.js') }}"></script>
-<script src="{{ asset('assets/admin/vendor/js/menu.js') }}"></script>
+    <!-- Core JS -->
+    <script src="{{ asset('assets/admin/vendor/libs/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/popper/popper.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/hammer/hammer.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/i18n/i18n.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/js/menu.js') }}"></script>
 
-<!-- Vendors JS -->
-<script src="{{ asset('assets/admin/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-<script src="{{ asset('assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js') }}"></script>
-<script src="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js') }}"></script>
-<script src="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js') }}"></script>
-<!-- Flat Picker -->
-<script src="{{ asset('assets/admin/vendor/libs/moment/moment.js') }}"></script>
-<script src="{{ asset('assets/admin/vendor/libs/flatpickr/flatpickr.js') }}"></script>
-<!-- Form Validation -->
-<script src="{{ asset('assets/admin/vendor/libs/form-validation/popular.js') }}"></script>
-<script src="{{ asset('assets/admin/vendor/libs/form-validation/bootstrap5.js') }}"></script>
-<script src="{{ asset('assets/admin/vendor/libs/form-validation/auto-focus.js') }}"></script>
+    <!-- Vendors JS -->
+    <script src="{{ asset('assets/admin/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js') }}">
+    </script>
+    <script src="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js') }}"></script>
+    <!-- Flat Picker -->
+    <script src="{{ asset('assets/admin/vendor/libs/moment/moment.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    <!-- Form Validation -->
+    <script src="{{ asset('assets/admin/vendor/libs/form-validation/popular.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/form-validation/bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/form-validation/auto-focus.js') }}"></script>
 
-<!-- Main JS -->
-<script src="{{ asset('assets/admin/js/main.js') }}"></script>
+    <!--Sweet Alert-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
 
-<!-- Page JS -->
-<script src="{{ asset('assets/admin/js/tables-datatables-basic.js') }}"></script>
+
+    <!-- Main JS -->
+    <script src="{{ asset('assets/admin/js/main.js') }}"></script>
+
+    <!-- Page JS -->
+    <script src="{{ asset('assets/admin/js/tables-datatables-basic.js') }}"></script>
 
     {{-- Toast JS --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"
-        integrity="sha512-lbwH47l/tPXJYG9AcFNoJaTMhGvYWhVM9YI43CT+uteTRRaiLCui8snIgyAN8XWgNjNhCqlAUdzZptso6OCoFQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
     @stack('admin_scripts')
 
     <script>
         $(document).ready(function() {
-            $('#example').DataTable();
+            if ($('#example').length) {
+                $('#example').DataTable();
+            }
         });
     </script>
 
-    @if (Session::has('message'))
+    {{-- <script>
+        $(document).ready(function(){
+        $(document).on('click', '.delete-record', function(e){
+            e.preventDefault();
+            var link = $(this).attr("href");
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = link;
+                }
+            });
+        });
+    });
+    </script> --}}
+
+
+    @if (Session::has('status') && Session::has('message'))
     <script>
-        toastr.success("{!! Session::get('message') !!}");
+        const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+
+    Toast.fire({
+        icon: "{{ Session::get('status') }}", // Mengambil status sebagai icon
+        title: "{{ Session::get('message') }}" // Mengambil pesan sebagai title
+    });
     </script>
     @endif
+
+    {{-- @if (Session::has('status') && Session::has('message'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "30000",
+            "hideDuration": "1000",
+            "timeOut": "30000",
+            "extendedTimeOut": "1000",
+            // "showEasing": "swing",
+            // "hideEasing": "linear",
+            // "showMethod": "fadeIn",
+            // "hideMethod": "fadeOut"
+        };
+
+        // Get the status and message from the session
+        const status = "{{ Session::get('status') }}";
+        const message = "{{ Session::get('message') }}";
+
+        // Display the toast
+        if (status === 'success') {
+            toastr.success(message);
+        } else if (status === 'error') {
+            toastr.error(message);
+        } else if (status === 'warning') {
+            toastr.warning(message);
+        } else if (status === 'info') {
+            toastr.info(message);
+        }
+    });
+    </script> --}}
+
+
 </body>
 
 </html>

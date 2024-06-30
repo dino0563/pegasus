@@ -35,7 +35,10 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return redirect()->route('profile.edit')->with([
+            'status' => 'success',
+            'message' => 'Profile updated successfully!'
+        ]);
     }
 
     /**
@@ -81,7 +84,10 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return redirect()->route('profile.index')->with('status', 'Profile updated successfully!');
+        return redirect()->route('profile.index')->with([
+            'status' => 'success',
+            'message' => 'Profile updated successfully!'
+        ]);
     }
 
     public function updatePhoto(Request $request)

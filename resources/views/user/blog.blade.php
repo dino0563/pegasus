@@ -98,6 +98,7 @@
                             </ul>
                         </div>
                         <h3 class="post-title"><a href="{{ route('blog.detail', $blog->slug) }}">{{ $blog->judul }}</a></h3>
+                        <p>{!! Str::limit($blog->deskripsi, 100) !!}</p>
                         <a href="{{ route('blog.detail', $blog->slug) }}" class="button-regular">
                             Continue Reading <i class="fas fa-arrow-right"></i>
                         </a>
