@@ -35,6 +35,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    //ROUTE USER SETTINGS
+    Route::get('/profile-settings', [ProfileController::class, 'editt'])->name('profile.index');
+    Route::post('/profile-settings', [ProfileController::class, 'updatee'])->name('profile.updatee');
+    Route::post('/profile-settings/photo', [ProfileController::class, 'updatePhoto'])->name('profile.photo');
+
     // ROUTE PORTFOLIO
     Route::get('/manage-portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
     Route::get('/add-portfolio', [PortfolioController::class, 'create'])->name('portfolio.create');
@@ -58,7 +63,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/delete-user/{user_id}', [UserController::class, 'destroy'])->name('user.delete');
     Route::get('/edit-user/{user_id}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('/update-user/{user_id}', [UserController::class, 'update'])->name('user.update');
-
 });
 
 require __DIR__ . '/auth.php';

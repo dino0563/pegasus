@@ -51,7 +51,7 @@ class PortfolioController extends Controller
             'kategori' => 'required|max:250',
             'tanggalProyek' => 'required|date',
             'client' => 'nullable|max:250',
-            'deskripsi' => 'required|max:250',
+            'deskripsi' => 'required',
         ]);
 
         $portfolio = new Portfolio();

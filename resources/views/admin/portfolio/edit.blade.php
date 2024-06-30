@@ -83,13 +83,13 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="deskripsi">Deskripsi</label>
                         <div class="col-sm-10 position-relative">
-                            <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Enter description" required style="height: 100px; resize: none;" oninput="checkDescriptionLength(this)">{{ old('deskripsi', $portfolio->deskripsi) }}</textarea>
-                            <span id="char-counter" class="char-counter">0/100</span>
+                            <textarea class="form-control" id="myeditorinstance" name="deskripsi" placeholder="Enter description" style="height: 100px; resize: none;">{{ old('deskripsi', $portfolio->deskripsi) }}</textarea>
                             @if ($errors->has('deskripsi'))
                                 <div class="text-danger">{{ $errors->first('deskripsi') }}</div>
                             @endif
                         </div>
                     </div>
+                    
 
                     <div class="row justify-content-end">
                         <div class="col-sm-10">
