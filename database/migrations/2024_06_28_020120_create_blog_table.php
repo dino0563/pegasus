@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('penulis', 250);
             $table->date('tanggal');
             $table->string('kategori', 250);
-            $table->mediumText('deskripsi');
+            $table->text('deskripsi');
             $table->string('slug', 250)->unique();
             $table->timestamps();
         });
