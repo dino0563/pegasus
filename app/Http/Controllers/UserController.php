@@ -22,38 +22,40 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|max:250',
-            'email' => 'required|email|max:250|unique:users',
-            'password' => 'required|min:6',
-            'profile_photo' => 'required|file|image|mimes:jpg,jpeg,png|max:10240',
-        ]);
+{
+    $validatedData = $request->validate([
+        'name' => 'required|max:250',
+        'email' => 'required|email|max:250|unique:users',
+        'password' => 'required|min:6',
+        'profile_photo' => 'required|image|mimes:jpg,jpeg,png|max:10240',
+    ]);
 
-        $user = new User();
-        $user->name = $validatedData['name'];
-        $user->email = $validatedData['email'];
-        $user->password = bcrypt($validatedData['password']);
+    $user = new User();
+    $user->name = $validatedData['name'];
+    $user->email = $validatedData['email'];
+    $user->password = bcrypt($validatedData['password']);
 
-        if ($request->file('profile_photo')) {
-            $extension = $request->file('profile_photo')->getClientOriginalExtension();
-            $imageName = 'user-' . now()->timestamp . '.' . $extension;
-            $request->file('profile_photo')->storeAs('public/users/images', $imageName);
-            $user->profile_photo = $imageName;
-        }
-
-        if ($user->save()) {
-            return redirect()->route('user.index')->with([
-                'status' => 'success',
-                'message' => 'New User Added Successfully!'
-            ]);
-        } else {
-            return redirect()->route('user.index')->with([
-                'status' => 'error',
-                'message' => 'Failed to add new user'
-            ]);
-        }
+    if ($request->hasFile('profile_photo')) {
+        $file = $request->file('profile_photo');
+        $extension = $file->getClientOriginalExtension();
+        $imageName = 'user-' . time() . '.' . $extension;
+        $file->storeAs('public/users/images', $imageName);
+        $user->profile_photo = $imageName;
     }
+
+    if ($user->save()) {
+        return redirect()->route('user.index')->with([
+            'status' => 'success',
+            'message' => 'New User Added Successfully!'
+        ]);
+    } else {
+        return redirect()->route('user.index')->with([
+            'status' => 'error',
+            'message' => 'Failed to add new user'
+        ]);
+    }
+}
+
 
 
     public function destroy($user_id)

@@ -44,11 +44,10 @@
     <div class="se-pre-con"></div>
     <!-- Preloader Ends -->
 
-    <!-- Header
-    ============================================= -->
     <header>
         <!-- Start Navigation -->
-        <nav class="navbar navbar-common mobile-sidenav navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
+        <nav
+            class="navbar navbar-common mobile-sidenav navbar-sticky navbar-default validnavs navbar-fixed dark no-background">
             <div class="container d-flex justify-content-between align-items-center">
                 <!-- Start Header Navigation -->
                 <div class="navbar-header">
@@ -69,44 +68,32 @@
                     </button>
 
                     <ul class="nav navbar-nav navbar-center" data-in="fadeInDown" data-out="fadeOutUp">
-                        <li><a href="{{ url('/') }}" class="dropdown-toggle active">Home</a></li>
-                        <li><a href="{{ url('/about-us') }}" class="dropdown-toggle active">About Us</a></li>
+                        <li><a href="{{ url('/') }}" class="dropdown-toggle" style="{{ Request::is('/') ? 'color: #2667FF; opacity: 1;' : '' }}">Home</a></li>
+                        <li><a href="{{ url('/about-us') }}" class="dropdown-toggle" style="{{ Request::is('about-us') ? 'color: #2667FF; opacity: 1;' : '' }}">About Us</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="{{ Request::is('service/*') ? 'color: #2667FF; opacity: 1;' : '' }}">Services</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url('/services-details') }}">Solusi</a></li>
-                                <li><a href="{{ url('/services-details') }}">Layanan Handal & Responsif</a></li>
-                                <li><a href="{{ url('/services-details') }}">Memberi Manfaat Bagi Masyarakat</a></li>
+                                <li><a href="{{ url('/service/solusi') }}">Solusi</a></li>
+                                <li><a href="{{ url('/service/layanan-handal-responsif') }}">Layanan Handal & Responsif</a></li>
+                                <li><a href="{{ url('/service/memberi-manfaat-bagi-masyarakat') }}">Memberi Manfaat Bagi Masyarakat</a></li>
                             </ul>
                         </li>
-                        <li><a href="{{ url('/portfolio') }}" class="dropdown-toggle active">Portofolio</a></li>
-                        <li><a href="{{ url('/blog') }}" class="dropdown-toggle active">Blog</a></li>
-                        <li><a href="{{ url('/contact-us') }}">Contact</a></li>
+                        <li><a href="{{ url('/portfolio') }}" class="dropdown-toggle" style="{{ Request::is('portfolio') ? 'color: #2667FF; opacity: 1;' : '' }}">Portofolio</a></li>
+                        <li><a href="{{ url('/blog') }}" class="dropdown-toggle" style="{{ Request::is('blog') ? 'color: #2667FF; opacity: 1;' : '' }}">Blog</a></li>
+                        <li><a href="{{ url('/contact-us') }}" style="{{ Request::is('contact-us') ? 'color: #2667FF; opacity: 1;' : '' }}">Contact</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
 
                 <div class="attr-right">
 
-                    <div class="attr-nav flex">
-                        <ul>
-                            <li class="contact">
-                                <div class="call">
-                                    <div class="icon">
-                                        <i class="fas fa-comments-alt-dollar"></i>
-                                    </div>
-                                    <div class="info">
-                                        <p>Have any Questions?</p>
-                                        <h5><a href="mailto:info@crysta.com">info@atozen.com</a></h5>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                <!-- Main Nav -->
-            </div>
-            <!-- Overlay screen for menu -->
-            <div class="overlay-screen"></div>
-            <!-- End Overlay screen for menu -->
+                    @yield('attr-nav')
+
+                    @yield('side-menu')
+                    <!-- Main Nav -->
+                </div>
+                <!-- Overlay screen for menu -->
+                <div class="overlay-screen"></div>
+                <!-- End Overlay screen for menu -->
         </nav>
         <!-- End Navigation -->
     </header>

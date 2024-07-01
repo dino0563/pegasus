@@ -40,7 +40,8 @@
                                     placeholder="Enter password (min. 6 characters)" required
                                     oninput="checkPasswordLength(this)">
                                 <button type="button" class="btn btn-outline-secondary"
-                                    onclick="togglePasswordVisibility(this, 'password')"><i class='bx bx-show-alt'></i></button>
+                                    onclick="togglePasswordVisibility(this, 'password')"><i
+                                        class='bx bx-show-alt'></i></button>
                             </div>
                             <small class="text-muted">Minimum password: 6 characters</small>
                         </div>
@@ -49,8 +50,9 @@
                         <label class="col-sm-2 col-form-label" for="profile_photo">Profile Picture</label>
                         <div class="col-sm-10">
                             <input type="file" class="form-control dropify" data-max-file-size="10M"
-                                data-allowed-file-extensions="png jpg jpeg" id="profile_photo" name="profile_photo" required
-                                accept=".jpg, .jpeg, .png">
+                                data-allowed-file-extensions="png jpg jpeg" id="profile_photo" name="profile_photo"
+                                required accept=".jpg, .jpeg, .png">
+
                             <small class="text-muted">Maximum file size: 10MB</small>
                         </div>
                     </div>

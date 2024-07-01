@@ -20,6 +20,16 @@ Route::get('/contact-us', function () {
     return view('user/contact-us');
 });
 
+Route::get('/service/solusi', function () {
+    return view('user.service.solusi');
+});
+Route::get('/service/layanan-handal-responsif', function () {
+    return view('user.service.layanan-handal-responsif');
+});
+Route::get('/service/memberi-manfaat-bagi-masyarakat', function () {
+    return view('user.service.memberi-manfaat-bagi-masyarakat');
+});
+
 Route::get('/blog', [BlogController::class, 'show'])->name('blog');
 Route::get('/blog/details/{slug}', [BlogController::class, 'detailBlog'])->name('blog.detail');
 

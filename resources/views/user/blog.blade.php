@@ -113,11 +113,19 @@
             <div class="col-md-12 pagi-area text-center">
                 <nav aria-label="navigation">
                     <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="blog-with-sidebar.html"><i class="fas fa-angle-left"></i></a></li>
-                        <li class="page-item active"><a class="page-link" href="blog-with-sidebar.html">1</a></li>
-                        <li class="page-item"><a class="page-link" href="blog-with-sidebar.html">2</a></li>
-                        <li class="page-item"><a class="page-link" href="blog-with-sidebar.html">3</a></li>
-                        <li class="page-item"><a class="page-link" href="blog-with-sidebar.html"><i class="fas fa-angle-right"></i></a></li>
+                        @if(method_exists($blogs, 'links'))
+                            @foreach($blogs->links() as $link)
+                                @if($loop->first)
+                                    <li class="page-item"><a class="page-link" href="{{ $link->url }}" rel="prev"><i class="fas fa-angle-left"></i></a></li>
+                                @endif
+                                @if($loop->iteration % 12 == 0)
+                                    <li class="page-item"><a class="page-link" href="{{ $link->url }}">{{ $loop->iteration / 12 + 1 }}</a></li>
+                                @endif
+                                @if($loop->last)
+                                    <li class="page-item"><a class="page-link" href="{{ $link->url }}" rel="next"><i class="fas fa-angle-right"></i></a></li>
+                                @endif
+                            @endforeach
+                        @endif
                     </ul>
                 </nav>
             </div>

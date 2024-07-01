@@ -89,24 +89,26 @@ class ProfileController extends Controller
     }
 
     public function updateProfilePhoto(Request $request)
-    {
-        $request->validate([
-            'photo' => 'required|mimes:jpg,jpeg,png,gif|max:800',
-        ]);
+{
+    $request->validate([
+        'photo' => 'required|mimes:jpg,jpeg,png,gif|max:800',
+    ]);
 
-        if ($request->hasFile('photo')) {
-            $user = Auth::user();
-            $file = $request->file('photo');
-            $filename = time() . '.' . $file->getClientOriginalExtension();
-            $path = $file->storeAs('profile_photos', $filename, 'public');
+    if ($request->hasFile('photo')) {
+        $user = Auth::user();
+        $file = $request->file('photo');
+        $extension = $file->getClientOriginalExtension();
+        $filename = 'user-' . time() . '.' . $extension; // Generate unique filename
+        $path = $file->storeAs('public/users/images', $filename); // Store in 'public/users/images' folder
 
-            // Simpan path ke database
-            $user->profile_photo = $path;
-            $user->save();
+        // Update path in database
+        $user->profile_photo = $filename;
+        $user->save();
 
-            return redirect()->route('profile.index')->with('status', 'Profile photo updated successfully!');
-        }
-
-        return redirect()->route('profile.index')->withErrors('No photo uploaded.');
+        return redirect()->route('profile.index')->with('status', 'Profile photo updated successfully!');
     }
+
+    return redirect()->route('profile.index')->withErrors('No photo uploaded.');
+}
+
 }
