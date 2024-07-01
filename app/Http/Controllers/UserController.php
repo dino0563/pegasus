@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -24,7 +25,8 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    {
+{
+    try {
         $validatedData = $request->validate([
             'name' => 'required|max:250',
             'email' => 'required|email|max:250|unique:users',
@@ -51,12 +53,15 @@ class UserController extends Controller
                 'message' => 'New User Added Successfully!'
             ]);
         } else {
-            return redirect()->route('user.index')->with([
-                'status' => 'error',
-                'message' => 'Failed to add new user'
-            ]);
+            throw new \Exception('Failed to add new user');
         }
+    } catch (\Exception $e) {
+        return redirect()->route('user.index')->with([
+            'status' => 'error',
+            'message' => 'Failed to add new user: ' . $e->getMessage()
+        ]);
     }
+}
 
 
 
