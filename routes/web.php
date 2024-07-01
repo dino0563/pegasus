@@ -72,7 +72,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/add-user', [UserController::class, 'store'])->name('user.store');
     Route::get('/delete-user/{user_id}', [UserController::class, 'destroy'])->name('user.delete');
     Route::get('/edit-user/{user_id}', [UserController::class, 'edit'])->name('user.edit');
-    Route::post('/update-user/{user_id}', [UserController::class, 'update'])->name('user.update');
+    Route::put('/update-user/{user_id}', [UserController::class, 'update'])->name('user.update');
 });
 
 require __DIR__ . '/auth.php';
