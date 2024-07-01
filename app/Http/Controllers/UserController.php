@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
@@ -62,7 +63,7 @@ class UserController extends Controller
             'message' => 'New User Added Successfully!'
         ]);
     } catch (\Exception $e) {
-        \Log::error('Failed to add new user: ' . $e->getMessage());
+        Log::error('Failed to add new user: ' . $e->getMessage());
 
         // Debug: Check the exception message
         // dd($e->getMessage());
