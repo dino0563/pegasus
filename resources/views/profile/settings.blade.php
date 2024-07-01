@@ -1,6 +1,10 @@
 @extends('templates.admin')
 
 @section('title', 'Dashboard')
+@push('admin_style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
+
+@endpush
 @section('custom-js')
     <script>
         (function(w, d, s, l, i) {
@@ -32,13 +36,16 @@
                         <h5 class="card-header">Profile Details</h5>
                         <div class="card-body">
                             <div class="d-flex align-items-start align-items-sm-center gap-4">
-                                <img src="{{ asset('storage/' . $user->profile_photo) }}" alt="user-avatar"
+                                <img src="{{ asset('storage/users/images/' . $user->profile_photo) }}" alt="user-avatar"
                                     class="d-block rounded" height="100" width="100" id="uploadedAvatar" />
                                 <div class="button-wrapper">
-                                    <form action="{{ route('profile.photo') }}" method="POST" enctype="multipart/form-data">
+                                    <form action="{{ route('profile.photo') }}" method="POST"
+                                        enctype="multipart/form-data">
                                         @csrf
                                         <label for="gambar">
-                                            <input type="file" class="form-control me-2 mb-2" id="gambar" name="photo" required accept=".jpg, .jpeg, .png, .gif">
+                                            <input type="file" class="form-control me-2 mb-2 dropify" id="gambar"
+                                                name="photo" data-max-file-size="10M"
+                                                data-allowed-file-extensions="png jpg jpeg" required accept=".jpg, .jpeg, .png, .gif">
                                         </label>
                                         <p class="text-muted mb-2">Allowed JPG, GIF or PNG. Max size of 800K</p>
                                         @if ($errors->has('photo'))
@@ -50,13 +57,12 @@
                                     </form>
                                 </div>
                             </div>
-                            
+
                         </div>
                         <hr class="my-0">
                         <div class="card-body">
-                            <form action="{{ route('profile.updatee') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('profile.updatee') }}" method="POST">
                                 @csrf
-                                @method('POST')
 
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
@@ -69,7 +75,7 @@
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label for="email" class="form-label">E-mail</label>
-                                        <input class="form-control" type="text" id="email" name="email"
+                                        <input class="form-control" type="email" id="email" name="email"
                                             value="{{ old('email', $user->email) }}" required />
                                         @if ($errors->has('email'))
                                             <div class="text-danger">{{ $errors->first('email') }}</div>
@@ -90,3 +96,9 @@
         <div class="content-backdrop fade"></div>
     </div>
 @endsection
+@push('admin_scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+<script>
+    $('.dropify').dropify();
+</script>
+@endpush

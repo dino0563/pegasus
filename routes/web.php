@@ -46,9 +46,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //ROUTE USER SETTINGS
-    Route::get('/profile-settings', [ProfileController::class, 'editt'])->name('profile.index');
-    Route::post('/profile-settings', [ProfileController::class, 'updatee'])->name('profile.updatee');
-    Route::post('/profile-settings/photo', [ProfileController::class, 'updatePhoto'])->name('profile.photo');
+    Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.index');
+    Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.updatee');
+    Route::post('/profile/photo', [ProfileController::class, 'updateProfilePhoto'])->name('profile.photo'); // Pastikan fungsi ini ada di controller Anda
 
     // ROUTE PORTFOLIO
     Route::get('/manage-portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
