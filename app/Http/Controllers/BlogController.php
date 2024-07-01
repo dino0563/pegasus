@@ -19,7 +19,7 @@ class BlogController extends Controller
     }
     public function show()
     {
-        $blogs = Blog::paginate(10);
+        $blogs = Blog::paginate(12);
         return view('user.blog', compact('blogs'));
     }
     public function detailBlog($slug)
@@ -35,59 +35,66 @@ class BlogController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'judul' => 'required|max:250',
-            'penulis' => 'required|max:250',
-            'tanggal' => 'required|date',
-            'deskripsi' => 'required',
-            'kategori' => 'required|max:250',
-            'gambar' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240', // maksimum 10MB
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'judul' => 'required|max:250',
+                'penulis' => 'required|max:250',
+                'tanggal' => 'required|date',
+                'deskripsi' => 'required',
+                'kategori' => 'required|max:250',
+                'gambar' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240', // maksimum 10MB
+            ]);
 
-        $blog = new Blog();
-        $blog->judul = $validatedData['judul'];
-        $blog->penulis = $validatedData['penulis'];
-        $blog->tanggal = $validatedData['tanggal'];
-        $blog->deskripsi = $validatedData['deskripsi'];
-        $blog->kategori = $validatedData['kategori'];
+            $blog = new Blog();
+            $blog->judul = $validatedData['judul'];
+            $blog->penulis = $validatedData['penulis'];
+            $blog->tanggal = $validatedData['tanggal'];
+            $blog->deskripsi = $validatedData['deskripsi'];
+            $blog->kategori = $validatedData['kategori'];
 
-        // Handle image upload
-        if ($request->file('gambar')) {
-            $extension = $request->file('gambar')->getClientOriginalExtension();
-            $gambarName = 'blog-' . now()->timestamp . '.' . $extension;
-            $request->file('gambar')->storeAs('public/blog/gambar', $gambarName);
-            $blog->gambar = $gambarName;
-        }
+            // Handle image upload
+            if ($request->file('gambar')) {
+                $extension = $request->file('gambar')->getClientOriginalExtension();
+                $gambarName = 'blog-' . now()->timestamp . '.' . $extension;
+                $request->file('gambar')->storeAs('public/blog/gambar', $gambarName);
+                $blog->gambar = $gambarName;
+            }
 
-        $blog->save();
+            $blog->save();
 
-        if ($blog->save()) {
             return redirect()->route('blog.index')->with([
                 'status' => 'success',
                 'message' => 'New Blog Added Successfully!'
             ]);
-        } else {
+        } catch (\Exception $e) {
             return redirect()->route('blog.index')->with([
                 'status' => 'error',
-                'message' => 'Failed to add new blog'
+                'message' => 'Failed to add new blog: ' . $e->getMessage()
             ]);
         }
     }
 
     public function destroy($blog_id)
     {
-        $blog = Blog::findOrFail((int)$blog_id); // Ensure $portfolio_id is cast to an integer
-        if ($blog->gambar) {
-            $destination = 'public/blog/gambar/' . $blog->gambar;
-            if (File::exists($destination)) {
-                File::delete($destination);
+        try {
+            $blog = Blog::findOrFail((int)$blog_id); // Ensure $portfolio_id is cast to an integer
+            if ($blog->gambar) {
+                $destination = 'public/blog/gambar/' . $blog->gambar;
+                if (File::exists($destination)) {
+                    File::delete($destination);
+                }
             }
+            $blog->delete();
+            return redirect(route('blog.index'))->with([
+                    'status' => 'success',
+                    'message' => 'Blog deleted successfully!'
+                ]);
+        } catch (\Exception $e) {
+            return redirect(route('blog.index'))->with([
+                    'status' => 'error',
+                    'message' => 'Failed to delete blog: ' . $e->getMessage()
+                ]);
         }
-        $blog->delete();
-        return redirect(route('blog.index'))->with([
-                'status' => 'success',
-                'message' => 'Blog deleted successfully!'
-            ]);
     }
 
     public function edit(Request $request, $blog_id)
@@ -98,37 +105,46 @@ class BlogController extends Controller
 
     public function update(Request $request, $blog_id)
     {
-        $blog = Blog::find($blog_id);
-        $blog->judul = $request['judul'];
-        $blog->penulis = $request['penulis'];
-        $blog->tanggal = $request['tanggal'];
-        $blog->deskripsi = $request['deskripsi'];
-        $blog->kategori = $request['kategori'];
+        try {
+            $blog = Blog::find($blog_id);
+            $validatedData = $request->validate([
+                'judul' => 'required|max:250',
+                'penulis' => 'required|max:250',
+                'tanggal' => 'required|date',
+                'deskripsi' => 'required',
+                'kategori' => 'required|max:250',
+                'gambar' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240', // maksimum 10MB
+            ]);
 
-        if ($request->hasFile('gambar')) {
-            $destination = 'storage/blog/gambar/' . $blog->gambar;
-            if (File::exists($destination)) {
-                File::delete($destination);
+            $blog->judul = $validatedData['judul'];
+            $blog->penulis = $validatedData['penulis'];
+            $blog->tanggal = $validatedData['tanggal'];
+            $blog->deskripsi = $validatedData['deskripsi'];
+            $blog->kategori = $validatedData['kategori'];
+
+            if ($request->hasFile('gambar')) {
+                $destination = 'storage/blog/gambar/' . $blog->gambar;
+                if (File::exists($destination)) {
+                    File::delete($destination);
+                }
+
+                $file = $request->file('gambar');
+                $extension = $file->getClientOriginalExtension();
+                $filename = 'blog-' . now()->timestamp . '.' . $extension;
+                $file->storeAs('public/blog/gambar/', $filename);
+                $blog->gambar = $filename;
             }
 
-            $file = $request->file('gambar');
-            $extension = $file->getClientOriginalExtension();
-            $filename = 'blog-' . now()->timestamp . '.' . $extension;
-            $file->storeAs('public/blog/gambar/', $filename);
-            $blog->gambar = $filename;
-        }
+            $blog->update();
 
-        $blog->update();
-
-        if ($blog->update()) {
             return redirect()->route('blog.index')->with([
                 'status' => 'success',
                 'message' => 'Blog item updated successfully!'
             ]);
-        } else {
+        } catch (\Exception $e) {
             return redirect()->route('blog.index')->with([
                 'status' => 'error',
-                'message' => 'Failed to update blog item'
+                'message' => 'Failed to update blog item: ' . $e->getMessage()
             ]);
         }
     }

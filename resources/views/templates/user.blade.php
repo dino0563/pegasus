@@ -72,11 +72,11 @@
                         <li><a href="{{ url('/') }}" class="dropdown-toggle" style="{{ Request::is('/') ? 'color: #2667FF; opacity: 1;' : '' }}">Home</a></li>
                         <li><a href="{{ url('/about-us') }}" class="dropdown-toggle" style="{{ Request::is('about-us') ? 'color: #2667FF; opacity: 1;' : '' }}">About Us</a></li>
                         <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services</a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="{{ Request::is('service/*') ? 'color: #2667FF; opacity: 1;' : '' }}">Services</a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ url('/services-details') }}" style="{{ Request::is('services-details') ? 'color: #2667FF; opacity: 1;' : '' }}">Solusi</a></li>
-                                <li><a href="{{ url('/services-details') }}" style="{{ Request::is('services-details') ? 'color: #2667FF; opacity: 1;' : '' }}">Layanan Handal & Responsif</a></li>
-                                <li><a href="{{ url('/services-details') }}" style="{{ Request::is('services-details') ? 'color: #2667FF; opacity: 1;' : '' }}">Memberi Manfaat Bagi Masyarakat</a></li>
+                                <li><a href="{{ url('/service/solusi') }}">Solusi</a></li>
+                                <li><a href="{{ url('/service/layanan-handal-responsif') }}">Layanan Handal & Responsif</a></li>
+                                <li><a href="{{ url('/service/memberi-manfaat-bagi-masyarakat') }}">Memberi Manfaat Bagi Masyarakat</a></li>
                             </ul>
                         </li>
                         <li><a href="{{ url('/portfolio') }}" class="dropdown-toggle" style="{{ Request::is('portfolio') ? 'color: #2667FF; opacity: 1;' : '' }}">Portofolio</a></li>
@@ -118,6 +118,11 @@
                                     <li><a href="{{ url('blog') }}">Blog</a></li>
                                 @elseif (Request::is('portfolio'))
                                     <li><a href="{{ url('portfolio') }}">Portfolio</a></li>
+                                @elseif (Request::is('service'))
+                                    <li><a href="{{ url('service') }}">Service</a></li>
+                                @elseif (Request::is('service/*'))
+                                    <li>Service</a></li>
+                                    <li>@yield('title')</li>
                                 @elseif (Request::is('blog/*'))
                                     <li><a href="{{ url('blog') }}">Blog</a></li>
                                     <li>@yield('title')</li>

@@ -22,40 +22,58 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'name' => 'required|max:250',
-            'email' => 'required|email|max:250|unique:users',
-            'password' => 'required|min:6',
-            'profile_photo' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240',
-        ]);
+{
+    $validatedData = $request->validate([
+        'name' => 'required|max:250',
+        'email' => 'required|email|max:250|unique:users',
+        'password' => 'required|min:6',
+        'profile_photo' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240',
+    ]);
 
-        $user = new Users();
+    // Debug: Check the validated data
+    // dd($validatedData);
+
+    try {
+        $user = new Users(); // Assuming your model name is Users (or User, verify this)
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
         $user->password = bcrypt($validatedData['password']);
 
+        // Debug: Check the user object before saving
+        // dd($user);
+
         if ($request->file('profile_photo')) {
             $extension = $request->file('profile_photo')->getClientOriginalExtension();
-            $imageName = '-user-' . now()->timestamp . '.' . $extension;
+            $imageName = 'user-' . now()->timestamp . '.' . $extension;
             $request->file('profile_photo')->storeAs('public/users/images', $imageName);
-            $user->image = $imageName; // Menyimpan nama file background
+            $user->image = $imageName;
+
+            // Debug: Check the image name and user object after assigning the image
+            // dd($imageName, $user);
         }
 
         $user->save();
 
-        if ($user->save()) {
-            return redirect()->route('user.index')->with([
-                'status' => 'success',
-                'message' => 'New User Added Successfully!'
-            ]);
-        } else {
-            return redirect()->route('user.index')->with([
-                'status' => 'error',
-                'message' => 'Failed to add new user'
-            ]);
-        }
+        // Debug: Check the user object after saving
+        dd($user);
+
+        return redirect()->route('user.index')->with([
+            'status' => 'success',
+            'message' => 'New User Added Successfully!'
+        ]);
+    } catch (\Exception $e) {
+        \Log::error('Failed to add new user: ' . $e->getMessage());
+
+        // Debug: Check the exception message
+        // dd($e->getMessage());
+
+        return redirect()->route('user.index')->with([
+            'status' => 'error',
+            'message' => 'Failed to add new user'
+        ]);
     }
+}
+
 
     public function destroy($user_id)
     {

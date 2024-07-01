@@ -43,43 +43,43 @@ class PortfolioController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'id' => 'nullable|integer',
-            'nama' => 'required|max:250',
-            'gambar' => 'required|file|image|mimes:jpg,jpeg,png|max:10240',
-            'lokasi' => 'required|max:250',
-            'kategori' => 'required|max:250',
-            'tanggalProyek' => 'required|date',
-            'client' => 'nullable|max:250',
-            'deskripsi' => 'required',
-        ]);
+        try {
+            $validatedData = $request->validate([
+                'id' => 'nullable|integer',
+                'nama' => 'required|max:250',
+                'gambar' => 'required|file|image|mimes:jpg,jpeg,png|max:10240',
+                'lokasi' => 'required|max:250',
+                'kategori' => 'required|max:250',
+                'tanggalProyek' => 'required|date',
+                'client' => 'nullable|max:250',
+                'deskripsi' => 'required',
+            ]);
 
-        $portfolio = new Portfolio();
-        $portfolio->nama = $validatedData['nama'];
-        $portfolio->lokasi = $validatedData['lokasi'];
-        $portfolio->kategori = $validatedData['kategori'];
-        $portfolio->tanggalProyek = $validatedData['tanggalProyek'];
-        $portfolio->client = $validatedData['client'];
-        $portfolio->deskripsi = $validatedData['deskripsi'];
+            $portfolio = new Portfolio();
+            $portfolio->nama = $validatedData['nama'];
+            $portfolio->lokasi = $validatedData['lokasi'];
+            $portfolio->kategori = $validatedData['kategori'];
+            $portfolio->tanggalProyek = $validatedData['tanggalProyek'];
+            $portfolio->client = $validatedData['client'];
+            $portfolio->deskripsi = $validatedData['deskripsi'];
 
-        if ($request->file('gambar')) {
-            $extension = $request->file('gambar')->getClientOriginalExtension();
-            $gambarName = '-portfolio-' . now()->timestamp . '.' . $extension;
-            $request->file('gambar')->storeAs('public/portfolio/gambar', $gambarName);
-            $portfolio->gambar = $gambarName; // Menyimpan nama file background
-        }
+            if ($request->file('gambar')) {
+                $extension = $request->file('gambar')->getClientOriginalExtension();
+                $gambarName = '-portfolio-' . now()->timestamp . '.' . $extension;
+                $request->file('gambar')->storeAs('public/portfolio/gambar', $gambarName);
+                $portfolio->gambar = $gambarName; // Menyimpan nama file background
+            }
 
-        $portfolio->save();
+            $portfolio->save();
 
-        if ($portfolio->save()) {
             return redirect()->route('portfolio.index')->with([
                 'status' => 'success',
                 'message' => 'Portfolio created successfully!'
             ]);
-        } else {
+        } catch (\Exception $e) {
             return redirect()->route('portfolio.index')->with([
                 'status' => 'error',
-                'message' => 'Failed to create new portfolio'
+                'message' => 'Failed to create new portfolio: ' . $e->getMessage()
             ]);
         }
     }
@@ -103,55 +103,62 @@ class PortfolioController extends Controller
      */
     public function update(Request $request, $portfolio_id)
     {
-        $portfolio = Portfolio::find($portfolio_id);
-        $portfolio->nama = $request['nama'];
-        $portfolio->lokasi = $request['lokasi'];
-        $portfolio->kategori = $request['kategori'];
-        $portfolio->tanggalProyek = $request['tanggalProyek'];
-        $portfolio->client = $request['client'];
-        $portfolio->deskripsi = $request['deskripsi'];
+        try {
+            $portfolio = Portfolio::find($portfolio_id);
+            $portfolio->nama = $request['nama'];
+            $portfolio->lokasi = $request['lokasi'];
+            $portfolio->kategori = $request['kategori'];
+            $portfolio->tanggalProyek = $request['tanggalProyek'];
+            $portfolio->client = $request['client'];
+            $portfolio->deskripsi = $request['deskripsi'];
 
-        if ($request->hasFile('gambar')) {
-            $destination = 'storage/portfolio/gambar/' . $portfolio->gambar;
-            if (File::exists($destination)) {
-                File::delete($destination);
+            if ($request->hasFile('gambar')) {
+                $destination = 'storage/portfolio/gambar/' . $portfolio->gambar;
+                if (File::exists($destination)) {
+                    File::delete($destination);
+                }
+
+                $file = $request->file('gambar');
+                $extension = $file->getClientOriginalExtension();
+                $filename = '-portfolio-' . now()->timestamp . '.' . $extension;
+                $file->storeAs('public/portfolio/gambar/', $filename);
+                $portfolio->gambar = $filename;
             }
 
-            $file = $request->file('gambar');
-            $extension = $file->getClientOriginalExtension();
-            $filename = '-portfolio-' . now()->timestamp . '.' . $extension;
-            $file->storeAs('public/portfolio/gambar/', $filename);
-            $portfolio->gambar = $filename;
-        }
+            $portfolio->update();
 
-        $portfolio->update();
-
-        if ($portfolio->update()) {
             return redirect()->route('portfolio.index')->with([
                 'status' => 'success',
                 'message' => 'Portfolio item updated successfully!'
             ]);
-        } else {
+        } catch (\Exception $e) {
             return redirect()->route('portfolio.index')->with([
                 'status' => 'error',
-                'message' => 'Failed to update portfolio item'
+                'message' => 'Failed to update portfolio item: ' . $e->getMessage()
             ]);
         }
     }
 
     public function destroy($portfolio_id)
     {
-        $portfolio = Portfolio::findOrFail((int) $portfolio_id); // Ensure $portfolio_id is cast to an integer
-        if ($portfolio->gambar) {
-            $destination = 'storage/portfolio/gambar/' . $portfolio->gambar;
-            if (File::exists($destination)) {
-                File::delete($destination);
+        try {
+            $portfolio = Portfolio::findOrFail((int) $portfolio_id); // Ensure $portfolio_id is cast to an integer
+            if ($portfolio->gambar) {
+                $destination = 'storage/portfolio/gambar/' . $portfolio->gambar;
+                if (File::exists($destination)) {
+                    File::delete($destination);
+                }
             }
-        }
-        $portfolio->delete();
-        return redirect(route('portfolio.index'))->with([
-                'status' => 'success',
-                'message' => 'Portfolio deleted successfully!'
+            $portfolio->delete();
+            return redirect(route('portfolio.index'))->with([
+                    'status' => 'success',
+                    'message' => 'Portfolio deleted successfully!'
+                ]);
+        } catch (\Exception $e) {
+            return redirect()->route('portfolio.index')->with([
+                'status' => 'error',
+                'message' => 'Failed to delete portfolio: ' . $e->getMessage()
             ]);
+        }
     }
 }
