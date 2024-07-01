@@ -10,66 +10,55 @@
     <meta name="description"
         content="Most Powerful & Comprehensive Bootstrap 5 Admin Dashboard built for developers!" />
     <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Canonical SEO -->
     <link rel="canonical" href="{{ route('admin') }}">
-
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/PEGASUS-W.ico') }}" />
-
-    @stack('admin_style')
-
-    {{-- SWEET ALERT --}}
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-
-
-    {{-- TOASTR --}}
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
-
-    {{-- TINY TEXT EDITOR --}}
-    <script src="https://cdn.tiny.cloud/1/te2rfhgmvl2ihh4mvdp4f8ltjde6wgl76xxmiu5ukeceu3eb/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-
-    {{-- FONTS --}}
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
-
-    {{-- ICONS --}}
+    <!-- Icons -->
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/boxicons.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/fontawesome.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/flag-icons.css') }}" />
-
-    {{-- CORE CSS --}}
+    <!-- Core CSS -->
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/css/rtl/core.css') }}"
         class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/css/rtl/theme-default.css') }}"
         class="template-customizer-theme-css" />
     <link rel="stylesheet" href="{{ asset('assets/admin/css/demo.css') }}" />
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <!-- Toastr CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <!-- TinyMCE -->
+    <script src="https://cdn.tiny.cloud/1/te2rfhgmvl2ihh4mvdp4f8ltjde6wgl76xxmiu5ukeceu3eb/tinymce/5/tinymce.min.js"
+        referrerpolicy="origin"></script>
 
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/typeahead-js/typeahead.css') }}" />
-    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/flatpickr/flatpickr.css') }}" />
-
-    <!-- Row Group CSS -->
-    <link rel="stylesheet"
-        href="{{ asset('assets/admin/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css') }}">
-
-    <!-- Form Validation -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/%40form-validation/form-validation.css') }}" />
-
-    <!-- Helpers -->
-    <script src="{{ asset('assets/admin/vendor/js/helpers.js') }}"></script>
-    <!-- Config: Mandatory theme config file containing global vars & default theme options, Set your preferred theme option in this file. -->
-    <script src="{{ asset('assets/admin/js/config.js') }}"></script>
-
+    <script>
+        (function(w, d, s, l, i) {
+                    w[l] = w[l] || [];
+                    w[l].push({
+                        'gtm.start': new Date().getTime(),
+                        event: 'gtm.js'
+                    });
+                    var f = d.getElementsByTagName(s)[0],
+                        j = d.createElement(s),
+                        dl = l != 'dataLayer' ? '&l=' + l : '';
+                    j.async = true;
+                    j.src = 'https://www.googletagmanager.com/gtag/js?id=' + i + dl;
+                    f.parentNode.insertBefore(j, f);
+                })(window, document, 'script', 'dataLayer', 'GTM-5DDHKGP');
+    </script>
+    @stack('admin_style')
 </head>
 
 <body>
@@ -303,84 +292,96 @@
 
     </div>
     <!-- / Layout wrapper -->
-    <!-- Core JS -->
-    <script src="{{ asset('assets/admin/vendor/libs/jquery/jquery.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/libs/popper/popper.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/libs/hammer/hammer.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/libs/i18n/i18n.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/libs/typeahead-js/typeahead.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/js/menu.js') }}"></script>
-
-    <!-- Vendors JS -->
-    <script src="{{ asset('assets/admin/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js') }}">
-    </script>
-    <script src="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js') }}"></script>
-    <!-- Flat Picker -->
-    <script src="{{ asset('assets/admin/vendor/libs/moment/moment.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/libs/flatpickr/flatpickr.js') }}"></script>
-    <!-- Form Validation -->
-    <script src="{{ asset('assets/admin/vendor/libs/form-validation/popular.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/libs/form-validation/bootstrap5.js') }}"></script>
-    <script src="{{ asset('assets/admin/vendor/libs/form-validation/auto-focus.js') }}"></script>
-
-    <!--Sweet Alert-->
+    <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="{{ asset('assets/admin/vendor/js/bootstrap.bundle.js') }}"></script>
+    <!-- Perfect Scrollbar -->
+    <script src="{{ asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    <!-- DataTables JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
 
-    <!-- Main JS -->
-    <script src="{{ asset('assets/admin/js/main.js') }}"></script>
-
-    <!-- Page JS -->
-    <script src="{{ asset('assets/admin/js/tables-datatables-basic.js') }}"></script>
-
-    {{-- Toast JS --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-    @stack('admin_scripts')
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
 
     <script>
         $(document).ready(function() {
-            if ($('#example').length) {
-                $('#example').DataTable();
-            }
+        $('#example').DataTable({
+        responsive: true
+        });
         });
     </script>
 
-    {{-- <script>
-        $(document).ready(function(){
-        $(document).on('click', '.delete-record', function(e){
-            e.preventDefault();
-            var link = $(this).attr("href");
+    <!-- Flatpickr JS -->
+    <script src="{{ asset('assets/admin/vendor/libs/moment/moment.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/flatpickr/flatpickr.js') }}"></script>
+    <!-- Form Validation JS -->
+    <script src="{{ asset('assets/admin/vendor/libs/form-validation/popular.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/form-validation/bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/form-validation/auto-focus.js') }}"></script>
+    <!-- SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+    <!-- Main JS -->
+    <script src="{{ asset('assets/admin/js/main.js') }}"></script>
+    <!-- Page-specific JS -->
+    <script src="{{ asset('assets/admin/js/tables-datatables-basic.js') }}"></script>
+    <!-- Toastr JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <!-- Your additional scripts -->
+    @stack('admin_scripts')
 
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = link;
-                }
-            });
+
+    <script>
+        $(document).on('click', '.delete-button', function(e) {
+            e.preventDefault();
+            var button = $(this);
+            var id = button.data('id');
+
+            if (id) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        
+                        $.ajax({
+                            url: '/delete-user/' + id,
+                            type: 'DELETE',
+                            success: function(response) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success'
+                                );
+                                window.location.reload();
+                            },
+                            error: function(xhr, status, error) {
+                                console.log('Error deleting user: ' + error);
+                            }
+                        });
+                    }
+                });
+            } else {
+                console.log('No id value found');
+            }
         });
-    });
-    </script> --}}
+    </script>
 
 
     @if (Session::has('status') && Session::has('message'))
     <script>
         const Toast = Swal.mixin({
         toast: true,
-        position: "top-end",
+        position: "bottom-end",
         showConfirmButton: false,
         timer: 3000,
         timerProgressBar: true,
@@ -396,44 +397,6 @@
     });
     </script>
     @endif
-
-    {{-- @if (Session::has('status') && Session::has('message'))
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": true,
-            "progressBar": true,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": "30000",
-            "hideDuration": "1000",
-            "timeOut": "30000",
-            "extendedTimeOut": "1000",
-            // "showEasing": "swing",
-            // "hideEasing": "linear",
-            // "showMethod": "fadeIn",
-            // "hideMethod": "fadeOut"
-        };
-
-        // Get the status and message from the session
-        const status = "{{ Session::get('status') }}";
-        const message = "{{ Session::get('message') }}";
-
-        // Display the toast
-        if (status === 'success') {
-            toastr.success(message);
-        } else if (status === 'error') {
-            toastr.error(message);
-        } else if (status === 'warning') {
-            toastr.warning(message);
-        } else if (status === 'info') {
-            toastr.info(message);
-        }
-    });
-    </script> --}}
 
 
 </body>

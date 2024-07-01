@@ -2,8 +2,8 @@
 
 @section('title', 'Dashboard')
 @section('custom-js')
-    <script>
-        (function(w, d, s, l, i) {
+<script>
+    (function(w, d, s, l, i) {
             w[l] = w[l] || [];
             w[l].push({
                 'gtm.start': new Date().getTime(),
@@ -17,18 +17,19 @@
                 '../../../../www.googletagmanager.com/gtm5445.html?id=' + i + dl;
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-5DDHKGP');
-    </script>
+</script>
 @endsection
 @section('content')
-    <div class="content-wrapper">
-        <!-- Content -->
-        <div class="container-xxl flex-grow-1 container-p-y">
-            <div class="card">
-                <div class="card-datatable table-responsive">
-                    <div class="d-flex justify-content-between align-items-center p-3">
-                        <h2 class="mb-0">Manage Blog</h2>
-                        <a href="/add-blog" class="btn btn-primary">+ Tambah Data</a>
-                    </div>
+<div class="content-wrapper">
+    <!-- Content -->
+    <div class="container-xxl flex-grow-1 container-p-y">
+        <div class="card">
+            <div class="card-datatable table-responsive">
+                <div class="d-flex justify-content-between align-items-center p-3">
+                    <h2 class="mb-0">Manage Blog</h2>
+                    <a href="/add-blog" class="btn btn-primary">+ Tambah Data</a>
+                </div>
+                <div class="container mb-4">
                     <table id="example" class="table table-bordered">
                         <thead>
                             <tr>
@@ -43,23 +44,24 @@
                         </thead>
                         <tbody>
                             @foreach ($blogs as $blog)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $blog->judul }}</td>
-                                    <td><img src="{{ asset('storage/blog/gambar/' . $blog->gambar) }}" style="width:100px;">
-                                    </td>
-                                    <td>{{ $blog->tanggal }}</td>
-                                    <td>{{ $blog->kategori }}</td>
-                                    <td>{!! Str::limit(strip_tags($blog->deskripsi), 150) !!}</td>
-                                    <td class="" style="">
-                                        <div class="d-inline-block text-nowrap">
-                                            <a href="{{ route('blog.edit', $blog->id) }}"
-                                                class="btn btn-sm btn-icon edit-portfolio"><i class="bx bx-edit"></i></a>
-                                            <a href="{{ route('blog.delete', $blog->id) }}"
-                                                class="btn btn-sm btn-icon delete-record"><i class="bx bx-trash"></i></a>
-                                        </div>
-                                    </td>
-                                </tr>
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $blog->judul }}</td>
+                                <td><img src="{{ asset('storage/blog/gambar/' . $blog->gambar) }}" style="width:100px;">
+                                </td>
+                                <td>{{ $blog->tanggal }}</td>
+                                <td>{{ $blog->kategori }}</td>
+                                <td>{!! Str::limit(strip_tags($blog->deskripsi), 150) !!}</td>
+                                <td class="" style="">
+                                    <div class="d-inline-block text-nowrap">
+                                        <a href="{{ route('blog.edit', $blog->id) }}"
+                                            class="btn btn-sm btn-icon edit-portfolio"><i class="bx bx-edit"></i></a>
+                                        <a href="{{ route('blog.delete', $blog->id) }}"
+                                            class="btn btn-sm btn-icon delete-button" data-id="{{$blog->id}}"><i
+                                                class="bx bx-trash"></i></a>
+                                    </div>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
@@ -67,4 +69,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
