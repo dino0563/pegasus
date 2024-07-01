@@ -1,7 +1,10 @@
 @extends('templates.admin')
 
 @section('title', 'Edit Blog')
+@push('admin_style')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
 
+@endpush
 @section('content')
 <div class="content-wrapper">
     <!-- Content -->
@@ -30,7 +33,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="gambar">Gambar</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control" id="gambar" name="gambar" accept=".jpg, .jpeg, .png">
+                            <input type="file" class="form-control dropify" id="gambar" name="gambar" accept=".jpg, .jpeg, .png">
                             @if ($errors->has('gambar'))
                                 <div class="text-danger">{{ $errors->first('gambar') }}</div>
                             @endif
@@ -89,6 +92,9 @@
 </div>
 @endsection
 
-@section('script')
-<!-- Add your custom scripts if any -->
-@endsection
+@push('admin_scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+<script>
+    $('.dropify').dropify();
+</script>
+@endpush

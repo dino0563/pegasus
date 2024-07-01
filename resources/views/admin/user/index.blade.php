@@ -18,6 +18,7 @@
             f.parentNode.insertBefore(j, f);
         })(window, document, 'script', 'dataLayer', 'GTM-5DDHKGP');
     </script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
     <div class="content-wrapper">
@@ -49,7 +50,7 @@
                                             <a href="{{ route('user.edit', $user->id) }}"
                                                 class="btn btn-sm btn-icon edit-portfolio"><i class="bx bx-edit"></i></a>
                                             <a href="{{ route('user.delete', $user->id) }}"
-                                                class="btn btn-sm btn-icon delete-record"><i class="bx bx-trash"></i></a>
+                                                class="btn btn-sm btn-icon delete-button" data-id="{{ $user->id }}"><i class="bx bx-trash"></i></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -61,3 +62,57 @@
         </div>
     </div>
 @endsection
+
+@push('admin_scripts')
+<script>
+    $(document).on('click', '.delete-button', function(e) {
+        e.preventDefault();
+        var button = $(this);
+        var id = button.data('id');
+
+        if (id) {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        url: '/delete-user/' + id,
+                        type: 'DELETE',
+                        success: function(response) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            );
+                            // Refresh or update the page as needed
+                        },
+                        error: function(response) {
+                            Swal.fire(
+                                'Error!',
+                                'There was an error deleting the file.',
+                                'error'
+                            );
+                        }
+                    });
+                }
+            });
+        } else {
+            console.log('No id value found');
+        }
+    });
+</script>
+@endpush
+
+
