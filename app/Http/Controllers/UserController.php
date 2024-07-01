@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -22,39 +24,39 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-{
-    $validatedData = $request->validate([
-        'name' => 'required|max:250',
-        'email' => 'required|email|max:250|unique:users',
-        'password' => 'required|min:6',
-        'profile_photo' => 'required|image|mimes:jpg,jpeg,png|max:10240',
-    ]);
-
-    $user = new User();
-    $user->name = $validatedData['name'];
-    $user->email = $validatedData['email'];
-    $user->password = bcrypt($validatedData['password']);
-
-    if ($request->hasFile('profile_photo')) {
-        $file = $request->file('profile_photo');
-        $extension = $file->getClientOriginalExtension();
-        $imageName = 'user-' . time() . '.' . $extension;
-        $file->storeAs('public/users/images', $imageName);
-        $user->profile_photo = $imageName;
-    }
-
-    if ($user->save()) {
-        return redirect()->route('user.index')->with([
-            'status' => 'success',
-            'message' => 'New User Added Successfully!'
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|max:250',
+            'email' => 'required|email|max:250|unique:users',
+            'password' => 'required|min:6',
+            'profile_photo' => 'required|image|mimes:jpg,jpeg,png|max:10240',
         ]);
-    } else {
-        return redirect()->route('user.index')->with([
-            'status' => 'error',
-            'message' => 'Failed to add new user'
-        ]);
+
+        $user = new User();
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+        $user->password = bcrypt($validatedData['password']);
+
+        if ($request->hasFile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            $extension = $file->getClientOriginalExtension();
+            $imageName = 'user-' . time() . '.' . $extension;
+            $file->storeAs('public/users/images', $imageName);
+            $user->profile_photo = $imageName;
+        }
+
+        if ($user->save()) {
+            return redirect()->route('user.index')->with([
+                'status' => 'success',
+                'message' => 'New User Added Successfully!'
+            ]);
+        } else {
+            return redirect()->route('user.index')->with([
+                'status' => 'error',
+                'message' => 'Failed to add new user'
+            ]);
+        }
     }
-}
 
 
 
@@ -80,36 +82,48 @@ class UserController extends Controller
         return view('admin.user.edit', compact('user'));
     }
 
+    // Controller Method
     public function update(Request $request, $user_id)
     {
+        $user = Auth::user();
+
         $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email,',
-            'password' => 'nullable|string|min:8|confirmed',
-            'image' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240',
+            'email' => 'required|email|max:255|unique:users,email,' . $user_id,
+            'profile_photo' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240',
         ]);
 
-        $user = Users::findOrFail($user_id);
-        $user->name = $request['name'];
-        $user->email = $request['email'];
-        if ($request['password']) {
-            $user->password = bcrypt($request['password']);
+        // Validasi password hanya jika password baru diisi
+        if ($request->filled('new_password')) {
+            $request->validate([
+                'current_password' => 'required',
+                'new_password' => 'required|string|min:8|confirmed',
+            ]);
+
+            if (!Hash::check($request->current_password, $user->password)) {
+                return back()->withErrors(['current_password' => 'Password saat ini salah.']);
+            }
+
+            $user->password = Hash::make($request->new_password);
         }
 
-        if ($request->hasFile('image')) {
-            $destination = 'storage/users/images/' . $user->image;
+        $user->name = $request['name'];
+        $user->email = $request['email'];
+
+        if ($request->hasFile('profile_photo')) {
+            $destination = 'storage/users/images/' . $user->profile_photo;
             if (File::exists($destination)) {
                 File::delete($destination);
             }
 
-            $file = $request->file('image');
+            $file = $request->file('profile_photo');
             $extension = $file->getClientOriginalExtension();
-            $filename = '-user-' . now()->timestamp . '.' . $extension;
+            $filename = 'user-' . now()->timestamp . '.' . $extension;
             $file->storeAs('public/users/images/', $filename);
-            $user->image = $filename;
+            $user->profile_photo = $filename;
         }
 
-        $user->update();
+        $user->save();
 
         return redirect()->route('user.index')->with([
             'status' => 'success',
