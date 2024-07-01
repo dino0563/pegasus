@@ -18,7 +18,7 @@
                         </div>
                         <h2>{{$portfolios->nama}}</h2>
                         <p>
-                            {{$portfolios->deskripsi}}
+                            {!! $portfolios->deskripsi !!}
                         </p>
                     </div>
 

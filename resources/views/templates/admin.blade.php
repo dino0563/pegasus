@@ -16,87 +16,31 @@
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/PEGASUS-W.ico') }}" />
 
+    @stack('admin_style')
+
+    {{-- SWEET ALERT --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
-    <style>
-        .position-relative {
-            position: relative;
-        }
 
-        .char-counter {
-            position: absolute;
-            bottom: 5px;
-            right: 22px;
-            font-size: 12px;
-        }
 
-        .char-counter.warning {
-            color: orange;
-        }
+    {{-- TOASTR --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
-        .char-counter.danger {
-            color: red;
-        }
+    {{-- TINY TEXT EDITOR --}}
+    <script src="https://cdn.tiny.cloud/1/te2rfhgmvl2ihh4mvdp4f8ltjde6wgl76xxmiu5ukeceu3eb/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
-        /* .table {
-            table-layout: fixed;
-            width: 100%;
-        }
-
-        th,
-        td {
-            word-wrap: break-word;
-            white-space: normal;
-            overflow-wrap: break-word;
-        } */
-    </style>
-    <script>
-        function checkDescriptionLength(element) {
-                const maxLength = 100;
-                const charCounter = document.getElementById('char-counter');
-                let currentLength = element.value.length;
-
-                if (currentLength > maxLength) {
-                    element.value = element.value.substring(0, maxLength);
-                    currentLength = maxLength;
-                }
-
-                charCounter.textContent = `${currentLength}/${maxLength}`;
-
-                if (currentLength === maxLength) {
-                    charCounter.classList.add('danger');
-                    charCounter.classList.remove('warning');
-                } else if (currentLength >= maxLength - 50) {
-                    charCounter.classList.add('warning');
-                    charCounter.classList.remove('danger');
-                } else {
-                    charCounter.classList.remove('warning', 'danger');
-                }
-
-                return true;
-            }
-
-            function validateForm(event) {
-                const descriptionElement = document.getElementById('deskripsi');
-                if (!checkDescriptionLength(descriptionElement)) {
-                    event.preventDefault(); // Prevent form submission
-                }
-            }
-    </script>
-
-    <!-- Fonts -->
+    {{-- FONTS --}}
     <link rel="preconnect" href="https://fonts.googleapis.com/">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet">
 
-    <!-- Icons -->
+    {{-- ICONS --}}
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/boxicons.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/fontawesome.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/fonts/flag-icons.css') }}" />
 
-    <!-- Core CSS -->
+    {{-- CORE CSS --}}
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/css/rtl/core.css') }}"
         class="template-customizer-core-css" />
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/css/rtl/theme-default.css') }}"
@@ -113,13 +57,13 @@
         href="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/flatpickr/flatpickr.css') }}" />
+
     <!-- Row Group CSS -->
     <link rel="stylesheet"
         href="{{ asset('assets/admin/vendor/libs/datatables-rowgroup-bs5/rowgroup.bootstrap5.css') }}">
+
     <!-- Form Validation -->
     <link rel="stylesheet" href="{{ asset('assets/admin/vendor/libs/%40form-validation/form-validation.css') }}" />
-
-    <!-- Page CSS -->
 
     <!-- Helpers -->
     <script src="{{ asset('assets/admin/vendor/js/helpers.js') }}"></script>
@@ -130,6 +74,13 @@
 
 <body>
 
+    <script>
+        tinymce.init({
+            selector: 'textarea#myeditorinstance', // Replace this CSS selector to match the placeholder element for TinyMCE
+            plugins: 'code table lists',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+        });
+    </script>
 
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar  ">
@@ -174,7 +125,7 @@
                             </svg>
 
                         </span>
-                        <span class="app-brand-text demo menu-text fw-bold ms-2">pegasus</span>
+                        <span class="app-brand-text demo menu-text fw-bold ms-2">Pegasus</span>
                     </a>
 
                     <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
@@ -294,6 +245,15 @@
                                         <div class="dropdown-divider"></div>
                                     </li> --}}
                                     <li>
+                                        <a class="dropdown-item" href="{{ route('profile.index') }}">
+                                            <i class="bx bx-cog me-2"></i>
+                                            <span class="align-middle">Settings</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                             <i class='bx bx-power-off me-2'></i>
@@ -346,42 +306,136 @@
     <!-- Core JS -->
     <script src="{{ asset('assets/admin/vendor/libs/jquery/jquery.js') }}"></script>
     <script src="{{ asset('assets/admin/vendor/libs/popper/popper.js') }}"></script>
-    <script src="assets/admin/vendor/libs/jquery/jquery.js"></script>
-    <script src="assets/admin/vendor/libs/popper/popper.js"></script>
-    <script src="assets/admin/vendor/js/bootstrap.js"></script>
-    <script src="assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
-    <script src="assets/admin/vendor/libs/hammer/hammer.js"></script>
-    <script src="assets/admin/vendor/libs/i18n/i18n.js"></script>
-    <script src="assets/admin/vendor/libs/typeahead-js/typeahead.js"></script>
-    <script src="assets/admin/vendor/js/menu.js"></script>
+    <script src="{{ asset('assets/admin/vendor/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/hammer/hammer.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/i18n/i18n.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/typeahead-js/typeahead.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/js/menu.js') }}"></script>
 
     <!-- Vendors JS -->
-    <script src="assets/admin/vendor/libs/datatables-bs5/datatables-bootstrap5.js"></script>
-    <script src="assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js"></script>
-    <script src="assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js"></script>
-    <script src="assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/datatables-checkboxes-jquery/datatables.checkboxes.js') }}">
+    </script>
+    <script src="{{ asset('assets/admin/vendor/libs/datatables-buttons-bs5/buttons.bootstrap5.js') }}"></script>
     <!-- Flat Picker -->
-    <script src="assets/admin/vendor/libs/moment/moment.js"></script>
-    <script src="assets/admin/vendor/libs/flatpickr/flatpickr.js"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/moment/moment.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/flatpickr/flatpickr.js') }}"></script>
     <!-- Form Validation -->
-    <script src="assets/admin/vendor/libs/%40form-validation/popular.js"></script>
-    <script src="assets/admin/vendor/libs/%40form-validation/bootstrap5.js"></script>
-    <script src="assets/admin/vendor/libs/%40form-validation/auto-focus.js"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/form-validation/popular.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/form-validation/bootstrap5.js') }}"></script>
+    <script src="{{ asset('assets/admin/vendor/libs/form-validation/auto-focus.js') }}"></script>
+
+    <!--Sweet Alert-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
+
 
     <!-- Main JS -->
-    <script src="assets/admin/js/main.js"></script>
-    <script src="assets/admin/js/main.js"></script>
+    <script src="{{ asset('assets/admin/js/main.js') }}"></script>
 
     <!-- Page JS -->
-    <script src="assets/admin/js/tables-datatables-basic.js"></script>
+    <script src="{{ asset('assets/admin/js/tables-datatables-basic.js') }}"></script>
 
+    {{-- Toast JS --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
+    @stack('admin_scripts')
 
     <script>
         $(document).ready(function() {
-          $('#example').DataTable();
+            if ($('#example').length) {
+                $('#example').DataTable();
+            }
         });
     </script>
+
+    {{-- <script>
+        $(document).ready(function(){
+        $(document).on('click', '.delete-record', function(e){
+            e.preventDefault();
+            var link = $(this).attr("href");
+
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = link;
+                }
+            });
+        });
+    });
+    </script> --}}
+
+
+    @if (Session::has('status') && Session::has('message'))
+    <script>
+        const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.onmouseenter = Swal.stopTimer;
+            toast.onmouseleave = Swal.resumeTimer;
+        }
+    });
+
+    Toast.fire({
+        icon: "{{ Session::get('status') }}", // Mengambil status sebagai icon
+        title: "{{ Session::get('message') }}" // Mengambil pesan sebagai title
+    });
+    </script>
+    @endif
+
+    {{-- @if (Session::has('status') && Session::has('message'))
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": "30000",
+            "hideDuration": "1000",
+            "timeOut": "30000",
+            "extendedTimeOut": "1000",
+            // "showEasing": "swing",
+            // "hideEasing": "linear",
+            // "showMethod": "fadeIn",
+            // "hideMethod": "fadeOut"
+        };
+
+        // Get the status and message from the session
+        const status = "{{ Session::get('status') }}";
+        const message = "{{ Session::get('message') }}";
+
+        // Display the toast
+        if (status === 'success') {
+            toastr.success(message);
+        } else if (status === 'error') {
+            toastr.error(message);
+        } else if (status === 'warning') {
+            toastr.warning(message);
+        } else if (status === 'info') {
+            toastr.info(message);
+        }
+    });
+    </script> --}}
+
+
 </body>
 
 </html>

@@ -50,7 +50,7 @@
                                     </td>
                                     <td>{{ $blog->tanggal }}</td>
                                     <td>{{ $blog->kategori }}</td>
-                                    <td>{{ $blog->deskripsi }}</td>
+                                    <td>{!! Str::limit(strip_tags($blog->deskripsi), 150) !!}</td>
                                     <td class="" style="">
                                         <div class="d-inline-block text-nowrap">
                                             <a href="{{ route('blog.edit', $blog->id) }}"

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Users;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -34,7 +35,10 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return redirect()->route('profile.edit')->with([
+            'status' => 'success',
+            'message' => 'Profile updated successfully!'
+        ]);
     }
 
     /**
@@ -57,4 +61,54 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function editProfile(Request $request)
+    {
+        $user = $request->user();
+        return view('profile.settings', compact('user'));
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = $request->user();
+
+        $validatedData = $request->validate([
+            'name' => 'required|max:250',
+            'email' => 'required|email|max:250|unique:users,email,' . $user->id,
+        ]);
+
+        $user->name = $validatedData['name'];
+        $user->email = $validatedData['email'];
+
+        $user->save();
+
+        return redirect()->route('profile.index')->with([
+            'status' => 'success',
+            'message' => 'Profile updated successfully!'
+        ]);
+    }
+
+    public function updateProfilePhoto(Request $request)
+{
+    $request->validate([
+        'photo' => 'required|mimes:jpg,jpeg,png,gif|max:800',
+    ]);
+
+    if ($request->hasFile('photo')) {
+        $user = Auth::user();
+        $file = $request->file('photo');
+        $extension = $file->getClientOriginalExtension();
+        $filename = 'user-' . time() . '.' . $extension; // Generate unique filename
+        $path = $file->storeAs('public/users/images', $filename); // Store in 'public/users/images' folder
+
+        // Update path in database
+        $user->profile_photo = $filename;
+        $user->save();
+
+        return redirect()->route('profile.index')->with('status', 'Profile photo updated successfully!');
+    }
+
+    return redirect()->route('profile.index')->withErrors('No photo uploaded.');
+}
+
 }

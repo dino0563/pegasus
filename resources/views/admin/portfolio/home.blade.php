@@ -36,15 +36,16 @@
                             <td>{{ $portfolio->kategori }}</td>
                             <td>{{ $portfolio->tanggalProyek }}</td>
                             <td>{{ $portfolio->client }}</td>
-                            <td>{{ $portfolio->deskripsi }}</td>
+                            <td>{!! Str::limit(strip_tags($portfolio->deskripsi), 150) !!}</td>
                             <td>
                                 <div class="d-inline-block text-nowrap">
                                     <a href="{{ route('portfolio.edit', $portfolio->id) }}" class="btn btn-sm btn-icon edit-portfolio">
                                         <i class="bx bx-edit"></i>
                                     </a>
-                                    <a href="{{ route('portfolio.delete', $portfolio->id) }}" class="btn btn-sm btn-icon delete-record">
+                                    <a href="{{ route('portfolio.delete', $portfolio->id) }}" class="btn btn-sm btn-icon delete-record" id="delete">
                                         <i class="bx bx-trash"></i>
                                     </a>
+
                                 </div>
                             </td>
                         </tr>

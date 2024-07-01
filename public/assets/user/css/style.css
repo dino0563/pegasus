@@ -19,7 +19,7 @@ Sidebar heading:  22px 'Manrope', sans-serif
 
 >>> TABLE OF CONTENTS:
 =======================
-        
+
     01. Template default css
         - Animations
         - General
@@ -111,7 +111,7 @@ Sidebar heading:  22px 'Manrope', sans-serif
 
 
 
-/* ============================================================== 
+/* ==============================================================
      # Reset Browsers
 =================================================================== */
 
@@ -190,6 +190,11 @@ a:focus {
 a:hover {
 	outline: none;
 	text-decoration: none;
+	color: var(--color-primary);
+	opacity: 1;
+}
+
+.selected {
 	color: var(--color-primary);
 	opacity: 1;
 }
@@ -276,7 +281,7 @@ strong {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # Template Default Styles
 =================================================================== */
 
@@ -341,7 +346,7 @@ p {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # Helper CSS
 =================================================================== */
 
@@ -905,8 +910,8 @@ p {
 
 
 
-/* ============================================================== 
-    # Video Play Button 
+/* ==============================================================
+    # Video Play Button
 =================================================================== */
 .video-play-button {
 	display: inline-block;
@@ -1048,7 +1053,7 @@ p {
 
 
 
-/* ============================================================== 
+/* ==============================================================
     # Template Animation
 =================================================================== */
 
@@ -1529,7 +1534,7 @@ p {
 	}
 }
 
-/* ============================================================== 
+/* ==============================================================
     # Button Styles
 =================================================================== */
 .btn {
@@ -2517,7 +2522,7 @@ button i {
 	color: var(--color-heading);
 }
 
-/* ============================================================== 
+/* ==============================================================
     # Nice Select Styles
 =================================================================== */
 .nice-select {
@@ -2703,7 +2708,7 @@ button i {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # Breadcrumb Styles
 =================================================================== */
 .breadcrumb-area {
@@ -2843,7 +2848,7 @@ button i {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # Topbar Styles
 =================================================================== */
 .item-flex {
@@ -2996,7 +3001,7 @@ button i {
     font-weight: 100;
 }
 
-/* ============================================================== 
+/* ==============================================================
     # Banner Styles
 =================================================================== */
 .banner-area {
@@ -3731,7 +3736,7 @@ button i {
 	font-weight: 800;
 }
 
-/* ============================================================== 
+/* ==============================================================
     # Banner Custom Style
 =================================================================== */
 
@@ -3813,7 +3818,7 @@ button i {
 	opacity: 0.6;
 }
 
-.banner-style-two-area, 
+.banner-style-two-area,
 .banner-style-two-area div {
 	height: 100%;
 }
@@ -4123,7 +4128,7 @@ ul.feature-fun-fact li:first-child {
 
 
 
-/* ============================================================== 
+/* ==============================================================
     # Services
 =================================================================== */
 
@@ -4169,7 +4174,7 @@ ul.feature-fun-fact li:first-child {
 	margin-bottom: 30px;
 }
 
-/* ============================================================== 
+/* ==============================================================
     # About
 =================================================================== */
 .about-style-one .thumb {
@@ -4274,7 +4279,7 @@ ul.check-list-item li::after {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # Work process
 =================================================================== */
 
@@ -4431,7 +4436,7 @@ ul.check-list-item li::after {
 }
 
 
- /* ============================================================== 
+ /* ==============================================================
     # Project
 =================================================================== */
 @media (min-width: 1200px) {
@@ -4784,7 +4789,7 @@ ul.check-list-item li::after {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # Project Single
 =================================================================== */
 
@@ -4838,7 +4843,7 @@ ul.gallery-project-basic-info li:first-child {
 
 
 
-/* ============================================================== 
+/* ==============================================================
     # Project Deal
 =================================================================== */
 .project-deal {
@@ -4881,7 +4886,7 @@ ul.gallery-project-basic-info li:first-child {
 	z-index: -1;
 }
 
-/* ============================================================== 
+/* ==============================================================
     # Pricing
 =================================================================== */
 
@@ -4978,9 +4983,9 @@ ul.gallery-project-basic-info li:first-child {
 	padding-left: 80px;
 }
 
-.pricing-style-one.active h2, 
-.pricing-style-one.active h4, 
-.pricing-style-one.active li, 
+.pricing-style-one.active h2,
+.pricing-style-one.active h4,
+.pricing-style-one.active li,
 .pricing-style-one.active p {
 	color: var(--white);
 }
@@ -4993,7 +4998,7 @@ ul.gallery-project-basic-info li:first-child {
 	border: 1px solid var(--color-primary);
 }
 
-.pricing-tab .nav-tabs::after, 
+.pricing-tab .nav-tabs::after,
 .pricing-tab .nav-tabs::before {
 	display: none;
 }
@@ -5097,9 +5102,9 @@ ul.gallery-project-basic-info li:first-child {
 	z-index: 9;
 }
 
-.pricing-style-two.active h2, 
-.pricing-style-two.active h4, 
-.pricing-style-two.active li, 
+.pricing-style-two.active h2,
+.pricing-style-two.active h4,
+.pricing-style-two.active li,
 .pricing-style-two.active p {
 	color: var(--white);
 }
@@ -5108,7 +5113,7 @@ ul.gallery-project-basic-info li:first-child {
 	display: block;
 }
 
-/* ============================================================== 
+/* ==============================================================
     # Why Choose Us
 =================================================================== */
 .achivement-counter li {
@@ -5212,7 +5217,7 @@ ul.gallery-project-basic-info li:first-child {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # About Style Two
 =================================================================== */
 .about-two-thumb {
@@ -5366,7 +5371,7 @@ ul.list-info-item li:first-child {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # About Style Three
 =================================================================== */
 .about-author {
@@ -5480,7 +5485,7 @@ ul.list-grid-four li::after {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # Services Style Two
 =================================================================== */
 .service-style-two-heading {
@@ -5637,7 +5642,7 @@ a.icon-btn {
 	transform: translateY(-20px);
 }
 
-/* ============================================================== 
+/* ==============================================================
     # Services Style Three
 =================================================================== */
 
@@ -5698,18 +5703,18 @@ a.btn-service {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # Services Details
 =================================================================== */
 .services-details-area .thumb img {
 	margin-bottom: 40px;
 }
 
-.services-details-area h1, 
-  .services-details-area h2, 
-  .services-details-area h3, 
-  .services-details-area h4, 
-  .services-details-area h5, 
+.services-details-area h1,
+  .services-details-area h2,
+  .services-details-area h3,
+  .services-details-area h4,
+  .services-details-area h5,
   .services-details-area h6 {
 	font-weight: 800;
 }
@@ -6026,7 +6031,7 @@ a.btn-service {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # Testimonail
 =================================================================== */
 .testimonial-style-one-thumb {
@@ -6243,7 +6248,7 @@ a.btn-service {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # Choose Us Style TWo
 =================================================================== */
 
@@ -6422,7 +6427,7 @@ ul.feature-process li .info {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # Choose Us Style Three
 =================================================================== */
 .choose-us-syle-three .skill-items .progress-box span {
@@ -6432,7 +6437,7 @@ ul.feature-process li .info {
 
 
 
-/* ============================================================== 
+/* ==============================================================
     # Service Range
 =================================================================== */
 
@@ -6555,7 +6560,7 @@ ul.list-double {
 	opacity: 0.2;
 }
 
-/* ============================================================== 
+/* ==============================================================
     # Team
 =================================================================== */
 .team-style-one {
@@ -6729,8 +6734,8 @@ ul.list-double {
 	margin-bottom: 0;
 }
 
-/* ============================================================== 
-     # Team Styel Three  
+/* ==============================================================
+     # Team Styel Three
 =================================================================== */
 .team-style-three img {
     border-radius: 50%;
@@ -6758,8 +6763,8 @@ ul.list-double {
 
 
 
-/* ============================================================== 
-     # Team Single  
+/* ==============================================================
+     # Team Single
 =================================================================== */
 .team-right-info h2 {
 	font-weight: 800;
@@ -7015,7 +7020,7 @@ ul.list-double {
 	opacity: 0.9;
 }
 
-/* ============================================================== 
+/* ==============================================================
     # Expertise Area
 =================================================================== */
 
@@ -7167,7 +7172,7 @@ ul.list-regular li::after {
 	font-weight: 400;
 }
 
-/* ============================================================== 
+/* ==============================================================
     # Project Deal
 =================================================================== */
 .deal-illustration {
@@ -7186,7 +7191,7 @@ ul.list-regular li::after {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # Case
 =================================================================== */
 .case-style-two .info {
@@ -7253,7 +7258,7 @@ ul.list-regular li::after {
     background-position: right top;
 }
 
-/* ============================================================== 
+/* ==============================================================
     # Brand
 =================================================================== */
 .brand-area {
@@ -7323,7 +7328,7 @@ ul.list-regular li::after {
 	z-index: -1;
 }
 
-/* ============================================================== 
+/* ==============================================================
     # Contact
 =================================================================== */
 .contact-area {
@@ -7384,7 +7389,7 @@ ul.list-regular li::after {
 	margin-bottom: 10px;
 }
 
-.contact-form-style-one input, 
+.contact-form-style-one input,
 .contact-form-style-one textarea {
 	border: none;
 	border-bottom: 1px solid #e7e7e7;
@@ -7393,7 +7398,7 @@ ul.list-regular li::after {
 	box-shadow: inherit;
 }
 
-.contact-form-style-one input:focus, 
+.contact-form-style-one input:focus,
 .contact-form-style-one textarea:focus {
 	box-shadow: inherit;
 }
@@ -7455,7 +7460,7 @@ ul.social-link li a {
 	line-height: 40px;
 }
 
-/* ============================================================== 
+/* ==============================================================
     # Feature
 =================================================================== */
 .feature-style-one {
@@ -7485,7 +7490,7 @@ ul.social-link li a {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # Footer
 =================================================================== */
 
@@ -7671,7 +7676,7 @@ footer .footer-bottom p {
 }
 
 
-/* ============================================================== 
+/* ==============================================================
     # 404 page
 =================================================================== */
 
@@ -7732,7 +7737,7 @@ footer .footer-bottom p {
 
 
 
-/* ============================================================== 
+/* ==============================================================
     # Responsive CSS
 =================================================================== */
 
@@ -7745,7 +7750,7 @@ footer .footer-bottom p {
 	.top-bar-style-two .call-entry {
 		display: none;
 	}
-	
+
 	.top-bar-style-two .item-flex {
 		justify-content: center;
 	}
@@ -7883,36 +7888,36 @@ footer .footer-bottom p {
 	.about-style-two a.btn-round-animation {
 		display: none;
 	}
-	
+
 
 	/* About Style Three */
 	.about-author {
 		display: flex;
 		align-items: center;
 	}
-	
+
 	.about-author img {
 		height: 60px;
 		width: 60px;
 		border-radius: 50%;
 		margin-right: 20px;
 	}
-	
+
 	.about-author h4 {
 		margin-bottom: 3px;
 		font-weight: 700;
 	}
-	
+
 	.about-author span {
 		color: var(--color-primary);
 	}
-	
+
 	.about-author {
 		border-top: 1px solid #e7e7e7;
 		margin-top: 30px;
 		padding-top: 30px;
 	}
-	
+
 	ul.list-grid-four {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -7920,12 +7925,12 @@ footer .footer-bottom p {
 		grid-row-gap: 6px;
 		margin-top: 30px;
 	}
-	
+
 	ul.list-grid-four li {
 		position: relative;
 		padding-left: 30px;
 	}
-	
+
 	ul.list-grid-four li::after {
 		position: absolute;
 		left: 0;
@@ -7946,16 +7951,16 @@ footer .footer-bottom p {
 	.about-three-thumb .experience h2 {
 		left: 0;
 	}
-	
+
 	.about-three-thumb {
 		margin-bottom: 50px;
 	}
-	
+
 	.about-three-thumb img:first-child {
 		padding-left: 50px;
 	}
 
-	
+
 	/* Process */
 
 	.process-style-one span {
@@ -8066,7 +8071,7 @@ footer .footer-bottom p {
 	.case-swiper-nav {
 		top: 55px;
 	}
-	
+
 	.case-style-two .info {
 		margin-top: 40px;
 	}
@@ -8089,7 +8094,7 @@ footer .footer-bottom p {
 	.project-details .check-list {
 		display: block;
 	}
-	
+
 
 	/* Achivement */
 
@@ -8127,7 +8132,7 @@ footer .footer-bottom p {
 	.service-style-two {
 		min-height: auto;
 	}
-	
+
 
 	/* Testimonial Style Two */
 	.testimonial-style-one-thumb .text-large {
@@ -8177,7 +8182,7 @@ footer .footer-bottom p {
 	.choose-us-style-two-thumb .curve-text {
 		display: none;
 	}
-	
+
 
 	/* Team */
 	.team-style-one {
@@ -8210,7 +8215,7 @@ footer .footer-bottom p {
 	.qualification-item i {
 		margin-bottom: 15px;
 	}
-	
+
 
 	/* Experience */
 
@@ -8247,7 +8252,7 @@ footer .footer-bottom p {
 	.error-box {
 		padding-top: 0;
 	}
-	
+
 
 	/* Footer */
 
@@ -8773,7 +8778,7 @@ footer .footer-bottom p {
 	.project-details .check-list {
 		display: block;
 	}
-	
+
 	/* Achivement */
 
 	.project-nav-box {
@@ -9016,16 +9021,16 @@ footer .footer-bottom p {
 }
 
 
-	
+
 	/* Max Wide Mobile Layout: 600px. */
 @media only screen and (min-width: 600px) and (max-width: 1200px) {
-	
+
 		/* Portfolio */
 	.gallery-items.colums-4 .gallery-item {
 		width: 50%;
 	}
 }
-	
+
 	/* Wide Mobile Layout: 480px. */
 @media only screen and (min-width: 480px) and (max-width: 767px) {
 	.side {
@@ -9045,13 +9050,13 @@ footer .footer-bottom p {
 }
 
 @media screen and (max-width: 991px) {
-	
+
 	/* global reset - start */
 	.order-last {
 		order: 0;
 	}
 }
-	
+
 	/* Custom Layout */
 @media only screen and (max-width: 480px) {
 		/* Abpit */
@@ -9101,7 +9106,7 @@ footer .footer-bottom p {
 		padding: 50px;
 	}
 }
-	
+
 	/* Desktop Mini */
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
 	/* Banner */
@@ -9345,7 +9350,7 @@ footer .footer-bottom p {
 	.case-swiper-nav {
 		top: 55px;
 	}
-	
+
 	.case-style-two .info {
 		margin-top: 40px;
 	}
@@ -9393,8 +9398,8 @@ footer .footer-bottom p {
 }
 
 
-/* ============================================================== 
-     # Preloader 
+/* ==============================================================
+     # Preloader
 =================================================================== */
 .no-js #loader {
 	display: none;
@@ -9419,8 +9424,8 @@ footer .footer-bottom p {
 }
 
 
-/* ============================================================== 
-     # Dark Layout 
+/* ==============================================================
+     # Dark Layout
 =================================================================== */
 body.bg-dark .banner-style-one h2 {
     color: var(--white);
@@ -9446,8 +9451,8 @@ body.bg-dark .navbar .attr-right .attr-nav li a {
 	body.bg-dark nav.navbar ul.nav>li>a {
 		color: var(--white);
 	}
-	
-	
+
+
 }
 
 body.bg-dark .services-style-one-area {
@@ -9534,7 +9539,7 @@ body.bg-dark .team-style-two::after {
 	background: #142939;
 }
 
-body.bg-dark .team-style-two:hover::after, 
+body.bg-dark .team-style-two:hover::after,
 body.bg-dark .team-style-two.active::after {
     background: var(--color-primary);
 }
@@ -9630,7 +9635,7 @@ body.bg-dark ul.check-list-item li {
     border-color: rgba(255, 255, 255, 0.2);
 }
 
-body.bg-dark .team-social .share-link > i, 
+body.bg-dark .team-social .share-link > i,
 body.bg-dark .team-social > a {
     border-top-color: rgba(255, 255, 255, 0.5);
 }
@@ -9685,7 +9690,7 @@ body.bg-dark .contact-form-style-one {
     background: #142939;
 }
 
-body.bg-dark .contact-form-style-one input, 
+body.bg-dark .contact-form-style-one input,
 body.bg-dark .contact-form-style-one textarea {
     background: #142939;
     border-color: rgba(255, 255, 255, 0.3);
@@ -9701,7 +9706,7 @@ body.bg-dark .banner-style-three h2 {
     color: var(--white);
 }
 
-body.bg-dark .banner-style-three form input, 
+body.bg-dark .banner-style-three form input,
 body.bg-dark .banner-style-three form input:focus {color: var(--white);}
 
 body.bg-dark .banner-style-three form {
@@ -9837,7 +9842,7 @@ body.bg-dark .bg-gray .contact-form-style-one {
     background: var(--dark);
 }
 
-body.bg-dark .bg-gray .contact-form-style-one input, 
+body.bg-dark .bg-gray .contact-form-style-one input,
 body.bg-dark .bg-gray .contact-form-style-one textarea {
     background: var(--dark);
 }

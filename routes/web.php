@@ -20,6 +20,16 @@ Route::get('/contact-us', function () {
     return view('user/contact-us');
 });
 
+Route::get('/service/solusi', function () {
+    return view('user.service.solusi');
+});
+Route::get('/service/layanan-handal-responsif', function () {
+    return view('user.service.layanan-handal-responsif');
+});
+Route::get('/service/memberi-manfaat-bagi-masyarakat', function () {
+    return view('user.service.memberi-manfaat-bagi-masyarakat');
+});
+
 Route::get('/blog', [BlogController::class, 'show'])->name('blog');
 Route::get('/blog/details/{slug}', [BlogController::class, 'detailBlog'])->name('blog.detail');
 
@@ -34,6 +44,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //ROUTE USER SETTINGS
+    Route::get('/profile/edit', [ProfileController::class, 'editProfile'])->name('profile.index');
+    Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.updatee');
+    Route::post('/profile/photo', [ProfileController::class, 'updateProfilePhoto'])->name('profile.photo'); // Pastikan fungsi ini ada di controller Anda
 
     // ROUTE PORTFOLIO
     Route::get('/manage-portfolio', [PortfolioController::class, 'index'])->name('portfolio.index');
@@ -58,7 +73,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/delete-user/{user_id}', [UserController::class, 'destroy'])->name('user.delete');
     Route::get('/edit-user/{user_id}', [UserController::class, 'edit'])->name('user.edit');
     Route::post('/update-user/{user_id}', [UserController::class, 'update'])->name('user.update');
-
 });
 
 require __DIR__ . '/auth.php';

@@ -56,6 +56,12 @@ php artisan migrate
 php artisan db:seed
 ```
 
+### Step 8: Link data from storage
+
+```bash
+php artisan link:storage
+```
+
 ### Step 8: Start the Development Server
 
 ```bash
