@@ -73,8 +73,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="deskripsi">Deskripsi</label>
                         <div class="col-sm-10">
-                            <textarea class="form-control" id="deskripsi" name="deskripsi" placeholder="Enter description" required oninput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px';">{{ old('deskripsi', $blog->deskripsi) }}</textarea>
-                            <span id="char-counter" class="char-counter">0/100</span>
+                            <textarea class="form-control" id="myeditorinstance" name="deskripsi" placeholder="Enter description" oninput="this.style.height = 'auto'; this.style.height = this.scrollHeight + 'px';">{{ old('deskripsi', $blog->deskripsi) }}</textarea>
                         </div>
                     </div>
 

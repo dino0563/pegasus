@@ -26,8 +26,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
 
     {{-- TINY TEXT EDITOR --}}
-    <script src="https://cdn.tiny.cloud/1/unoxcn5qn48a6axd3qvtr4evl8yxx565sdux4xuiwunby0iv/tinymce/7/tinymce.min.js"
-        referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/te2rfhgmvl2ihh4mvdp4f8ltjde6wgl76xxmiu5ukeceu3eb/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
     {{-- FONTS --}}
     <link rel="preconnect" href="https://fonts.googleapis.com/">

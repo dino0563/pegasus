@@ -27,22 +27,20 @@ class UserController extends Controller
             'name' => 'required|max:250',
             'email' => 'required|email|max:250|unique:users',
             'password' => 'required|min:6',
-            'profile_photo' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240',
+            'profile_photo' => 'required|file|image|mimes:jpg,jpeg,png|max:10240',
         ]);
 
-        $user = new Users();
+        $user = new User();
         $user->name = $validatedData['name'];
         $user->email = $validatedData['email'];
         $user->password = bcrypt($validatedData['password']);
 
         if ($request->file('profile_photo')) {
             $extension = $request->file('profile_photo')->getClientOriginalExtension();
-            $imageName = '-user-' . now()->timestamp . '.' . $extension;
+            $imageName = 'user-' . now()->timestamp . '.' . $extension;
             $request->file('profile_photo')->storeAs('public/users/images', $imageName);
-            $user->image = $imageName; // Menyimpan nama file background
+            $user->profile_photo = $imageName;
         }
-
-        $user->save();
 
         if ($user->save()) {
             return redirect()->route('user.index')->with([
@@ -57,6 +55,7 @@ class UserController extends Controller
         }
     }
 
+
     public function destroy($user_id)
     {
         $user = Users::findOrFail((int)$user_id);
@@ -68,9 +67,9 @@ class UserController extends Controller
         }
         $user->delete();
         return redirect(route('user.index'))->with([
-                'status' => 'success',
-                'message' => 'User deleted successfully!'
-            ]);
+            'status' => 'success',
+            'message' => 'User deleted successfully!'
+        ]);
     }
 
     public function edit(Request $request, $user_id)

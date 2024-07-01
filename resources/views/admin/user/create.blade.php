@@ -16,7 +16,7 @@
                 <small class="text-muted float-end">Create a new User</small>
             </div>
             <div class="card-body">
-                <form action="{{ route('user.store') }}" method="POST" autocomplete="off">
+                <form action="{{ route('user.store') }}" method="POST" enctype="multipart/form-data" autocomplete="off">
                     @csrf
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="name">Name</label>
@@ -44,10 +44,9 @@
                             </div>
                             <small class="text-muted">Minimum password: 6 characters</small>
                         </div>
-
                     </div>
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="password">Profile Picture</label>
+                        <label class="col-sm-2 col-form-label" for="profile_photo">Profile Picture</label>
                         <div class="col-sm-10">
                             <input type="file" class="form-control dropify" data-max-file-size="10M"
                                 data-allowed-file-extensions="png jpg jpeg" id="profile_photo" name="profile_photo" required

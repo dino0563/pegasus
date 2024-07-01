@@ -62,17 +62,15 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    public function editt(Request $request)
+    public function editProfile(Request $request)
     {
-        $user_id = 1;
-        $user = Users::findOrFail($user_id);
+        $user = $request->user();
         return view('profile.settings', compact('user'));
     }
 
-    public function updatee(Request $request)
+    public function updateProfile(Request $request)
     {
-        $user_id = 1;
-        $user = Users::findOrFail($user_id);
+        $user = $request->user();
 
         $validatedData = $request->validate([
             'name' => 'required|max:250',
@@ -90,7 +88,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function updatePhoto(Request $request)
+    public function updateProfilePhoto(Request $request)
     {
         $request->validate([
             'photo' => 'required|mimes:jpg,jpeg,png,gif|max:800',
