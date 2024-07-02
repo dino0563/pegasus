@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- Toastr CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <!-- TinyMCE -->
     <script src="https://cdn.tiny.cloud/1/te2rfhgmvl2ihh4mvdp4f8ltjde6wgl76xxmiu5ukeceu3eb/tinymce/5/tinymce.min.js"
         referrerpolicy="origin"></script>
@@ -257,6 +258,9 @@
                             </li>
                             <!--/ User -->
                         </ul>
+                            </li>
+                            <!--/ User -->
+                        </ul>
                     </div>
 
 
@@ -307,7 +311,17 @@
 
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var userDropdown = document.getElementById('userDropdown');
+            var dropdown = new bootstrap.Dropdown(userDropdown);
 
+            userDropdown.addEventListener('click', function () {
+                dropdown.toggle();
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
         $('#example').DataTable({
