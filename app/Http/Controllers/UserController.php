@@ -25,62 +25,68 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-{
-    try {
-        $validatedData = $request->validate([
-            'name' => 'required|max:250',
-            'email' => 'required|email|max:250|unique:users',
-            'password' => 'required|min:6',
-            'profile_photo' => 'required|image|mimes:jpg,jpeg,png|max:10240',
-        ]);
-
-        $user = new User();
-        $user->name = $validatedData['name'];
-        $user->email = $validatedData['email'];
-        $user->password = bcrypt($validatedData['password']);
-
-        if ($request->hasFile('profile_photo')) {
-            $file = $request->file('profile_photo');
-            $extension = $file->getClientOriginalExtension();
-            $imageName = 'user-' . time() . '.' . $extension;
-            $file->storeAs('public/users/images', $imageName);
-            $user->profile_photo = $imageName;
-        }
-
-        if ($user->save()) {
-            return redirect()->route('user.index')->with([
-                'status' => 'success',
-                'message' => 'New User Added Successfully!'
+    {
+        try {
+            $validatedData = $request->validate([
+                'name' => 'required|max:250',
+                'email' => 'required|email|max:250|unique:users',
+                'password' => 'required|min:6',
+                'profile_photo' => 'required|image|mimes:jpg,jpeg,png|max:10240',
             ]);
-        } else {
-            throw new \Exception('Failed to add new user');
+
+            $user = new User();
+            $user->name = $validatedData['name'];
+            $user->email = $validatedData['email'];
+            $user->password = bcrypt($validatedData['password']);
+
+            if ($request->hasFile('profile_photo')) {
+                $file = $request->file('profile_photo');
+                $extension = $file->getClientOriginalExtension();
+                $imageName = 'user-' . time() . '.' . $extension;
+                $file->storeAs('public/users/images', $imageName);
+                $user->profile_photo = $imageName;
+            }
+
+            if ($user->save()) {
+                return redirect()->route('user.index')->with([
+                    'status' => 'success',
+                    'message' => 'New User Added Successfully!'
+                ]);
+            } else {
+                throw new \Exception('Failed to add new user');
+            }
+        } catch (\Exception $e) {
+            return redirect()->route('user.index')->with([
+                'status' => 'error',
+                'message' => 'Failed to add new user: ' . $e->getMessage()
+            ]);
         }
-    } catch (\Exception $e) {
-        return redirect()->route('user.index')->with([
-            'status' => 'error',
-            'message' => 'Failed to add new user: ' . $e->getMessage()
-        ]);
     }
-}
 
 
 
     public function destroy($user_id)
-    {
-        $user = Users::findOrFail((int)$user_id);
+{
+    try {
+        $user = User::findOrFail($user_id);
+        
+        // Hapus gambar pengguna jika ada
         if ($user->image) {
             $destination = 'storage/users/images/' . $user->image;
             if (File::exists($destination)) {
                 File::delete($destination);
             }
         }
+        
+        // Hapus pengguna
         $user->delete();
-        return redirect(route('user.index'))->with([
-            'status' => 'success',
-            'message' => 'User deleted successfully!'
-        ]);
+
+        return response()->json(['success' => true]);
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
     }
-    
+}
+
 
     public function edit(Request $request, $user_id)
     {
@@ -136,5 +142,4 @@ class UserController extends Controller
             'message' => 'User item updated successfully!'
         ]);
     }
-    
 }

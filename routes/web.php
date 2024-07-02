@@ -72,7 +72,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/manage-user', [UserController::class, 'index'])->name('user.index');
     Route::get('/add-user', [UserController::class, 'create'])->name('user.create');
     Route::post('/add-user', [UserController::class, 'store'])->name('user.store');
-    Route::get('/delete-user/{user_id}', [UserController::class, 'destroy'])->name('user.delete');
     Route::delete('/delete-user/{user_id}', [UserController::class, 'destroy'])->name('user.delete');
     Route::get('/edit-user/{user_id}', [UserController::class, 'edit'])->name('user.edit');
     Route::put('/update-user/{user_id}', [UserController::class, 'update'])->name('user.update');
