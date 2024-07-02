@@ -142,7 +142,7 @@ class PortfolioController extends Controller
     public function destroy($portfolio_id)
     {
         try {
-            $portfolio = Portfolio::findOrFail((int) $portfolio_id); // Ensure $portfolio_id is cast to an integer
+            $portfolio = Portfolio::findOrFail((int) $portfolio_id); 
             if ($portfolio->gambar) {
                 $destination = 'storage/portfolio/gambar/' . $portfolio->gambar;
                 if (File::exists($destination)) {
@@ -150,15 +150,10 @@ class PortfolioController extends Controller
                 }
             }
             $portfolio->delete();
-            return redirect(route('portfolio.index'))->with([
-                    'status' => 'success',
-                    'message' => 'Portfolio deleted successfully!'
-                ]);
+
+             return response()->json(['success' => true]);
         } catch (\Exception $e) {
-            return redirect()->route('portfolio.index')->with([
-                'status' => 'error',
-                'message' => 'Failed to delete portfolio: ' . $e->getMessage()
-            ]);
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 }

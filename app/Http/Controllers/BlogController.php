@@ -77,23 +77,20 @@ class BlogController extends Controller
     public function destroy($blog_id)
     {
         try {
-            $blog = Blog::findOrFail((int)$blog_id); // Ensure $portfolio_id is cast to an integer
+            $blog = Blog::findOrFail($blog_id);
+
             if ($blog->gambar) {
                 $destination = 'public/blog/gambar/' . $blog->gambar;
                 if (File::exists($destination)) {
                     File::delete($destination);
                 }
             }
+
             $blog->delete();
-            return redirect(route('blog.index'))->with([
-                    'status' => 'success',
-                    'message' => 'Blog deleted successfully!'
-                ]);
+
+            return response()->json(['success' => true]);
         } catch (\Exception $e) {
-            return redirect(route('blog.index'))->with([
-                    'status' => 'error',
-                    'message' => 'Failed to delete blog: ' . $e->getMessage()
-                ]);
+            return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 

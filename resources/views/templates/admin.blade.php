@@ -355,7 +355,7 @@
             e.preventDefault();
             var button = $(this);
             var id = button.data('id');
-    
+
             if (id) {
                 Swal.fire({
                     title: 'Are you sure?',
@@ -397,6 +397,105 @@
             }
         });
     </script>
+
+    <script>
+        $(document).on('click', '.delete-blog-button', function(e) {
+            e.preventDefault();
+            var button = $(this);
+            var id = button.data('id');
+
+            if (id) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '/delete-blog/' + id,
+                            type: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            success: function(response) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Blog has been deleted.',
+                                    'success'
+                                ).then(() => {
+                                    window.location.reload();
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Error deleting blog:', error);
+                                Swal.fire(
+                                    'Error!',
+                                    'Failed to delete blog.',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
+            } else {
+                console.error('No id value found');
+            }
+        });
+    </script>
+
+    <script>
+        $(document).on('click', '.delete-port-button', function(e) {
+            e.preventDefault();
+            var button = $(this);
+            var id = button.data('id');
+
+            if (id) {
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes, delete it!'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: '/delete-portfolio/' + id,
+                            type: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
+                            success: function(response) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Port has been deleted.',
+                                    'success'
+                                ).then(() => {
+                                    window.location.reload();
+                                });
+                            },
+                            error: function(xhr, status, error) {
+                                console.error('Error deleting port:', error);
+                                Swal.fire(
+                                    'Error!',
+                                    'Failed to delete port.',
+                                    'error'
+                                );
+                            }
+                        });
+                    }
+                });
+            } else {
+                console.error('No id value found');
+            }
+        });
+    </script>
+
 
 
     @if (Session::has('status') && Session::has('message'))
