@@ -56,14 +56,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/add-portfolio', [PortfolioController::class, 'store'])->name('portfolio.store');
     Route::get('/edit-portfolio/{Portfolio_id}', [PortfolioController::class, 'edit'])->name('portfolio.edit');
     Route::post('/update-portfolio/{Portfolio_id}', [PortfolioController::class, 'update'])->name('portfolio.update');
-    Route::get('/delete-portfolio/{portfolio_id}', [PortfolioController::class, 'destroy'])->name('portfolio.delete');
     Route::delete('/delete-portfolio/{portfolio_id}', [PortfolioController::class, 'destroy'])->name('portfolio.delete');
 
     // ROUTE BLOG
     Route::get('/manage-blog', [BlogController::class, 'index'])->name('blog.index');
     Route::get('/add-blog', [BlogController::class, 'create'])->name('blog.create');
     Route::post('/add-blog', [BlogController::class, 'store'])->name('blog.store');
-    Route::get('/delete-blog/{blog_id}', [BlogController::class, 'destroy'])->name('blog.delete');
     Route::delete('/delete-blog/{blog_id}', [BlogController::class, 'destroy'])->name('blog.delete');
     Route::get('/edit-blog/{blog_id}', [BlogController::class, 'edit'])->name('blog.edit');
     Route::post('/update-blog/{blog_id}', [BlogController::class, 'update'])->name('blog.update');
