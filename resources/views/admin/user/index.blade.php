@@ -35,9 +35,8 @@
                                     <div class="d-inline-block text-nowrap">
                                         <a href="{{ route('user.edit', $user->id) }}"
                                             class="btn btn-sm btn-icon edit-portfolio"><i class="bx bx-edit"></i></a>
-                                        <a href="{{ route('user.delete', $user->id) }}"
-                                            class="btn btn-sm btn-icon delete-button" data-id="{{ $user->id }}"><i
-                                                class="bx bx-trash"></i></a>
+                                        <button class="btn btn-sm btn-icon delete-button" data-id="{{ $user->id }}"><i
+                                                class="bx bx-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>
