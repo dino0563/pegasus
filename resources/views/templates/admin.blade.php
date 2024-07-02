@@ -7,8 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Pegasus - @yield('title')</title>
-    <meta name="description"
-        content="Most Powerful & Comprehensive Bootstrap 5 Admin Dashboard built for developers!" />
+    <meta name="description" content="Most Powerful & Comprehensive Bootstrap 5 Admin Dashboard built for developers!" />
     <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Canonical SEO -->
@@ -39,24 +38,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <!-- Toastr CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <!-- TinyMCE -->
     <script src="https://cdn.tiny.cloud/1/te2rfhgmvl2ihh4mvdp4f8ltjde6wgl76xxmiu5ukeceu3eb/tinymce/5/tinymce.min.js"
         referrerpolicy="origin"></script>
 
     <script>
         (function(w, d, s, l, i) {
-                    w[l] = w[l] || [];
-                    w[l].push({
-                        'gtm.start': new Date().getTime(),
-                        event: 'gtm.js'
-                    });
-                    var f = d.getElementsByTagName(s)[0],
-                        j = d.createElement(s),
-                        dl = l != 'dataLayer' ? '&l=' + l : '';
-                    j.async = true;
-                    j.src = 'https://www.googletagmanager.com/gtag/js?id=' + i + dl;
-                    f.parentNode.insertBefore(j, f);
-                })(window, document, 'script', 'dataLayer', 'GTM-5DDHKGP');
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtag/js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5DDHKGP');
     </script>
     @stack('admin_style')
 </head>
@@ -210,7 +210,7 @@
 
 
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    <li>
+                                    {{--<li>
                                         <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
@@ -234,9 +234,19 @@
                                     </li>
                                     <li>
                                         <div class="dropdown-divider"></div>
+                                    </li> --}}
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('profile.index') }}">
+                                            <i class="bx bx-cog me-2"></i>
+                                            <span class="align-middle">Settings</span>
+                                        </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        <div class="dropdown-divider"></div>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                             <i class='bx bx-power-off me-2'></i>
                                             <span class="align-middle">Log Out</span>
@@ -250,7 +260,9 @@
                             </li>
                             <!--/ User -->
                         </ul>
-
+                        </li>
+                        <!--/ User -->
+                        </ul>
                     </div>
 
 
@@ -304,12 +316,22 @@
 
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var userDropdown = document.getElementById('userDropdown');
+            var dropdown = new bootstrap.Dropdown(userDropdown);
 
+            userDropdown.addEventListener('click', function() {
+                dropdown.toggle();
+            });
+        });
+    </script>
     <script>
         $(document).ready(function() {
-        $('#example').DataTable({
-        responsive: true
-        });
+            $('#example').DataTable({
+                responsive: true
+            });
         });
     </script>
 
@@ -351,17 +373,24 @@
                         $.ajax({
                             url: '/delete-user/' + id,
                             type: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            },
                             success: function(response) {
-                                Swal.fire({
-                                    title: "Deleted!",
-                                    text: "Your file has been deleted.",
-                                    icon: "success"
-                                }).then(() => {
-                                    window.location.reload();
-                                });
+                                Swal.fire(
+                                    'Deleted!',
+                                    'User has been deleted.',
+                                    'success'
+                                );
+                                window.location.reload();
                             },
                             error: function(xhr, status, error) {
                                 console.log('Error deleting user: ' + error);
+                                Swal.fire(
+                                    'Error!',
+                                    'Failed to delete user.',
+                                    'error'
+                                );
                             }
                         });
                     }
@@ -374,24 +403,24 @@
 
 
     @if (Session::has('status') && Session::has('message'))
-    <script>
-        const Toast = Swal.mixin({
-        toast: true,
-        position: "bottom-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-        }
-    });
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "bottom-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
 
-    Toast.fire({
-        icon: "{{ Session::get('status') }}", // Mengambil status sebagai icon
-        title: "{{ Session::get('message') }}" // Mengambil pesan sebagai title
-    });
-    </script>
+            Toast.fire({
+                icon: "{{ Session::get('status') }}", // Mengambil status sebagai icon
+                title: "{{ Session::get('message') }}" // Mengambil pesan sebagai title
+            });
+        </script>
     @endif
 
 
