@@ -7,8 +7,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Pegasus - @yield('title')</title>
-    <meta name="description"
-        content="Most Powerful & Comprehensive Bootstrap 5 Admin Dashboard built for developers!" />
+    <meta name="description" content="Most Powerful & Comprehensive Bootstrap 5 Admin Dashboard built for developers!" />
     <meta name="keywords" content="dashboard, bootstrap 5 dashboard, bootstrap 5 design, bootstrap 5">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Canonical SEO -->
@@ -45,18 +44,18 @@
 
     <script>
         (function(w, d, s, l, i) {
-                    w[l] = w[l] || [];
-                    w[l].push({
-                        'gtm.start': new Date().getTime(),
-                        event: 'gtm.js'
-                    });
-                    var f = d.getElementsByTagName(s)[0],
-                        j = d.createElement(s),
-                        dl = l != 'dataLayer' ? '&l=' + l : '';
-                    j.async = true;
-                    j.src = 'https://www.googletagmanager.com/gtag/js?id=' + i + dl;
-                    f.parentNode.insertBefore(j, f);
-                })(window, document, 'script', 'dataLayer', 'GTM-5DDHKGP');
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+            var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s),
+                dl = l != 'dataLayer' ? '&l=' + l : '';
+            j.async = true;
+            j.src = 'https://www.googletagmanager.com/gtag/js?id=' + i + dl;
+            f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-5DDHKGP');
     </script>
     @stack('admin_style')
 </head>
@@ -243,7 +242,8 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                                             <i class='bx bx-power-off me-2'></i>
                                             <span class="align-middle">Log Out</span>
@@ -310,9 +310,9 @@
 
     <script>
         $(document).ready(function() {
-        $('#example').DataTable({
-        responsive: true
-        });
+            $('#example').DataTable({
+                responsive: true
+            });
         });
     </script>
 
@@ -340,7 +340,7 @@
             e.preventDefault();
             var button = $(this);
             var id = button.data('id');
-
+    
             if (id) {
                 Swal.fire({
                     title: 'Are you sure?',
@@ -354,17 +354,26 @@
                     if (result.isConfirmed) {
                         
                         $.ajax({
-                            url: '/delete-user/' + id,
+                            url: "{{ route('user.delete', '') }}/" + id, // Menggunakan route helper Laravel
                             type: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') // Menambahkan CSRF token
+                            },
                             success: function(response) {
                                 Swal.fire(
                                     'Deleted!',
                                     'Your file has been deleted.',
                                     'success'
-                                );
-                                window.location.reload();
+                                ).then(() => {
+                                    window.location.href = "{{ route('user.index') }}";
+                                });
                             },
                             error: function(xhr, status, error) {
+                                Swal.fire(
+                                    'Error!',
+                                    'An error occurred while deleting the user: ' + error,
+                                    'error'
+                                );
                                 console.log('Error deleting user: ' + error);
                             }
                         });
@@ -374,28 +383,28 @@
                 console.log('No id value found');
             }
         });
-    </script>
+    </script> 
 
 
     @if (Session::has('status') && Session::has('message'))
-    <script>
-        const Toast = Swal.mixin({
-        toast: true,
-        position: "bottom-end",
-        showConfirmButton: false,
-        timer: 3000,
-        timerProgressBar: true,
-        didOpen: (toast) => {
-            toast.onmouseenter = Swal.stopTimer;
-            toast.onmouseleave = Swal.resumeTimer;
-        }
-    });
+        <script>
+            const Toast = Swal.mixin({
+                toast: true,
+                position: "bottom-end",
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.onmouseenter = Swal.stopTimer;
+                    toast.onmouseleave = Swal.resumeTimer;
+                }
+            });
 
-    Toast.fire({
-        icon: "{{ Session::get('status') }}", // Mengambil status sebagai icon
-        title: "{{ Session::get('message') }}" // Mengambil pesan sebagai title
-    });
-    </script>
+            Toast.fire({
+                icon: "{{ Session::get('status') }}", // Mengambil status sebagai icon
+                title: "{{ Session::get('message') }}" // Mengambil pesan sebagai title
+            });
+        </script>
     @endif
 
 
