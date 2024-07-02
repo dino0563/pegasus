@@ -80,6 +80,7 @@ class UserController extends Controller
             'message' => 'User deleted successfully!'
         ]);
     }
+    
 
     public function edit(Request $request, $user_id)
     {
@@ -135,4 +136,5 @@ class UserController extends Controller
             'message' => 'User item updated successfully!'
         ]);
     }
+    
 }
