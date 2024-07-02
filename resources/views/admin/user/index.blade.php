@@ -69,6 +69,7 @@
                 confirmButtonText: 'Yes, delete it!'
             }).then((result) => {
                 if (result.isConfirmed) {
+
                     $.ajax({
                         url: '/delete-user/' + id,
                         type: 'DELETE',
@@ -78,15 +79,10 @@
                                 'Your file has been deleted.',
                                 'success'
                             );
-                            // Refresh or update the page as needed
+                            window.location.reload();
                         },
-                        error: function(response) {
-                            Swal.fire(
-                                'Error!',
-                                'There was an error deleting the file.',
-                                'error'
-                            );
-                            console.log(response);
+                        error: function(xhr, status, error) {
+                            console.log('Error deleting user: ' + error);
                         }
                     });
                 }

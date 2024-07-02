@@ -192,7 +192,8 @@
                         <!-- Search -->
                         <div class="navbar-nav align-items-center">
                             <div class="nav-item navbar-search-wrapper mb-0">
-                                <a class="nav-link search-toggler px-0" href="javascript:void(0);" onclick="toggleSearchBar()">
+                                <a class="nav-link search-toggler px-0" href="javascript:void(0);"
+                                    onclick="toggleSearchBar()">
                                     <i class="bx bx-search bx-sm"></i>
                                     <span class="d-none d-md-inline-block text-muted">Search (Ctrl+/)</span>
                                 </a>
@@ -202,13 +203,14 @@
 
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <!-- User -->
-                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
-                                    data-bs-toggle="dropdown">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <i class='bx bx-user'></i>
                                 </a>
+
+
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    {{-- <li>
+                                    <li>
                                         <a class="dropdown-item" href="{{ route('profile.edit') }}">
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
@@ -232,15 +234,6 @@
                                     </li>
                                     <li>
                                         <div class="dropdown-divider"></div>
-                                    </li> --}}
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('profile.index') }}">
-                                            <i class="bx bx-cog me-2"></i>
-                                            <span class="align-middle">Settings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -257,6 +250,7 @@
                             </li>
                             <!--/ User -->
                         </ul>
+
                     </div>
 
 
@@ -301,6 +295,9 @@
     <!-- DataTables JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
@@ -334,7 +331,6 @@
     <!-- Your additional scripts -->
     @stack('admin_scripts')
 
-
     <script>
         $(document).on('click', '.delete-button', function(e) {
             e.preventDefault();
@@ -343,26 +339,26 @@
 
             if (id) {
                 Swal.fire({
-                    title: 'Are you sure?',
+                    title: "Are you sure?",
                     text: "You won't be able to revert this!",
-                    icon: 'warning',
+                    icon: "warning",
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
                 }).then((result) => {
                     if (result.isConfirmed) {
-                        
                         $.ajax({
                             url: '/delete-user/' + id,
                             type: 'DELETE',
                             success: function(response) {
-                                Swal.fire(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
-                                    'success'
-                                );
-                                window.location.reload();
+                                Swal.fire({
+                                    title: "Deleted!",
+                                    text: "Your file has been deleted.",
+                                    icon: "success"
+                                }).then(() => {
+                                    window.location.reload();
+                                });
                             },
                             error: function(xhr, status, error) {
                                 console.log('Error deleting user: ' + error);

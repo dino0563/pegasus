@@ -1,6 +1,6 @@
 @extends('templates.admin')
 
-@section('title', 'Dashboard')
+@section('title', 'Manage Portfolio')
 
 @section('content')
 <div class="content-wrapper">
