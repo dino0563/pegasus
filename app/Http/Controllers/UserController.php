@@ -30,7 +30,7 @@ class UserController extends Controller
             $validatedData = $request->validate([
                 'name' => 'required|max:250',
                 'email' => 'required|email|max:250|unique:users',
-                'password' => 'required|min:6',
+                'password' => 'required|min:8',
                 'profile_photo' => 'required|image|mimes:jpg,jpeg,png|max:10240',
             ]);
 
