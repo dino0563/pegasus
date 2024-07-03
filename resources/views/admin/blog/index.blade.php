@@ -35,6 +35,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Judul</th>
+                                    <th>Penulis</th>
                                     <th>Gambar</th>
                                     <th>Tanggal</th>
                                     <th>Kategori</th>
@@ -47,6 +48,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $blog->judul }}</td>
+                                        <td>{{ $blog->penulis }}</td>
                                         <td><img src="{{ asset('storage/blog/gambar/' . $blog->gambar) }}"
                                                 style="width:100px;">
                                         </td>

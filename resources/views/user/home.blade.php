@@ -543,7 +543,7 @@
                                     <div class="info text-light" style="background-image: url(assets/user/img/shape/banner-3.webp);">
                                         <h2>{{ $portfolio->nama }}</h2>
                                         <p>
-                                            {{ $portfolio->deskripsi }}
+                                            {!! $portfolio->deskripsi !!}
                                         </p>
                                         {{-- <a class="btn btn-md btn-dark animation" href="{{ route('portfolio.show', $portfolio->id) }}">Lihat Lebih Banyak</a> --}}
                                         <a class="btn btn-md btn-dark animation" href="{{ route('portfolio.detail', $portfolio->slug) }}">Lihat Lebih Banyak</a>
