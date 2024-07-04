@@ -68,14 +68,19 @@
     function filterPortfolios(category) {
         const portfolios = document.querySelectorAll('.swiper-slide');
         portfolios.forEach(portfolio => {
-            const portfolioCategory = portfolio.querySelector('.overlay span').textContent.trim();
-            if (category === 'All' || portfolioCategory === category) {
-                portfolio.style.display = 'block';
-            } else {
-                portfolio.style.display = 'none';
+            const overlaySpan = portfolio.querySelector('.overlay span');
+            if (overlaySpan) {
+                const portfolioCategory = overlaySpan.textContent.trim();
+                if (category === 'All' || portfolioCategory === category) {
+                    portfolio.style.display = 'block';
+                } else {
+                    portfolio.style.display = 'none';
+                }
             }
         });
     }
+</script>
+
 </script>
 @endsection
 

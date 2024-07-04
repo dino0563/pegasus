@@ -44,41 +44,6 @@
                     </div>
 
                     <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="current_password" class="form-label">Current
-                            Password</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="password" id="current_password" name="current_password" />
-                            @if ($errors->has('current_password'))
-                            <div class="text-danger">{{ $errors->first('current_password') }}</div>
-                            @endif
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="new_password" class="form-label">New
-                            Password</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="password" id="new_password" name="new_password" />
-                            @if ($errors->has('new_password'))
-                            <div class="text-danger">{{ $errors->first('new_password') }}</div>
-                            @endif
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label class="col-sm-2 col-form-label" for="new_password_confirmation"
-                            class="form-label">Confirm New Password</label>
-                        <div class="col-sm-10">
-                            <input class="form-control" type="password" id="new_password_confirmation"
-                                name="new_password_confirmation" />
-                            @if ($errors->has('new_password_confirmation'))
-                            <div class="text-danger">{{ $errors->first('new_password_confirmation') }}
-                            </div>
-                            @endif
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="profile_photo">Profile Picture</label>
                         <div class="col-sm-10">
                             <input type="file" class="form-control dropify" data-max-file-size="10M"

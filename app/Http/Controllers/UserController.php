@@ -105,20 +105,6 @@ class UserController extends Controller
             'profile_photo' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240',
         ]);
 
-        // Validasi password hanya jika password baru diisi
-        if ($request->filled('new_password')) {
-            $request->validate([
-                'current_password' => 'required',
-                'new_password' => 'required|string|min:8|confirmed',
-            ]);
-
-            if (!Hash::check($request->current_password, $user->password)) {
-                return back()->withErrors(['current_password' => 'Password saat ini salah.']);
-            }
-
-            $user->password = Hash::make($request->new_password);
-        }
-
         $user->name = $request['name'];
         $user->email = $request['email'];
 
