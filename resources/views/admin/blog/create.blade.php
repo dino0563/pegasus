@@ -29,10 +29,10 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="gambar">Gambar</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control dropify" data-max-file-size="10M"
+                            <input type="file" class="form-control dropify" data-max-file-size="3M"
                                 data-allowed-file-extensions="png jpg jpeg" id="gambar" name="gambar" required
                                 accept=".jpg, .jpeg, .png">
-                            <small class="text-muted">Maximum file size: 10MB</small>
+                            <small class="text-muted">Maximum file size: 3MB</small>
                         </div>
                     </div>
                     <div class="row mb-3">

@@ -136,24 +136,24 @@
                     <li class="menu-item">
                         <a href="{{ route('blog.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-news"></i> <!-- Ikon untuk Blog -->
-                            <div class="text-truncate" data-i18n="Manage Blog">
-                                Manage Blog
+                            <div class="text-truncate" data-i18n="Blog">
+                                Blog
                             </div>
                         </a>
                     </li>
                     <li class="menu-item">
                         <a href="{{ route('portfolio.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-briefcase-alt"></i> <!-- Ikon untuk Portofolio -->
-                            <div class="text-truncate" data-i18n="Manage Portfolio">
-                                Manage Portfolio
+                            <div class="text-truncate" data-i18n="Portfolio">
+                                Portfolio
                             </div>
                         </a>
                     </li>
                     <li class="menu-item">
                         <a href="{{ route('user.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-user"></i> <!-- Ikon untuk User -->
-                            <div class="text-truncate" data-i18n="Manage User">
-                                Manage User
+                            <div class="text-truncate" data-i18n="User">
+                                User
                             </div>
                         </a>
                     </li>

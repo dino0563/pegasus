@@ -20,10 +20,43 @@
         border-radius: 5px;
         margin-bottom: 10px;
     }
+
+    .filter-bar {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .filter-button {
+        border: 1px solid transparent;
+        border-radius: 20px;
+        padding: 5px 15px;
+        color: #0A1F44;
+        /* Right color for inactive text */
+        border: 2px solid #0A1F44;
+        /* Right color for inactive border */
+        background-color: white;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .filter-button:hover {
+        background-color: #6A00FF;
+        /* Left color for hover background */
+        color: white;
+    }
+
+    .filter-button.active {
+        background-color: #0A1F44;
+        /* Right color for selected background */
+        color: white;
+    }
 </style>
 @endsection
 
-@section('attr-nav')
+{{-- @section('attr-nav')
 <!-- Start Attribute Navigation -->
 <div class="attr-nav flex">
     <ul>
@@ -38,9 +71,9 @@
     </ul>
 </div>
 <!-- End Attribute Navigation -->
-@endsection
+@endsection --}}
 
-@section('side-menu')
+{{-- @section('side-menu')
 <!-- Start Side Menu -->
 <div class="side">
     <a href="#" class="close-side"><i class="icon_close"></i></a>
@@ -75,12 +108,27 @@
         });
     }
 </script>
-@endsection
+@endsection --}}
 
 @section('content')
+
+<div class="filter-bar" style="padding-top: 30px;">
+    <button class="filter-button active" data-filter="all">All</button>
+    <button class="filter-button" data-filter="company-profile">Company Profile</button>
+    <button class="filter-button" data-filter="e-commerce">E-Commerce</button>
+    <button class="filter-button" data-filter="erp">ERP</button>
+    <button class="filter-button" data-filter="pos">Point Of Sale</button>
+    <button class="filter-button" data-filter="e-learning">E-Learning</button>
+    <button class="filter-button" data-filter="digital-marketing">Digital Marketing</button>
+    <button class="filter-button" data-filter="e-payment">E-Payment</button>
+    <button class="filter-button" data-filter="accounting">Accounting</button>
+</div>
+
+
+
 <!-- Start Blog
     ============================================= -->
-<div class="blog-area blog-grid-colum default-padding">
+<div class="blog-area blog-grid-colum" style="padding: 15px">
     <div class="container">
         <div class="row">
             <!-- Single Item -->
@@ -134,3 +182,17 @@
 </div>
 <!-- End Blog -->
 @endsection
+
+@push('user_script')
+<script>
+    $(document).ready(function() {
+        $('.filter-button').click(function() {
+            $('.filter-button').removeClass('active');
+            $(this).addClass('active');
+            var filter = $(this).data('filter');
+            // Implement your filter logic here
+            console.log("Selected filter: " + filter);
+        });
+    });
+</script>
+@endpush
