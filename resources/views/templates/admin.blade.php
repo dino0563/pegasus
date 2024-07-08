@@ -203,12 +203,14 @@
 
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <!-- User -->
+
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
                                         <img src="{{ asset('storage/users/images/' . $account->profile_photo) }}" alt class="w-px-40 h-px-40 rounded-circle"/>
                                     </div>
-                                </a>
+
+                           
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <a class="dropdown-item" href="{{ route('profile.index') }}">
@@ -295,6 +297,9 @@
     <!-- DataTables JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
 
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
@@ -338,7 +343,6 @@
     <!-- Your additional scripts -->
     @stack('admin_scripts')
 
-
     <script>
         $(document).on('click', '.delete-button', function(e) {
             e.preventDefault();
@@ -347,13 +351,13 @@
 
             if (id) {
                 Swal.fire({
-                    title: 'Are you sure?',
+                    title: "Are you sure?",
                     text: "You won't be able to revert this!",
-                    icon: 'warning',
+                    icon: "warning",
                     showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
                 }).then((result) => {
                     if (result.isConfirmed) {
                         $.ajax({

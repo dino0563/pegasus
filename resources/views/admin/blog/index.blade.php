@@ -1,6 +1,6 @@
 @extends('templates.admin')
 
-@section('title', 'Dashboard')
+@section('title', 'Manage Blog')
 @section('custom-js')
 <script>
     (function(w, d, s, l, i) {
