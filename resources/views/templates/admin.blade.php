@@ -206,7 +206,7 @@
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
-                                        <img src="{{ asset('storage/users/images/' . $user->profile_photo) }}" alt class="w-px-40 h-px-40 rounded-circle"/>
+                                        <img src="{{ asset('storage/users/images/' . $account->profile_photo) }}" alt class="w-px-40 h-px-40 rounded-circle"/>
                                     </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
@@ -215,12 +215,12 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="{{ asset('storage/users/images/' . $user->profile_photo) }}" alt class="w-px-40 h-px-40 rounded-circle"/>
+                                                        <img src="{{ asset('storage/users/images/' . $account->profile_photo) }}" alt class="w-px-40 h-px-40 rounded-circle"/>
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-medium d-block">{{ $user->name }}</span>
-                                                    <small class="text-muted">{{ $user->email }}</small>
+                                                    <span class="fw-medium d-block">{{ $account->name }}</span>
+                                                    <small class="text-muted">{{ $account->email }}</small>
                                                 </div>
                                             </div>
                                         </a>
