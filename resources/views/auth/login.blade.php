@@ -9,19 +9,21 @@
         <div class="mb-3">
             <x-input-label for="email" class="form-label" :value="__('Email')" />
             <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            @if ($errors->has('email'))
+                <div class="mt-2 text-sm text-red-600">{{ __('Maaf email yang anda masukkan salah') }}</div>
+            @endif
         </div>
 
         <!-- Password -->
         <div class="mb-3 form-password-toggle">
             <x-input-label for="password" :value="__('Password')" />
-
             <x-text-input id="password" class="form-control"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                          type="password"
+                          name="password"
+                          required autocomplete="current-password" />
+            @if ($errors->has('password'))
+                <div class="mt-2 text-sm text-red-600">{{ __('Maaf password yang anda masukkan salah') }}</div>
+            @endif
         </div>
 
         <div class="flex items-center justify-end mt-4">
