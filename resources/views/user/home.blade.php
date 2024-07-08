@@ -116,7 +116,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
                     <a class="navbar-brand" href="/">
-                        <img src="assets/user/img/logo.png" class="logo" alt="Logo">
+                        <img src="{{asset ('assets/user/img/logo.png')}}" class="logo" alt="Logo">
                     </a>
                 </div>
                 <!-- End Header Navigation -->
@@ -179,7 +179,7 @@
                         <a href="#" class="close-side"><i class="icon_close"></i></a>
                         <div class="widget">
                             <div class="logo">
-                                <img src="assets/user/img/logo-light.png" alt="Logo">
+                                <img src="{{asset ('assets/user/img/logo.png')}}" alt="Logo">
                             </div>
                         </div>
                         <div class="widget">
@@ -633,7 +633,7 @@
                 <!-- End Single Item -->
             </div>
             <div class="button">
-                <a class="btn btn-theme btn-md animation" href="project-2-colum.html">Lihat Lebih Banyak</a>
+                <a class="btn btn-theme btn-md animation" href="{{url('/detail-iso')}}">Lihat Lebih Banyak</a>
             </div>
         </div>
     </div>
@@ -1029,7 +1029,7 @@
                             <img src="assets/user/img/shape/6.png" alt="Image Not Found">
                         </div>
                         <div class="f-item about pr-50 pr-xs-0 pr-md-0">
-                            <img class="logo" src="assets/user/img/logo-light.png" alt="Logo">
+                            <img class="logo" src="{{asset ('assets/user/img/logo.png')}}" alt="Logo" style="max-width:100%; height:auto;">
                             <p>
                                 Are off under folly death writter transforming cold regular. Almost do am or limits of hearts.
                             </p>

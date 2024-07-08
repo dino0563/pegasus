@@ -70,8 +70,8 @@ class UserController extends Controller
     try {
         $user = User::findOrFail($user_id);
         // Hapus gambar pengguna jika ada
-        if ($user->image) {
-            $destination = 'storage/users/images/' . $user->image;
+        if ($user->profile_photo) {
+            $destination = 'storage/users/images/' . $user->profile_photo;
             if (File::exists($destination)) {
                 File::delete($destination);
             }

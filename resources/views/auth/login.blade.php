@@ -10,7 +10,7 @@
             <x-input-label for="email" class="form-label" :value="__('Email')" />
             <x-text-input id="email" class="form-control" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             @if ($errors->has('email'))
-                <div class="mt-2 text-sm text-red-600">{{ __('Maaf email atau password yang anda masukkan salah') }}</div>
+                <div class="mt-2 text-sm text-danger">{{ __('Maaf email atau password yang anda masukkan salah') }}</div>
             @endif
         </div>
 
@@ -22,7 +22,7 @@
                           name="password"
                           required autocomplete="current-password" />
             @if ($errors->has('password'))
-                <div class="mt-2 text-sm text-red-600">{{ __('Maaf email atau password yang anda masukkan salah') }}</div>
+                <div class="mt-2 text-sm text-danger">{{ __('Maaf email atau password yang anda masukkan salah') }}</div>
             @endif
         </div>
 

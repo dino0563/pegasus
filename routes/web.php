@@ -31,6 +31,9 @@ Route::get('/service/layanan-handal-responsif', function () {
 Route::get('/service/memberi-manfaat-bagi-masyarakat', function () {
     return view('user.service.memberi-manfaat-bagi-masyarakat');
 });
+Route::get('/detail-iso', function () {
+    return view('user.iso');
+});
 
 Route::get('/blog', [BlogController::class, 'show'])->name('blog');
 Route::get('/blog/details/{slug}', [BlogController::class, 'detailBlog'])->name('blog.detail');

@@ -9,8 +9,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
           validators: {
             notEmpty: { message: "Please enter username" },
             stringLength: {
-              min: 6,
-              message: "Username must be more than 6 characters",
+              min: 8,
+              message: "Username must be more than 8 characters",
             },
           },
         },
@@ -24,8 +24,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
           validators: {
             notEmpty: { message: "Please enter email / username" },
             stringLength: {
-              min: 6,
-              message: "Username must be more than 6 characters",
+              min: 8,
+              message: "Username must be more than 8 characters",
             },
           },
         },
@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
           validators: {
             notEmpty: { message: "Please enter your password" },
             stringLength: {
-              min: 6,
-              message: "Password must be more than 6 characters",
+              min: 8,
+              message: "Password must be more than 8 characters",
             },
           },
         },
@@ -49,8 +49,8 @@ document.addEventListener("DOMContentLoaded", function (e) {
               message: "The password and its confirm are not the same",
             },
             stringLength: {
-              min: 6,
-              message: "Password must be more than 6 characters",
+              min: 8,
+              message: "Password must be more than 8 characters",
             },
           },
         },
