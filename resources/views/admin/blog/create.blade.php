@@ -52,8 +52,14 @@
                         <label class="col-sm-2 col-form-label" for="kategori">Kategori</label>
                         <div class="col-sm-10">
                             <select class="form-control" id="kategori" name="kategori" required>
-                                <option value="Konstruksi">Konstruksi</option>
-                                <option value="Pendidikan">Pendidikan</option>
+                                <option value="Company Profile">Company Profile</option>
+                                <option value="E-Commerce">E-Commerce</option>
+                                <option value="ERP">ERP</option>
+                                <option value="Point Of Sale">Point Of Sale</option>
+                                <option value="E-Learning">E-Learning</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="E-Payment">E-Payment</option>
+                                <option value="Accounting">Accounting</option>
                             </select>
                         </div>
                     </div>

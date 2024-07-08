@@ -36,7 +36,7 @@
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="gambar">Gambar</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control dropify" data-max-file-size="10M"
+                            <input type="file" class="form-control dropify" data-max-file-size="3M"
                                 data-allowed-file-extensions="png jpg jpeg" id="gambar" name="gambar"
                                 accept=".jpg, .jpeg, .png">
                             @if ($errors->has('gambar'))
@@ -60,10 +60,22 @@
                         <label class="col-sm-2 col-form-label" for="kategori">Kategori</label>
                         <div class="col-sm-10">
                             <select class="form-control" id="kategori" name="kategori" required>
-                                <option value="Konstruksi" {{ old('kategori', $portfolio->kategori) == 'Konstruksi' ?
-                                    'selected' : '' }}>Konstruksi</option>
-                                <option value="Pendidikan" {{ old('kategori', $portfolio->kategori) == 'Pendidikan' ?
-                                    'selected' : '' }}>Pendidikan</option>
+                                <option value="Company Profile" {{ old('kategori', $portfolio->kategori) == 'Company Profile' ?
+                                    'selected' : '' }}>Company Profile</option>
+                                <option value="E-Commerce" {{ old('kategori', $portfolio->kategori) == 'E-Commerce' ?
+                                    'selected' : '' }}>E-Commerce</option>
+                                <option value="ERP" {{ old('kategori', $portfolio->kategori) == 'ERP' ?
+                                    'selected' : '' }}>ERP</option>
+                                <option value="Point Of Sale" {{ old('kategori', $portfolio->kategori) == 'Point Of Sale' ?
+                                    'selected' : '' }}>Point Of Sale</option>
+                                <option value="E-Learning" {{ old('kategori', $portfolio->kategori) == 'E-Learning' ?
+                                    'selected' : '' }}>E-Learning</option>
+                                <option value="Digital Marketing" {{ old('kategori', $portfolio->kategori) == 'Digital Marketing' ?
+                                    'selected' : '' }}>Digital Marketing</option>
+                                <option value="E-Payment" {{ old('kategori', $portfolio->kategori) == 'E-Payment' ?
+                                    'selected' : '' }}>E-Payment</option>
+                                <option value="Accounting" {{ old('kategori', $portfolio->kategori) == 'Accounting' ?
+                                    'selected' : '' }}>Accounting</option>
                             </select>
                             @if ($errors->has('kategori'))
                             <div class="text-danger">{{ $errors->first('kategori') }}</div>

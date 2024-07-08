@@ -19,7 +19,7 @@ class BlogController extends Controller
     }
     public function show()
     {
-        $blogs = Blog::paginate(12);
+        $blogs = Blog::all();
         return view('user.blog', compact('blogs'));
     }
     public function detailBlog($slug)
@@ -80,7 +80,7 @@ class BlogController extends Controller
             $blog = Blog::findOrFail($blog_id);
 
             if ($blog->gambar) {
-                $destination = 'public/blog/gambar/' . $blog->gambar;
+                $destination = 'storage/blog/gambar/' . $blog->gambar;
                 if (File::exists($destination)) {
                     File::delete($destination);
                 }

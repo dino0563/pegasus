@@ -82,7 +82,7 @@
 
 
                 <div class="app-brand demo ">
-                    <a href="/" class="app-brand-link">
+                    <a href="/dashboard" class="app-brand-link">
                         <span class="app-brand-logo demo">
 
                             <svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg"
@@ -189,7 +189,7 @@
 
 
 
-                        <!-- Search -->
+                        {{-- <!-- Search -->
                         <div class="navbar-nav align-items-center">
                             <div class="nav-item navbar-search-wrapper mb-0">
                                 <a class="nav-link search-toggler px-0" href="javascript:void(0);"
@@ -199,25 +199,28 @@
                                 </a>
                             </div>
                         </div>
-                        <!-- /Search -->
+                        <!-- /Search --> --}}
 
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
-                                    data-bs-toggle="dropdown">
-                                    <i class='bx bx-user'></i>
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <div class="avatar avatar-online">
+                                        <img src="{{ asset('storage/users/images/' . $user->profile_photo) }}" alt class="w-px-40 h-px-40 rounded-circle"/>
+                                    </div>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
-                                    {{-- <li>
-                                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('profile.index') }}">
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
-                                                    <i class='bx bx-user'></i>
+                                                    <div class="avatar avatar-online">
+                                                        <img src="{{ asset('storage/users/images/' . $user->profile_photo) }}" alt class="w-px-40 h-px-40 rounded-circle"/>
+                                                    </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-medium d-block">John Doe</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span class="fw-medium d-block">{{ $user->name }}</span>
+                                                    <small class="text-muted">{{ $user->email }}</small>
                                                 </div>
                                             </div>
                                         </a>
@@ -225,15 +228,6 @@
                                     <li>
                                         <div class="dropdown-divider"></div>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                            <i class="bx bx-cog me-2"></i>
-                                            <span class="align-middle">Settings</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-divider"></div>
-                                    </li> --}}
                                     <li>
                                         <a class="dropdown-item" href="{{ route('profile.index') }}">
                                             <i class="bx bx-cog me-2"></i>
@@ -244,14 +238,11 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                             <i class='bx bx-power-off me-2'></i>
                                             <span class="align-middle">Log Out</span>
                                         </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
                                     </li>
@@ -259,9 +250,7 @@
                             </li>
                             <!--/ User -->
                         </ul>
-                        </li>
-                        <!--/ User -->
-                        </ul>
+
                     </div>
 
 

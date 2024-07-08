@@ -8,7 +8,6 @@
 
 @section('content')
 <div class="content-wrapper">
-    <!-- Content -->
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="card mb-4">
             <div class="card-header d-flex align-items-center justify-content-between">
@@ -60,50 +59,14 @@
                     </div>
                 </form>
             </div>
-
-
         </div>
     </div>
 </div>
-@endsection
-
-@section('script')
-<!-- Add your custom scripts if any -->
 @endsection
 
 @push('admin_scripts')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 <script>
     $('.dropify').dropify();
-</script>
-<script>
-    document.getElementById('password').addEventListener('input', function() {
-            if (this.value.length >= 6) {
-                this.style.border = '2px solid green';
-            } else {
-                this.style.border = '2px solid red';
-            }
-        });
-
-        document.getElementById('password').addEventListener('blur', function() {
-            if (this.value.length < 6) {
-                this.style.border = '2px solid red';
-                alert('Password must be at least 6 characters long.');
-            } else {
-                this.style.border = '2px solid green';
-            }
-        });
-
-
-        function togglePasswordVisibility(button, fieldId) {
-            const field = document.getElementById(fieldId);
-            if (field.getAttribute('type') === "password") {
-                field.setAttribute('type', "text");
-                button.innerHTML = "<i class='bx bx-hide'></i>";
-            } else {
-                field.setAttribute('type', "password");
-                button.innerHTML = "<i class='bx bx-show-alt'></i>";
-            }
-        };
 </script>
 @endpush

@@ -68,8 +68,6 @@
     <button class="filter-button" data-filter="accounting">Accounting</button>
 </div>
 
-
-
 <div class="blog-area blog-grid-colum" style="padding: 10px;">
     <div class="container">
         <div class="row">
@@ -136,8 +134,13 @@
             $('.filter-button').removeClass('active');
             $(this).addClass('active');
             var filter = $(this).data('filter');
-            // Implement your filter logic here
-            console.log("Selected filter: " + filter);
+
+            if(filter == 'all') {
+                $('.portfolio-item').show();
+            } else {
+                $('.portfolio-item').hide();
+                $('.portfolio-item[data-category="' + filter + '"]').show();
+            }
         });
     });
 </script>
