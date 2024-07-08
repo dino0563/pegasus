@@ -1,6 +1,6 @@
 @extends('templates.admin')
 
-@section('title', 'Dashboard')
+@section('title', 'Settings Profile')
 @push('admin_style')
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css">
 @endpush
@@ -44,11 +44,11 @@
                                         @csrf
                                         <label for="gambar">
                                             <input type="file" class="form-control me-2 mb-2 dropify" id="gambar"
-                                                name="photo" data-max-file-size="10M"
+                                                name="photo" data-max-file-size="3M"
                                                 data-allowed-file-extensions="png jpg jpeg" required
                                                 accept=".jpg, .jpeg, .png, .gif">
                                         </label>
-                                        <p class="text-muted mb-2">Allowed JPG, GIF or PNG. Max size of 800K</p>
+                                        <p class="text-muted mb-2">Allowed JPG, GIF or PNG. Max size of 3MB</p>
                                         @if ($errors->has('photo'))
                                             <div class="text-danger">{{ $errors->first('photo') }}</div>
                                         @endif

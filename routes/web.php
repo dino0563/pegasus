@@ -5,6 +5,8 @@ use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
+
 
 require __DIR__ . '/auth.php';
 Route::get('/', [PortfolioController::class, 'show']);

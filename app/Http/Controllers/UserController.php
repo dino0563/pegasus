@@ -68,8 +68,7 @@ class UserController extends Controller
     public function destroy($user_id)
 {
     try {
-        $user = User::findOrFail($user_id);
-        
+        $user = User::findOrFail((int)$user_id);
         // Hapus gambar pengguna jika ada
         if ($user->image) {
             $destination = 'storage/users/images/' . $user->image;
@@ -77,15 +76,15 @@ class UserController extends Controller
                 File::delete($destination);
             }
         }
-        
+
         // Hapus pengguna
         $user->delete();
 
-        return response()->json(['success' => true]);
-    } catch (\Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
-}
 
 
     public function edit(Request $request, $user_id)
@@ -97,7 +96,7 @@ class UserController extends Controller
     // Controller Method
     public function update(Request $request, $user_id)
     {
-        $user = Auth::user();
+        $user = User::findOrFail($user_id);
 
         $request->validate([
             'name' => 'required|string|max:255',
