@@ -210,7 +210,7 @@
                                         <img src="{{ asset('storage/users/images/' . $account->profile_photo) }}" alt class="w-px-40 h-px-40 rounded-circle"/>
                                     </div>
 
-                           
+
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         <a class="dropdown-item" href="{{ route('profile.index') }}">

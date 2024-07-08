@@ -58,14 +58,14 @@
 
 <div class="filter-bar" style="padding-top: 30px;">
     <button class="filter-button active" data-filter="all">All</button>
-    <button class="filter-button" data-filter="company-profile">Company Profile</button>
-    <button class="filter-button" data-filter="e-commerce">E-Commerce</button>
-    <button class="filter-button" data-filter="erp">ERP</button>
-    <button class="filter-button" data-filter="pos">Point Of Sale</button>
-    <button class="filter-button" data-filter="e-learning">E-Learning</button>
-    <button class="filter-button" data-filter="digital-marketing">Digital Marketing</button>
-    <button class="filter-button" data-filter="e-payment">E-Payment</button>
-    <button class="filter-button" data-filter="accounting">Accounting</button>
+    <button class="filter-button" data-filter="Company Profile">Company Profile</button>
+    <button class="filter-button" data-filter="E-Commerce">E-Commerce</button>
+    <button class="filter-button" data-filter="ERP">ERP</button>
+    <button class="filter-button" data-filter="Point Of Sale">Point Of Sale</button>
+    <button class="filter-button" data-filter="E-Learning">E-Learning</button>
+    <button class="filter-button" data-filter="Digital Marketing">Digital Marketing</button>
+    <button class="filter-button" data-filter="E-Payment">E-Payment</button>
+    <button class="filter-button" data-filter="Accounting">Accounting</button>
 </div>
 
 <div class="blog-area blog-grid-colum" style="padding: 10px;">

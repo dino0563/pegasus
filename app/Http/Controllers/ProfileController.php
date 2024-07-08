@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+
 
 class ProfileController extends Controller
 {
@@ -111,7 +113,11 @@ class ProfileController extends Controller
             $file = $request->file('photo');
             $extension = $file->getClientOriginalExtension();
             $filename = 'user-' . time() . '.' . $extension; // Generate unique filename
-            $path = $file->storeAs('public/users/images', $filename); // Store in 'public/users/images' folder
+            $path = $file->storeAs('public/users/images', $filename); // Store in 'storage/assets/users/images' folder
+            // Delete old profile photo if exists
+            if ($user->profile_photo) {
+                Storage::delete('public/users/images/' . $user->profile_photo);
+            }
 
             // Update path in database
             $user->profile_photo = $filename;
@@ -122,4 +128,5 @@ class ProfileController extends Controller
 
         return redirect()->route('profile.index')->withErrors('No photo uploaded.');
     }
+
 }

@@ -15,7 +15,7 @@ class PortfolioController extends Controller
     }
     public function show()
     {
-        $portfolios = Portfolio::paginate(5);
+        $portfolios = Portfolio::latest()->paginate(5);
         return view('user.home', compact('portfolios'));
     }
     // public function show_details($slug)
@@ -142,7 +142,7 @@ class PortfolioController extends Controller
     public function destroy($portfolio_id)
     {
         try {
-            $portfolio = Portfolio::findOrFail((int) $portfolio_id); 
+            $portfolio = Portfolio::findOrFail((int) $portfolio_id);
             if ($portfolio->gambar) {
                 $destination = 'storage/portfolio/gambar/' . $portfolio->gambar;
                 if (File::exists($destination)) {
