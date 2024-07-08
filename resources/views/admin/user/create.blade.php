@@ -37,23 +37,23 @@
                         <div class="col-sm-10">
                             <div class="input-group">
                                 <input type="password" class="form-control" id="password" name="password"
-                                    placeholder="Enter password (min. 6 characters)" required
+                                    placeholder="Enter password (min. 8 characters)" required
                                     oninput="checkPasswordLength(this)">
                                 <button type="button" class="btn btn-outline-secondary"
                                     onclick="togglePasswordVisibility(this, 'password')"><i
                                         class='bx bx-show-alt'></i></button>
                             </div>
-                            <small class="text-muted">Minimum password: 6 characters</small>
+                            <small class="text-muted">Minimum password: 8 characters</small>
                         </div>
                     </div>
                     <div class="row mb-3">
                         <label class="col-sm-2 col-form-label" for="profile_photo">Profile Picture</label>
                         <div class="col-sm-10">
-                            <input type="file" class="form-control dropify" data-max-file-size="10M"
+                            <input type="file" class="form-control dropify" data-max-file-size="3M"
                                 data-allowed-file-extensions="png jpg jpeg" id="profile_photo" name="profile_photo"
                                 required accept=".jpg, .jpeg, .png">
 
-                            <small class="text-muted">Maximum file size: 10MB</small>
+                            <small class="text-muted">Maximum file size: 3MB</small>
                         </div>
                     </div>
                     <div class="row justify-content-end">
@@ -71,7 +71,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 <script>
     document.getElementById('password').addEventListener('input', function() {
-        if (this.value.length >= 6) {
+        if (this.value.length >= 8) {
             this.style.border = '2px solid green';
         } else {
             this.style.border = '2px solid red';
@@ -79,9 +79,9 @@
     });
 
     document.getElementById('password').addEventListener('blur', function() {
-        if (this.value.length < 6) {
+        if (this.value.length < 8) {
             this.style.border = '2px solid red';
-            alert('Password must be at least 6 characters long.');
+            alert('Password must be at least 8 characters long.');
         } else {
             this.style.border = '2px solid green';
         }

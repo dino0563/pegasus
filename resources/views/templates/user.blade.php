@@ -270,6 +270,7 @@
     <script src="{{ asset('assets/user/js/validnavs.js') }}"></script>
     <script src="{{ asset('assets/user/js/main.js') }}"></script>
 
+    @stack('user_script')
 </body>
 
 </html>

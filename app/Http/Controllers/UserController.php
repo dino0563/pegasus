@@ -30,7 +30,7 @@ class UserController extends Controller
             $validatedData = $request->validate([
                 'name' => 'required|max:250',
                 'email' => 'required|email|max:250|unique:users',
-                'password' => 'required|min:6',
+                'password' => 'required|min:8',
                 'profile_photo' => 'required|image|mimes:jpg,jpeg,png|max:10240',
             ]);
 
@@ -69,7 +69,6 @@ class UserController extends Controller
 {
     try {
         $user = User::findOrFail($user_id);
-        
         // Hapus gambar pengguna jika ada
         if ($user->image) {
             $destination = 'storage/users/images/' . $user->image;
@@ -77,15 +76,15 @@ class UserController extends Controller
                 File::delete($destination);
             }
         }
-        
+
         // Hapus pengguna
         $user->delete();
 
-        return response()->json(['success' => true]);
-    } catch (\Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 500);
+            return response()->json(['success' => true]);
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
-}
 
 
     public function edit(Request $request, $user_id)
@@ -97,27 +96,13 @@ class UserController extends Controller
     // Controller Method
     public function update(Request $request, $user_id)
     {
-        $user = Auth::user();
+        $user = User::findOrFail($user_id);
 
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email,' . $user_id,
             'profile_photo' => 'nullable|file|image|mimes:jpg,jpeg,png|max:10240',
         ]);
-
-        // Validasi password hanya jika password baru diisi
-        if ($request->filled('new_password')) {
-            $request->validate([
-                'current_password' => 'required',
-                'new_password' => 'required|string|min:8|confirmed',
-            ]);
-
-            if (!Hash::check($request->current_password, $user->password)) {
-                return back()->withErrors(['current_password' => 'Password saat ini salah.']);
-            }
-
-            $user->password = Hash::make($request->new_password);
-        }
 
         $user->name = $request['name'];
         $user->email = $request['email'];

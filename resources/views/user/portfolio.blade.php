@@ -3,30 +3,42 @@
 @section('title', "Portfolio")
 @section('custom-css')
 <style>
-    .side {
-        background-color: #e4e0ea;
-    }
-
-    .side .widget {
-        margin-bottom: 20px;
-    }
-
-    .side .widget h4 {
-        margin-bottom: 15px;
-    }
-
-    .side .widget a {
-        color: #343a40;
-        display: block;
+    .filter-bar {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
         padding: 10px;
-        border: 1px solid #000000;
-        border-radius: 5px;
-        margin-bottom: 10px;
+    }
+
+    .filter-button {
+        border: 1px solid transparent;
+        border-radius: 20px;
+        padding: 5px 15px;
+        color: #0A1F44;
+        /* Right color for inactive text */
+        border: 2px solid #0A1F44;
+        /* Right color for inactive border */
+        background-color: white;
+        cursor: pointer;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    .filter-button:hover {
+        background-color: #6A00FF;
+        /* Left color for hover background */
+        color: white;
+    }
+
+    .filter-button.active {
+        background-color: #0A1F44;
+        /* Right color for selected background */
+        color: white;
     }
 </style>
 @endsection
 
-@section('attr-nav')
+{{-- @section('attr-nav')
 <!-- Start Attribute Navigation -->
 <div class="attr-nav flex">
     <ul>
@@ -40,81 +52,96 @@
     </ul>
 </div>
 <!-- End Attribute Navigation -->
-@endsection
-
-@section('side-menu')
-<!-- Start Side Menu -->
-<div class="side">
-    <a href="#" class="close-side"><i class="icon_close"></i></a>
-    <div class="widget">
-        <div class="logo">
-            <img src="assets/user/img/logo-light.png" alt="Logo">
-        </div>
-    </div>
-
-    <div class="widget">
-        <a href="#" class="btn btn-light btn-block" onclick="filterPortfolios('All')">Show All</a>
-    </div>
-    <div class="widget">
-        <a href="#" class="btn btn-light btn-block" onclick="filterPortfolios('Konstruksi')">Konstruksi</a>
-    </div>
-    <div class="widget">
-        <a href="#" class="btn btn-light btn-block" onclick="filterPortfolios('Pendidikan')">Pendidikan</a>
-    </div>
-</div>
-<!-- End Side Menu -->
-
-<script>
-    function filterPortfolios(category) {
-        const portfolios = document.querySelectorAll('.swiper-slide');
-        portfolios.forEach(portfolio => {
-            const portfolioCategory = portfolio.querySelector('.overlay span').textContent.trim();
-            if (category === 'All' || portfolioCategory === category) {
-                portfolio.style.display = 'block';
-            } else {
-                portfolio.style.display = 'none';
-            }
-        });
-    }
-</script>
-@endsection
+@endsection --}}
 
 @section('content')
-<!-- Start Project
-    ============================================= -->
-<div class="project-style-one-area overflow-hidden default-padding">
-    <div class="project-style-one-items">
-        <div class="container-fill">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="project-center-stage-carousel swiper">
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <!-- Single Item -->
-                            @foreach($portfolios as $portfolio)
-                            <div class="swiper-slide">
-                                <div class="project-style-one">
-                                    <div style="position: relative; width: 100%; padding-bottom: 66.67%; overflow: hidden;">
-                                        <img src="{{asset('storage/portfolio/gambar/' . $portfolio->gambar)}}" alt="Thumb"
-                                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
-                                    </div>
-                                    <div class="overlay">
-                                        <span>{{ $portfolio->kategori }}</span>
-                                        <h4><a href="{{ route('portfolio.detail', $portfolio->slug) }}">{{ $portfolio->nama }}</a></h4>
-                                    </div>
-                                    <div class="shape">
-                                        <img src="assets/user/img/shape/10.png" alt="Image Not Found">
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-                            <!-- End Single Item -->
+
+<div class="filter-bar" style="padding-top: 30px;">
+    <button class="filter-button active" data-filter="all">All</button>
+    <button class="filter-button" data-filter="company-profile">Company Profile</button>
+    <button class="filter-button" data-filter="e-commerce">E-Commerce</button>
+    <button class="filter-button" data-filter="erp">ERP</button>
+    <button class="filter-button" data-filter="pos">Point Of Sale</button>
+    <button class="filter-button" data-filter="e-learning">E-Learning</button>
+    <button class="filter-button" data-filter="digital-marketing">Digital Marketing</button>
+    <button class="filter-button" data-filter="e-payment">E-Payment</button>
+    <button class="filter-button" data-filter="accounting">Accounting</button>
+</div>
+
+<div class="blog-area blog-grid-colum" style="padding: 10px;">
+    <div class="container">
+        <div class="row">
+            <!-- Single Item -->
+            @foreach($portfolios as $portfolio)
+            <div class="col-lg-4 col-md-6 mb-50 portfolio-item" data-category="{{ $portfolio->kategori }}">
+                <div class="blog-style-one">
+                    <div class="thumb">
+                        <a href="{{ route('portfolio.detail', $portfolio->slug) }}"><img
+                                src="{{asset('storage/portfolio/gambar/' . $portfolio->gambar)}}" alt="Image Not Found"
+                                style="width: 100%; height: auto; object-fit: cover; border-radius: 10px; aspect-ratio: 3 / 2;"></a>
+                    </div>
+                    <div class="info">
+                        <div class="meta">
+                            <ul>
+                                <li>{{ $portfolio->kategori }}</li>
+                            </ul>
                         </div>
+                        <h3 class="post-title"><a href="{{ route('portfolio.detail', $portfolio->slug) }}">{{
+                                $portfolio->nama }}</a></h3>
+                        <a href="{{ route('portfolio.detail', $portfolio->slug) }}" class="button-regular">
+                            See Detail <i class="fas fa-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
+            </div>
+            @endforeach
+            <!-- End Single Item -->
+        </div>
+        <!-- Pagination -->
+        <div class="row">
+            <div class="col-md-12 pagi-area text-center">
+                <nav aria-label="navigation">
+                    <ul class="pagination">
+                        @if(method_exists($portfolios, 'links'))
+                        @foreach($portfolios->links() as $link)
+                        @if($loop->first)
+                        <li class="page-item"><a class="page-link" href="{{ $link->url }}" rel="prev"><i
+                                    class="fas fa-angle-left"></i></a></li>
+                        @endif
+                        @if($loop->iteration % 12 == 0)
+                        <li class="page-item"><a class="page-link" href="{{ $link->url }}">{{ $loop->iteration / 12 + 1
+                                }}</a></li>
+                        @endif
+                        @if($loop->last)
+                        <li class="page-item"><a class="page-link" href="{{ $link->url }}" rel="next"><i
+                                    class="fas fa-angle-right"></i></a></li>
+                        @endif
+                        @endforeach
+                        @endif
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>
 </div>
-<!-- End Project -->
+<!-- End Blog -->
 @endsection
+
+@push('user_script')
+<script>
+    $(document).ready(function() {
+        $('.filter-button').click(function() {
+            $('.filter-button').removeClass('active');
+            $(this).addClass('active');
+            var filter = $(this).data('filter');
+
+            if(filter == 'all') {
+                $('.portfolio-item').show();
+            } else {
+                $('.portfolio-item').hide();
+                $('.portfolio-item[data-category="' + filter + '"]').show();
+            }
+        });
+    });
+</script>
+@endpush

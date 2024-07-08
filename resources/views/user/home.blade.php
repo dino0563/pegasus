@@ -141,9 +141,9 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" >Services</a>
                             <ul class="dropdown-menu">
-                                <li><a href="services-details.html">Solusi</a></li>
-                                <li><a href="services-details.html">Layanan Handal & Responsif</a></li>
-                                <li><a href="services-details.html">Memberi Manfaat Bagi Masyarakat</a></li>
+                                <li><a href="{{ url('/service/solusi') }}">Solusi</a></li>
+                                <li><a href="{{ url('/service/layanan-handal-responsif') }}">Layanan Handal & Responsif</a></li>
+                                <li><a href="{{ url('/service/memberi-manfaat-bagi-masyarakat') }}">Memberi Manfaat Bagi Masyarakat</a></li>
                             </ul>
                         </li>
 
@@ -154,7 +154,7 @@
                         <li class="">
                             <a href="/blog" class="dropdown-toggle" data-toggle="dropdown" >Blog</a>
                         </li>
-                        <li><a href="/contact">Contant Us</a></li>
+                        <li><a href="/contact-us">Contact</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
 
