@@ -546,7 +546,7 @@
                                             {!! $portfolio->deskripsi !!}
                                         </p>
                                         {{-- <a class="btn btn-md btn-dark animation" href="{{ route('portfolio.show', $portfolio->id) }}">Lihat Lebih Banyak</a> --}}
-                                        <a class="btn btn-md btn-dark animation" href="{{ route('portfolio.detail', $portfolio->slug) }}">Lihat Lebih Banyak</a>
+                                        <a class="btn btn-md btn-dark animation" href="{{ route('portfolio') }}">Lihat Lebih Banyak</a>
                                     </div>
                                 </div>
                             </div>

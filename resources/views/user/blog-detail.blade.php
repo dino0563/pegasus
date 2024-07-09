@@ -18,7 +18,7 @@
                     style="width: 100%; height: auto; object-fit: cover; border-radius: 10px; aspect-ratio: 3 / 2;"
                   />
                 </div>
-                <h2>{{$blogs->judul}}</h2>
+                {{-- <h2>{{$blogs->judul}}</h2> --}}
                 <h4>{{$blogs->penulis}} | {{$blogs->tanggal}}</h4>
                 <p>
                   {!! $blogs->deskripsi !!}
